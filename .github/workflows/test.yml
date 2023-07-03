@@ -1,0 +1,34 @@
+# documentation: https://help.github.com/en/articles/workflow-syntax-for-github-actions
+name: build tutorial
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: Codespell action
+      uses: codespell-project/actions-codespell@master
+      with:
+        check_filenames: true
+
+    #- name: Markdown Linting Action
+    #  uses: avto-dev/markdown-lint@v1.2.0
+    #  with:
+        # rules: '/lint/rules/changelog.js'
+        # config: '/lint/config/changelog.yml'
+    #    args: '.'
+
+    - name: install mkdocs
+      run: |
+          pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
+          mkdocs --version
+
+    - name: build tutorial
+      run: mkdocs build --strict

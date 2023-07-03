@@ -1,0 +1,48 @@
+site_name: ""
+theme:
+  name: material
+  logo: img/cvmfs_logo.png
+  featres:
+      - instant
+repo_name: Best Practices for CernVM-FS in HPC
+repo_url: https://github.com/multixscale/cvmfs-tutorial-hpc-best-practices
+edit_uri: edit/master/docs
+nav:
+  - "Home": index.md
+  - What is CernVM-FS?: 00_what_is_cvmfs.md
+  - EESSI: 01_eessi.md
+  - Accessing a repository: 02_access.md
+  - Configuration on HPC systems: 03_configuration.md
+  - Troubleshooting and debugging: 04_troubleshooting_debugging.md
+  - Performance aspects: 05_performance.md
+  - Storage backends: 06_storage_backends.md
+  - Containers: 07_containers.md
+  - Creating a CernVM-FS repository: 10_getting_started.md
+plugins:
+  # show revision date at bottom of each page
+  - git-revision-date-localized
+  # necessary for search to work
+  - search
+markdown_extensions:
+  # notes, warnings, hints, ...
+  - admonition
+  # code blocks with syntax highlighting, graphs
+  - pymdownx.superfences
+  # clickable details
+  - pymdownx.details
+  # tabbed contents
+  - pymdownx.tabbed
+  - toc:
+      permalink: true
+extra:
+  # add links in bottom right
+  social:
+      #- type: github
+      #icon: octicons/logo-github
+      #link: https://github.com/easybuilders
+      #- icon: fontawesome/brands/twitter
+      #link: https://twitter.com/easy_build
+      #- icon: fontawesome/brands/youtube
+      #link: https://www.youtube.com/c/easybuilders
+      #- icon: fontawesome/solid/book
+      #link: https://easybuild.readthedocs.io
