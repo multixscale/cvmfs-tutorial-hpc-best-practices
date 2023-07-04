@@ -1,0 +1,26 @@
+# documentation: https://help.github.com/en/articles/workflow-syntax-for-github-actions
+name: deploy tutorial (only on push to master branch)
+on:
+  push:
+    branches: master
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
+
+    - name: set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: install mkdocs
+      run: |
+          pip install mkdocs mkdocs-material mkdocs-git-revision-date-localized-plugin
+          mkdocs --version
+
+    - name: build tutorial
+      run: mkdocs build --strict && mkdocs gh-deploy --force
