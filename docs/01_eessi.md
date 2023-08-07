@@ -15,7 +15,7 @@ The goal of this project is to build a common stack of scientific software insta
 
 There are more and more scientists that are running large computations. Who have an increasing number of open source scientific software available to them. Next to the variety in software there is also an increasing number of CPUs (Intel, AMD, Arm, RISC-V, ...), types of accerators (NVIDIA & AMD GPUs, Intel Xe, ...), use of the cloud (Amazon EC2, Microsoft Azure, Google, Oracle, ...). 
 
-In stark contrast with the number of users and the variety of systems that they can use, is the number of available manpower that serve as HPC support teams. This is problem since it is often beneficial for the software to be optimised fo the system that it will run on. 
+In stark contrast with the number of users and the variety of systems that they can use, is the number of available manpower that serve as HPC support teams. This is problem since it is often beneficial for the software to be optimised for the system that it will run on. 
 
 In the paper, _EESSI: A cross-platform ready-to-use optimised scientific software stack_ (2022)[^1], it is shown that the performance of GROMACS can vary significantly if the software is optimised to the system or not.
 
