@@ -6,7 +6,8 @@ across a large number of systems world-wide in an efficient way.
 
 It is implemented as a *POSIX read-only file system in user space* with [repositories](cvmfs-terminology-repository)
 of files that are served via HTTP, thus avoiding problems with firewalls.
-Internally, CernVM-FS uses content-adressable storage (object storage) and Merkle trees (like Git also does) to store file data and metadata.
+Internally, CernVM-FS uses [content-adressable storage (CAS)](https://en.wikipedia.org/wiki/Content-addressable_storage)
+and [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree) (like Git also does) to store file data and metadata.
 
 Files in a CernVM-FS repository are *automatically downloaded on-demand* as they are accessed from web servers
 that support the repository being used, and a multi-level caching hierarchy is employed to mitigate
