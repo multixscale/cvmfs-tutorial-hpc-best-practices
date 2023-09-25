@@ -1,15 +1,18 @@
-site_name: ""
+site_name: "Best Practices for CernVM-FS in HPC"
 theme:
   name: material
   logo: img/cvmfs_logo.png
-  featres:
+  features:
       - instant
 repo_name: Best Practices for CernVM-FS in HPC
 repo_url: https://github.com/multixscale/cvmfs-tutorial-hpc-best-practices
 edit_uri: edit/master/docs
 nav:
   - "Home": index.md
-  - What is CernVM-FS?: 00_what_is_cvmfs.md
+  - Introduction to CernVM-FS:
+    - What is CernVM-FS?: cvmfs/what_is_cvmfs.md
+    - Terminology: cvmfs/terminology.md
+    - Example repositories: cvmfs/repositories.md
   - EESSI: 01_eessi.md
   - Accessing a repository: 02_access.md
   - Configuration on HPC systems: 03_configuration.md
@@ -24,6 +27,8 @@ plugins:
   # necessary for search to work
   - search
 markdown_extensions:
+  # enable adding HTML attributes and CSS classes
+  - attr_list
   # notes, warnings, hints, ...
   - admonition
   # code blocks with syntax highlighting, graphs
