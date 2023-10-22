@@ -16,7 +16,7 @@ nav:
     - Terminology: cvmfs/terminology.md
     - Technical details: cvmfs/technical_details.md
     - Flagship repositories: cvmfs/repositories.md
-  - EESSI: 01_eessi.md
+  - EESSI: eessi.md
   - Accessing a repository: 02_access.md
   - Configuration on HPC systems: 03_configuration.md
   - Troubleshooting and debugging: 04_troubleshooting_debugging.md
