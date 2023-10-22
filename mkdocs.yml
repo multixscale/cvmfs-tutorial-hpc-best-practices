@@ -12,6 +12,7 @@ nav:
   - Introduction to CernVM-FS:
     - What is CernVM-FS?: cvmfs/what_is_cvmfs.md
     - Terminology: cvmfs/terminology.md
+    - Technical details: cvmfs/technical_details.md
     - Example repositories: cvmfs/repositories.md
   - EESSI: 01_eessi.md
   - Accessing a repository: 02_access.md
