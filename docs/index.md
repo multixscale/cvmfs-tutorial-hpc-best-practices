@@ -57,15 +57,17 @@ We hope to organise a fully online tutorial using this material some time in Sep
 
 ## Contributors
 
+* Jakob Blomer (CERN, Switzerland)
 * Bob Dröge (University of Groningen, The Netherlands)
 * Kenneth Hoste (HPC-UGent, Belgium)
 * Alan O'Cais (University of Barcelona, Spain)
+* Lara Peeters (HPC-UGent, Belgium)
 * Laura Promberger (CERN, Switzerland)
-* Jakob Blomer (CERN, Switzerland)
+* Valentin Volkl (CERN, Switzerland)
 
 ## Additional resources
 
 * [CernVM-FS website](https://cernvm.cern.ch/fs)
-* CernVM-FS documentation: [https://cvmfs.readthedocs.io](https://cvmfs.readthedocs.io)
-* CernVM-FS @ GitHub: [https://github.com/cvmfs](https://github.com/cvmfs)
-* Introductory tutorial on CernVM-FS (2021): [https://github.com/cvmfs-contrib/cvmfs-tutorial-2021](https://github.com/cvmfs-contrib/cvmfs-tutorial-2021)
+* [CernVM-FS documentation](https://cvmfs.readthedocs.io)
+* [CernVM-FS @ GitHub](https://github.com/cvmfs)
+* [Introductory tutorial on CernVM-FS (2021)](https://cvmfs-contrib.github.io/cvmfs-tutorial-2021)
