@@ -4,6 +4,8 @@ theme:
   logo: img/cvmfs_logo.png
   features:
       - instant
+extra_css:
+  - stylesheets/extra.css
 repo_name: Best Practices for CernVM-FS in HPC
 repo_url: https://github.com/multixscale/cvmfs-tutorial-hpc-best-practices
 edit_uri: edit/master/docs
