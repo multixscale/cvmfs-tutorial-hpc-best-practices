@@ -1,39 +1,78 @@
-# European Environment for Scientific Software (EESSI)
+#
 
-<p align="center">
-<img src="img/logos/EESSI_logo_horizontal.png" alt="EESSI logo" height="100px"/></br>
-</p>
+<div align="center">
+<img src="../img/logos/EESSI_logo_horizontal.png" alt="EESSI logo" width="70%"/></br>
+</div>
 
 
-## What is EESSI 
+## What is EESSI? 
 
-The European Environment for Scientific Software Installations (EESSI, pronounced as "easy") is a collaboration between different European partners in the HPC community.
+The [European Environment for Scientific Software Installations](https://www.eessi.io) (EESSI, pronounced as "easy")
+is a collaboration between different European partners in the HPC (High Performance Computing) community.
 
-The goal of this project is to build a common stack of scientific software installations for HPC systems and beyond, including laptops, personal workstations and cloud infrastructure.
+It consists of a common stack of *optimized* scientific software installations that work on any Linux distribution,
+and currently supports both `x86_64` (AMD/Intel) and `aarch64` (Arm 64-bit) systems, which is distributed
+via [CernVM-FS](../cvmfs/what_is_cvmfs.md).
 
-## What was the start point of forming EESSI
 
-There are more and more scientists that are running large computations. Who have an increasing number of open source scientific software available to them. Next to the variety in software there is also an increasing number of CPUs (Intel, AMD, Arm, RISC-V, ...), types of accerators (NVIDIA & AMD GPUs, Intel Xe, ...), use of the cloud (Amazon EC2, Microsoft Azure, Google, Oracle, ...). 
+## Motivation
 
-In stark contrast with the number of users and the variety of systems that they can use, is the number of available manpower that serve as HPC support teams. This is problem since it is often beneficial for the software to be optimised for the system that it will run on. 
+EESSI is motivated by the observation that the landscape of computational science is changing in various
+ways, including:
 
-In the paper, _EESSI: A cross-platform ready-to-use optimised scientific software stack_ (2022)[^1], it is shown that the performance of GROMACS can vary significantly if the software is optimised to the system or not.
+* **Increasing diversity in system architectures**, like different families of general-purpose
+  microprocessors like [Arm 64-bit (`aarch64`)](https://en.wikipedia.org/wiki/AArch64) and
+  [RISC-V](https://en.wikipedia.org/wiki/RISC-V), and different types of GPUS (NVIDIA, AMD, Intel);
+* **Rapid expansion of computational science** beyond traditional domains like physics and computational chemistry,
+  including bioinformatis, Machine Learning and Artificial Intelligence, etc., which leads to a **significant
+  growth of the software stack** that is used for running scientific workloads;
+* **Emergence of commercial cloud infrastructure** ([Amazon EC2](https://aws.amazon.com/ec2/),
+  [Microsoft Azure](https://azure.microsoft.com/en-us), ...)
+  that has competitive advantages over on-premise infrastructure for computational workloads, such as near-instant
+  availability, increased flexibility, and wider variety of hardware platforms;
+* **Limited manpower** that is available in the HPC user support teams that are responsible for helping
+  scientists with running the software they require on high-end (and complex) infrastructure like supercomputers
+  (and beyond);
 
-[^1]: you can access the paper via the following link: https://doi.org/10.1002/spe.3075.
+This results in a strong need for **more collaboration** to **avoid duplicate work** across HPC user support teams
+and computational scientists.
 
-## Scope and goals
 
-Through the EESSI project, we want to set up a shared stack of scientific software installations, and by doing so avoid a lot of duplicate work across HPC sites.
+## Goals
 
-For end users, we want to provide a uniform user experience, with respect to available scientific software, regardless of which system they use.
+The main goal of EESSI is to provide a collection of scientific software installations that work across a
+**wide range of different platforms**, including HPC clusters, cloud infrastructure, and personal workstations
+and laptops, without making comprimes on the **performance** of that software.
 
-Our software stack should work on laptops, personal workstations, HPC clusters and in the cloud, which means we will need to support different CPUs, networks, GPUs, and so on. We hope to make this work for any Linux distribution and maybe even macOS and Windows via WSL, and a wide variety of CPU architectures (Intel, AMD, ARM, POWER, RISC-V).
+While initially the focus of EESSI is to support Linux systems with an established system architectures like
+AMD + Intel CPUs and NVIDIA GPUs, the ambition is to also cover emerging technologies like Arm 64-bit CPUs,
+other accelerators like the [AMD Instinct](https://en.wikipedia.org/wiki/AMD_Instinct) and
+[Intel Xe](https://en.wikipedia.org/wiki/Intel_Xe), and eventually also
+[RISC-V](https://en.wikipedia.org/wiki/RISC-V).
 
-Of course we want to focus on the performance of the software, but also on automating the workflow for maintaining the software stack, thoroughly testing the installations, and collaborating efficiently.
+The software installations included in EESSI are **optimized** for specific generations of the supported
+[instruction set architectures (ISAs)](https://en.wikipedia.org/wiki/Instruction_set_architecture),
+like for example Intel and AMD processors supporting
+the [AVX2](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#Advanced_Vector_Extensions_2) or
+[AVX-512](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#AVX-512) instructions. 
 
-## Inspiration
+## Inspiration (WIP)
 
-The EESSI concept is heavily inspired by Compute Canada software stack, which is a shared software stack used on all 5 major national systems in Canada and a bunch of smaller ones.
+The EESSI concept is heavily inspired by software stack provided by the
+[Digital Research Alliance of Canada](https://alliancecan.ca/en/about/alliance),
+for known as *Compute Canada* (see also [here](cvmfs/repositories.md)), but is significantly more ambitious by:
+
+* Aiming to support a broader range of system architectures than what is currently supported by the
+  Compute Canada software stack;
+* Enabling the community
+
+
+More information on the Compute Canada software stack is available in:
+
+* [their documentation]();
+* 
+
+, which is a shared software stack used on all 5 major national systems in Canada and a bunch of smaller ones.
 
 The design of the Compute Canada software stack is discussed in detail in the PEARC'19 paper "Providing a Unified Software Environment for Canada’s National Advanced Computing Centers"[^2].
 
@@ -45,7 +84,8 @@ It has also been presented at the 5th EasyBuild User Meetings (slides[^3], recor
 
 [^4]: the recording is available at https://www.youtube.com/watch?v=gRNYp4gQKls.
 
-## Layered structure
+
+## Layered structure (TO REVIEW)
 
 The EESSI project consists of 3 layers.
 
@@ -66,7 +106,7 @@ In this layered architecture the host OS still provides a couple of things, like
 
 On the [What is cvmfs](00_what_is_cvmfs.md) page you can learn more about the file system layer. If you want to learn more about the other layers you can have a look at the [EESSI documentation](https://www.eessi.io/docs/).
 
-## Pilot repositories
+## Pilot repositories (TO REVIEW)
 
 ### The current pilot repositories
 
@@ -164,15 +204,12 @@ Executable:   /cvmfs/pilot.eessi-hpc.org/versions/2021.12/software/linux/x86_64/
 starting mdrun 'Protein'
 1000 steps,      2.5 ps.
 ```
-## Partners
 
-<!--starting partners
-MulitXscale project-->
+## MultiXscale EuroHPC CoE
 
-## Links
+## More information
 
-Documentation: https://www.eessi.io/docs/
-
-## Slides
-
-- https://easybuild.io/eum21/006_eum21_eessi.pdf
+* [open access paper on EESSI (2022)](https://doi.org/10.1002/spe.3075)
+* [EESSI website](https://www.eessi.io)
+* [EESSI documentation](https://www.eessi.io/docs)
+* [Talk on EESSI at EasyBuild User Meeting 2021](https://easybuild.io/eum21/#eessi)
