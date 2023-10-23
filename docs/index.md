@@ -35,7 +35,7 @@ We hope to organise a fully online tutorial using this material some time in Sep
 ## Tutorial contents
 
 - [What is CernVM-FS?](00_what_is_cvmfs.md)
-- [European Environment for Scientific Software (EESSI)](01_eessi.md)
+- [European Environment for Scientific Software (EESSI)](eessi.md)
 - [Accessing a CernVM-FS repository](02_access.md)
 - [Configuring CernVM-FS on HPC infrastructure](03_configuration.md)
 - [Troubleshooting and debugging CernVM-FS](04_troubleshooting_debugging.md)
