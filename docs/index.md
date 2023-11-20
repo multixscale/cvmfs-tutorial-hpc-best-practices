@@ -36,7 +36,6 @@ We hope to organise a fully online tutorial using this material some time in Sep
 
 - [Introduction to CernVM-FS](cvmfs/index.md)
     - [What is CernVM-FS?](cvmfs/what_is_cvmfs.md)
-    - [Terminology](cvmfs/terminology.md)
     - [Technical details](cvmfs/technical_details.md)
     - [Flagship repositories](cvmfs/repositories.md)
 - [European Environment for Scientific Software (EESSI)](eessi.md)
@@ -47,6 +46,7 @@ We hope to organise a fully online tutorial using this material some time in Sep
 - [Different storage backends for CernVM-FS](06_storage_backends.md)
 - [Containers and CernVM-FS](07_containers.md)
 - [Getting started with CernVM-FS (from scratch)](10_getting_started.md)
+- [Appendix: Terminology](appendix/terminology.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 

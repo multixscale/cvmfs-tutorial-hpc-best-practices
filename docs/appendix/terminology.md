@@ -19,7 +19,7 @@ documentation](https://cvmfs.readthedocs.io/en/stable/cpt-details.html#file-cata
 ## CernVM { #cernvm }
 
 **CernVM** is a virtual machine image based on CentOS combined with a custom, virtualization-friendly Linux kernel,
-and which includes the [CernVM-FS](what_is_cvmfs.md) client software.
+and which includes the [CernVM-FS](../cvmfs/what_is_cvmfs.md) client software.
 
 It is used for the CERN [Large Hadron Collider (LHC)](https://home.cern/science/accelerators/large-hadron-collider)
 experiment, and was created to remove a need for the installation of the experiment software and to minimize the
@@ -32,7 +32,7 @@ and [documentation](https://cernvm.readthedocs.io).
 
 ## CernVM-FS { #cvmfs }
 
-*(see [What is CernVM-FS?](what_is_cvmfs.md))*
+*(see [What is CernVM-FS?](../cvmfs/what_is_cvmfs.md))*
 
 ---
 
