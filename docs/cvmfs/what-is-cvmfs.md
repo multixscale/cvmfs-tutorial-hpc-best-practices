@@ -76,7 +76,7 @@ cache with it, so the files being accessed can be served with low latency.
 
 We will explore the this multi-level caching mechanism in more detail in this tutorial.
 
-See [here](technical_details.md#caching) more technical details on CernVM-FS caching.
+See [here](technical-details.md#caching) more technical details on CernVM-FS caching.
 
 
 ### De-duplication of files {: #features-deduplication }
@@ -108,4 +108,4 @@ to distribute the contents of a repository.
 
 ---
 
-For more technical details on how CernVM-FS implements these features, see [here](technical_details.md).
+For more technical details on how CernVM-FS implements these features, see [here](technical-details.md).

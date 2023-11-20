@@ -4,7 +4,7 @@ CernVM-FS is implemented as a *POSIX read-only [filesystem in user space (FUSE)]
 with [repositories](../appendix/terminology.md#repository) of files that are served via outgoing
 [HTTP](https://en.wikipedia.org/wiki/HTTP) connections only, thus avoiding problems with firewalls.
 
-Files in a CernVM-FS repository are [*automatically downloaded on-demand*](what_is_cvmfs.md#features-ondemand)
+Files in a CernVM-FS repository are [*automatically downloaded on-demand*](what-is-cvmfs.md#features-ondemand)
 to a [client](../appendix/terminology.md#client) system as they are accessed,
 from web servers that support the CernVM-FS repository being used.
 
@@ -14,7 +14,7 @@ to store file data and metadata.
 
 ## Caching
 
-CernVM-FS uses a [caching mechanism](what_is_cvmfs.md#features-caching) with a
+CernVM-FS uses a [caching mechanism](what-is-cvmfs.md#features-caching) with a
 [least-recently used (LRU)](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU) cache replacement policy,
 in which configurable [local client cache](https://cvmfs.readthedocs.io/en/stable/cpt-details.html#disk-cache)
 is populated via either a [forward proxy server](../appendix/terminology.md#proxy)

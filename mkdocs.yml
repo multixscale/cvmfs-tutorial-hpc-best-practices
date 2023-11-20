@@ -12,9 +12,9 @@ edit_uri: edit/master/docs
 nav:
   - "Home": index.md
   - Introduction to CernVM-FS:
-    - What is CernVM-FS?: cvmfs/what_is_cvmfs.md
-    - Technical details: cvmfs/technical_details.md
-    - Flagship repositories: cvmfs/repositories.md
+    - What is CernVM-FS?: cvmfs/what-is-cvmfs.md
+    - Technical details: cvmfs/technical-details.md
+    - Flagship repositories: cvmfs/flagship-repositories.md
   - EESSI: eessi.md
   - Accessing a repository: 02_access.md
   - Configuration on HPC systems: 03_configuration.md
