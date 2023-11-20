@@ -1,0 +1,15 @@
+# EESSI
+
+## European Environment for Scientific Software Installations
+
+<div align="center">
+<img src="../../img/logos/EESSI_logo_horizontal.png" alt="EESSI logo" width="50%"/></br>
+</div>
+
+* [What is EESSI?](what-is-eessi.md)
+* [Motivation & Goals](motivation-goals.md)
+* [Inspiration](inspiration.md)
+* [High-level overview](high-level-overview.md)
+* [Using EESSI](using-eessi.md)
+* [MultiXscale EuroHPC Centre-of-Excellence](multixscale.md)
+* [More information](more-info.md)

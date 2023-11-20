@@ -10,8 +10,15 @@ edit_uri: edit/master/docs
 nav:
   - "Home": index.md
   - What is CernVM-FS?: 00_what_is_cvmfs.md
-  - EESSI: eessi.md
-  - Accessing a repository: 02_access.md
+  - EESSI:
+    - "What is EESSI?": eessi/what-is-eessi.md
+    - "Motivation & goals": eessi/motivation-goals.md
+    - "Inspiration": eessi/inspiration.md
+    - "High-level overview": eessi/high-level-overview.md
+    - "Using EESSI": eessi/using-eessi.md
+    - "MultiXscale EuroHPC CoE": eessi/multixscale.md
+    - "More information": eessi/more-info.md
+  - Accessing a repository: access.md
   - Configuration on HPC systems: 03_configuration.md
   - Troubleshooting and debugging: 04_troubleshooting_debugging.md
   - Performance aspects: 05_performance.md
