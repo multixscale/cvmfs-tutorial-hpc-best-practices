@@ -1,7 +1,7 @@
 # Best Practices for CernVM-FS in HPC
 
 <p align="center">
-<img src="img/cvmfs_logo.png" alt="CernVM-FS logo" width="100px"/></br>
+<img src="img/logos/cvmfs_logo.png" alt="CernVM-FS logo" width="100px"/></br>
 </p>
 
 
