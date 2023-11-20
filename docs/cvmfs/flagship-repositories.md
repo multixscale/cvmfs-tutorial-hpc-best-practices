@@ -33,8 +33,10 @@ Examples include:
 * [`/cvmfs/unpacked.cern.ch`](https://cvmfs-monitor-frontend.web.cern.ch/browse/unpacked.cern.ch)
 * `/cvmfs/singularity.opensciencegrid.org`
 
-More information on how to use the `unpacked.cern.ch` repository is available
-[here](https://awesome-workshop.github.io/docker-cms/06-unpacked/index.html).
+More information on `unpacked.cern.ch` is available in the CernVM-FS documentation:
+
+* [Container Images and CernVM-FS](https://cvmfs.readthedocs.io/en/stable/cpt-containers.html)
+* [Working with DUCC and Docker Images](https://cvmfs.readthedocs.io/en/stable/cpt-ducc.html)
 
 ## EESSI
 
