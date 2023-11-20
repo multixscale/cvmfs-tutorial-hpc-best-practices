@@ -19,7 +19,7 @@ In this layered architecture the host OS still provides a couple of things, like
 
 <!--add something on the testing suites?-->
 
-On the [What is cvmfs](00_what_is_cvmfs.md) page you can learn more about the file system layer. If you want to learn more about the other layers you can have a look at the [EESSI documentation](https://www.eessi.io/docs/).
+On the [What is CernVM-FS](../cvmfs/what-is-cvmfs.md) page you can learn more about the file system layer. If you want to learn more about the other layers you can have a look at the [EESSI documentation](https://www.eessi.io/docs/).
 
 
 *(next: [Using EESSI](using-eessi.md))*

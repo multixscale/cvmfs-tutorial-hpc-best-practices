@@ -9,7 +9,7 @@ is a collaboration between different European partners in the HPC (High Performa
 
 It consists of a common stack of *optimized* scientific software installations that work on any Linux distribution,
 and currently supports both `x86_64` (AMD/Intel) and `aarch64` (Arm 64-bit) systems, which is distributed
-via [CernVM-FS](../cvmfs/what_is_cvmfs.md).
+via [CernVM-FS](../cvmfs/what-is-cvmfs.md).
 
 
 *(next: [Motivation & Goals of EESSI](motivation-goals.md))*

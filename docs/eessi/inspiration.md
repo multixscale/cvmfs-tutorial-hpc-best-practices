@@ -2,7 +2,7 @@
 
 The EESSI concept is heavily inspired by software stack provided by the
 [Digital Research Alliance of Canada](https://alliancecan.ca/en/about/alliance),
-for known as *Compute Canada* (see also [here](cvmfs/repositories.md)), but is significantly more ambitious by:
+for known as *Compute Canada* (see also [here](../cvmfs/flagship-repositories.md)), but is significantly more ambitious by:
 
 * Aiming to support a broader range of system architectures than what is currently supported by the
   Compute Canada software stack;
