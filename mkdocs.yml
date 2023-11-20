@@ -13,7 +13,7 @@ nav:
   - EESSI: 01_eessi.md
   - Accessing a repository: 02_access.md
   - Configuration on HPC systems: 03_configuration.md
-  - Troubleshooting and debugging: 04_troubleshooting_debugging.md
+  - Troubleshooting and debugging: troubleshooting-debugging.md
   - Performance aspects: 05_performance.md
   - Storage backends: 06_storage_backends.md
   - Containers: 07_containers.md

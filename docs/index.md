@@ -48,7 +48,7 @@ Attendance is free, but **registration is required**: <https://event.ugent.be/re
 - [European Environment for Scientific Software (EESSI)](01_eessi.md)
 - [Accessing a CernVM-FS repository](02_access.md)
 - [Configuring CernVM-FS on HPC infrastructure](03_configuration.md)
-- [Troubleshooting and debugging CernVM-FS](04_troubleshooting_debugging.md)
+- [Troubleshooting and debugging CernVM-FS](troubleshooting-debugging.md)
 - [Performance aspects of CernVM-FS](05_performance.md)
 - [Different storage backends for CernVM-FS](06_storage_backends.md)
 - [Containers and CernVM-FS](07_containers.md)
