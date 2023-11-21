@@ -64,7 +64,7 @@ For more information on proxies, see the
 
 **Publishing** is the process of adding more files to a CernVM-FS [repository](#repository),
 which is done via a *transaction* mechanism, and is on possible on the [Stratum-0 server](#stratum0),
-via a [publisher server](https://cvmfs.readthedocs.io/en/stable/cpt-repository-gateway.html#publisher-configuration),
+via a [publisher](https://cvmfs.readthedocs.io/en/stable/cpt-repository-gateway.html#publisher-configuration),
 or via a [repository gateway](https://cvmfs.readthedocs.io/en/stable/cpt-repository-gateway.html#repository-gateway-configuration).
 
 The workflow of publishing content is covered in detail in the
