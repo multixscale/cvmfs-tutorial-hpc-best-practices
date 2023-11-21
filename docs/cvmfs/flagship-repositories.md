@@ -25,7 +25,7 @@ Documentation on using their CernVM-FS repository `/cvmfs/soft.computecanada.ca`
 
 ## Unpacked containers
 
-CernVM-FS repositories can be used to provide a more efficient way to access container images,
+CernVM-FS repositories can be used to provide an efficient way to access container images,
 by serving unpacking container images that can be consumed by container runtime like [Apptainer](https://apptainer.org).
 
 Examples include:
