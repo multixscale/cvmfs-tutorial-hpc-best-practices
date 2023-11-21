@@ -2,9 +2,12 @@
 
 only client-side, assumption is that CernVM-FS replica servers and proxy servers are working correctly (?)
 
+see also https://github.com/EESSI/filesystem-layer/blob/main/README.md
+
 ## Error messages
 
 ```
+$ ls /cvmfs/software.eessi.io
 ls: cannot access '/cvmfs/software.eessi.io': No such file or directory
 ```
 
@@ -22,6 +25,11 @@ Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
 
 ```
 transport endpoint is not connected
+```
+
+```
+$ /cvmfs/config-repo.cern.ch
+ls: cannot open directory '/cvmfs/config-repo.cern.ch': Too many levels of symbolic links
 ```
 
 ## Configuration
@@ -56,6 +64,7 @@ debug log
 
 - `telnet`
 - `tcptraceroute`
+- `curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished`
 
 #### Bandwidth
 
@@ -66,6 +75,17 @@ debug log
 `CVMFS_HTTP_PROXY`
 
 https://cvmfs.readthedocs.io/en/stable/cpt-squid.html
+
+`http_proxy=http://squid.vega.pri:3128 curl -vs http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished | cat -v`
+
+```
+http_proxy=http://squid.vega.pri:3128 curl --head http://aws-eu-west1.stratum1.cvmfs.eessi-infra.org/cvmfs/pilot.eessi-hpc.org/.cvmfspublished
+HTTP/1.1 200 OK
+```
+```
+$ http_proxy=http://squid.vega.pri:3128 curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
+HTTP/1.1 403 Forbidden
+```
 
 ### Incorrect repository configuration
 
