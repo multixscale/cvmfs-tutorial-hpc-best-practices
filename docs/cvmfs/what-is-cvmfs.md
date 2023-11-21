@@ -91,7 +91,7 @@ as often happens with particular files like example data files across multiple v
 
 ### Compression of data { #features-compression }
 
-CernVM-FS [**stores file content with compression**](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#compression-and-hash-algorithms)
+CernVM-FS [**stores file content compressed**](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#compression-and-hash-algorithms)
 on the server, which not only further reduces required storage space but also significantly limits the
 network bandwidth that is required to download (and serve) the contents of a repository.
 
