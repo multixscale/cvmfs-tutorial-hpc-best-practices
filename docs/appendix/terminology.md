@@ -110,7 +110,7 @@ in a single *package* to distribute as a whole.
 A **Stratum 0 server**, often simply referred to a *Stratum 0* (Stratum Zero), is the central server
 for one or more CernVM-FS [repositories](#repository).
 
-It is responsible as the single source of (new) data, since it hosts the *master copy* of the repository contents.
+It is the single source of (new) data, since it hosts the *master copy* of the repository contents.
 
 Adding or updating files in a CernVM-FS repository ([publishing](#publishing)) can only be done on the Stratum 0 server,
 either directly via the `cvmfs_server publish` command, or indirectory via a publisher server.
