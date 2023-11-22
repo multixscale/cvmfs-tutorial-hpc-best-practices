@@ -69,7 +69,7 @@ Attendance is free, but **registration is required**: <https://event.ugent.be/re
 * Alan O'Cais (University of Barcelona, Spain + CECAM)
 * Lara Peeters (HPC-UGent, Belgium)
 * Laura Promberger (CERN, Switzerland)
-* Valentin Volkl (CERN, Switzerland)
+* Valentin Völkl (CERN, Switzerland)
 
 ## Additional resources
 
