@@ -64,7 +64,7 @@ to update the software stack that is provided through a CernVM-FS repository, si
 Only the CernVM-FS client should be updated on a regular basis on client systems.
 
 For more elaborate setups that involve [proxies](../appendix/terminology.md#proxy) or
-[CernVM-FS replica servers](../appendix/terminology.md#stratum1), additional maintenance is necessary,
+[CernVM-FS replica (mirror) servers](../appendix/terminology.md#stratum1), additional maintenance is necessary,
 but again only to update the CernVM-FS components themselves.
 
 
@@ -83,7 +83,10 @@ When a part of the repository is being accessed that is not available yet in the
 CernVM-FS will traverse the multi-level cache hierarchy to obtain the necessary data and update the local client
 cache with it, so the files being accessed can be served with low latency.
 
-We will explore the this multi-level caching mechanism in more detail in this tutorial.
+Proxy and mirror servers scale horizontally: the CernVM-FS client makes automatic use of
+multiple deployed service instances for load-balancing and high-availability.
+
+We will explore this multi-level caching mechanism in more detail in this tutorial.
 
 See [here](technical-details.md#caching) more technical details on CernVM-FS caching.
 
