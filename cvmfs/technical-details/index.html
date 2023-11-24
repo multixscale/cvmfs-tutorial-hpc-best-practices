@@ -9,22 +9,22 @@
       
       
       
-        <link rel="prev" href="../00_what_is_cvmfs/">
+        <link rel="prev" href="../what-is-cvmfs/">
       
       
-        <link rel="next" href="../02_access/">
+        <link rel="next" href="../flagship-repositories/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.10">
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
     
     
       
-        <title>EESSI - </title>
+        <title>Technical details - Best Practices for CernVM-FS in HPC</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
       
       
 
@@ -43,7 +43,9 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -65,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#european-environment-for-scientific-software-eessi" class="md-skip">
+        <a href="#technical-details-of-cernvm-fs" class="md-skip">
           Skip to content
         </a>
       
@@ -81,9 +83,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="" class="md-header__button md-logo" aria-label="" data-md-component="logo">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-header__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="../img/cvmfs_logo.png" alt="logo">
+  <img src="../../img/cvmfs_logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -94,13 +96,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            
+            Best Practices for CernVM-FS in HPC
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              EESSI
+              Technical details
             
           </span>
         </div>
@@ -184,12 +186,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="" class="md-nav__button md-logo" aria-label="" data-md-component="logo">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-nav__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="../img/cvmfs_logo.png" alt="logo">
+  <img src="../../img/cvmfs_logo.png" alt="logo">
 
     </a>
-    
+    Best Practices for CernVM-FS in HPC
   </label>
   
     <div class="md-nav__source">
@@ -212,7 +214,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -229,9 +231,47 @@
       
   
   
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction to CernVM-FS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction to CernVM-FS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
     <li class="md-nav__item">
-      <a href="../00_what_is_cvmfs/" class="md-nav__link">
+      <a href="../what-is-cvmfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -243,9 +283,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
     
@@ -259,15 +300,82 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Technical details
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    EESSI
+    Technical details
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flagship-repositories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flagship repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -279,7 +387,26 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_access/" class="md-nav__link">
+      <a href="../../eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EESSI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_access/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -298,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../03_configuration/" class="md-nav__link">
+      <a href="../../03_configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -317,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../04_troubleshooting_debugging/" class="md-nav__link">
+      <a href="../../04_troubleshooting_debugging/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -336,7 +463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../05_performance/" class="md-nav__link">
+      <a href="../../05_performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -355,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../06_storage_backends/" class="md-nav__link">
+      <a href="../../06_storage_backends/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -374,7 +501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../07_containers/" class="md-nav__link">
+      <a href="../../07_containers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -393,11 +520,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../10_getting_started/" class="md-nav__link">
+      <a href="../../10_getting_started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Creating a CernVM-FS repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/terminology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix: Terminology
   </span>
   
 
@@ -426,6 +572,23 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -442,14 +605,39 @@
   
 
 
-<h1 id="european-environment-for-scientific-software-eessi">European Environment for Scientific Software (EESSI)<a class="headerlink" href="#european-environment-for-scientific-software-eessi" title="Permanent link">&para;</a></h1>
+<h1 id="technical-details-of-cernvm-fs">Technical details of CernVM-FS<a class="headerlink" href="#technical-details-of-cernvm-fs" title="Permanent link">&para;</a></h1>
+<p>CernVM-FS is implemented as a <em>POSIX read-only <a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">filesystem in user space (FUSE)</a></em>
+with <a href="../../appendix/terminology/#repository">repositories</a> of files that are served via outgoing
+<a href="https://en.wikipedia.org/wiki/HTTP">HTTP</a> connections only, thus avoiding problems with firewalls.</p>
+<p>Files in a CernVM-FS repository are <a href="../what-is-cvmfs/#features-ondemand"><em>automatically downloaded on-demand</em></a>
+to a <a href="../../appendix/terminology/#client">client</a> system as they are accessed,
+from web servers that support the CernVM-FS repository being used.</p>
+<p>Internally, CernVM-FS uses <a href="https://en.wikipedia.org/wiki/Content-addressable_storage">content-adressable storage (CAS)</a>
+and <a href="https://en.wikipedia.org/wiki/Merkle_tree">Merkle trees</a> (like <a href="https://git-scm.com/">Git</a> also does)
+to store file data and metadata.</p>
+<h2 id="caching">Caching<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h2>
+<p>CernVM-FS uses a <a href="../what-is-cvmfs/#features-caching">caching mechanism</a> with a
+<a href="https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU">least-recently used (LRU)</a> cache replacement policy,
+in which configurable <a href="https://cvmfs.readthedocs.io/en/stable/cpt-details.html#disk-cache">local client cache</a>
+is populated via either a <a href="../../appendix/terminology/#proxy">forward proxy server</a>
+(like <a href="http://www.squid-cache.org/">Squid</a>), or from a <a href="../../appendix/terminology/#stratum1">Stratum-1 replica</a> server.</p>
+<p>Both the proxy and the replica server could be within the same local network as the client, or not.</p>
+<p>To help reduce performance problems regarding network latency and bandwidth, clients can leverage
+the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-replica.html#geo-api-setup">Geo API</a> supported by
+CernVM-FS <a href="../../appendix/terminology/#stratum1">Stratum-1 replica</a> servers to automatically sort them geographically,
+in order to prioritize connecting to the closest ones.</p>
+<p>Furthermore, additional caches can be made available to CernVM-FS, such as an
+<a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#alien-cache"><em>alien cache</em></a> on a shared cluster filesystem
+like GPFS or Lustre that is not managed by CernVM-FS, and a
+<a href="https://en.wikipedia.org/wiki/Content_delivery_network">Content Delivery Network (CDN)</a>
+can be used to help limit the time required to download files that are not cached yet.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2023</span>
       
     
   </small>
@@ -492,10 +680,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6c14ae12.min.js"></script>
       
     
   </body>
