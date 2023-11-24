@@ -1,15 +1,20 @@
-site_name: ""
+site_name: "Best Practices for CernVM-FS in HPC"
 theme:
   name: material
   logo: img/cvmfs_logo.png
-  featres:
+  features:
       - instant
+extra_css:
+  - stylesheets/extra.css
 repo_name: Best Practices for CernVM-FS in HPC
 repo_url: https://github.com/multixscale/cvmfs-tutorial-hpc-best-practices
 edit_uri: edit/master/docs
 nav:
   - "Home": index.md
-  - What is CernVM-FS?: 00_what_is_cvmfs.md
+  - Introduction to CernVM-FS:
+    - What is CernVM-FS?: cvmfs/what-is-cvmfs.md
+    - Technical details: cvmfs/technical-details.md
+    - Flagship repositories: cvmfs/flagship-repositories.md
   - EESSI:
     - "What is EESSI?": eessi/what-is-eessi.md
     - "Motivation & goals": eessi/motivation-goals.md
@@ -25,12 +30,15 @@ nav:
   - Storage backends: 06_storage_backends.md
   - Containers: 07_containers.md
   - Creating a CernVM-FS repository: 10_getting_started.md
+  - "Appendix: Terminology": appendix/terminology.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
   # necessary for search to work
   - search
 markdown_extensions:
+  # enable adding HTML attributes and CSS classes
+  - attr_list
   # notes, warnings, hints, ...
   - admonition
   # code blocks with syntax highlighting, graphs
