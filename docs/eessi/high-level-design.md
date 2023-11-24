@@ -236,5 +236,6 @@ $ ldd software/linux/x86_64/amd/zen3/software/OpenBLAS/0.3.23-GCC-12.3.0/lib/lib
 We will explore the EESSI software layer a bit more in the [next subsection of this tutorial](using-eessi.md),
 when we demonstrate how to use the software installations provided in the EESSI software layer.
 
+---
 
 *(next: [Using EESSI](using-eessi.md))*

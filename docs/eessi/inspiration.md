@@ -31,4 +31,6 @@ More information on the Compute Canada software stack is available in
 and in their [overview of available software](https://docs.alliancecan.ca/wiki/Available_software).
 
 
+---
+
 *(next: [High-level Overview of EESSI](high-level-design.md))*

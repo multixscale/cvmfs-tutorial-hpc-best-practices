@@ -46,4 +46,6 @@ the [AVX2](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#Advanced_Vec
 Arm processors that support [SVE](https://en.wikipedia.org/wiki/AArch64#Scalable_Vector_Extension_(SVE)) instructions.
 
 
+---
+
 *(next: [Inspiration for EESSI](inspiration.md))*

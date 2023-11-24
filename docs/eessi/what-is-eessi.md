@@ -12,4 +12,6 @@ and currently supports both `x86_64` (AMD/Intel) and `aarch64` (Arm 64-bit) syst
 via [CernVM-FS](../cvmfs/what-is-cvmfs.md).
 
 
+---
+
 *(next: [Motivation & Goals of EESSI](motivation-goals.md))*

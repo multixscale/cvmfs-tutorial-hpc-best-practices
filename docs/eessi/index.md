@@ -11,5 +11,3 @@
 * [Inspiration](inspiration.md)
 * [High-level design](high-level-design.md)
 * [Using EESSI](using-eessi.md)
-* [MultiXscale EuroHPC Centre-of-Excellence](multixscale.md)
-* [More information](more-info.md)

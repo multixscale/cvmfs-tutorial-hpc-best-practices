@@ -21,8 +21,6 @@ nav:
     - "Inspiration": eessi/inspiration.md
     - "High-level design": eessi/high-level-design.md
     - "Using EESSI": eessi/using-eessi.md
-    - "MultiXscale EuroHPC CoE": eessi/multixscale.md
-    - "More information": eessi/more-info.md
   - Accessing a repository: access.md
   - Configuration on HPC systems: 03_configuration.md
   - Troubleshooting and debugging: 04_troubleshooting_debugging.md

@@ -99,5 +99,6 @@ starting mdrun 'Protein'
 1000 steps,      2.5 ps.
 ```
 
+---
 
-*(next: [MultiXscale EuroHPC Centre-of-Excellence](multixscale.md))*
+*(next: [Accessing a CernVM-FS repository](../access.md))*
