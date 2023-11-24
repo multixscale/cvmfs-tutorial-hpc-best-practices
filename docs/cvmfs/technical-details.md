@@ -32,3 +32,8 @@ Furthermore, additional caches can be made available to CernVM-FS, such as an
 like GPFS or Lustre that is not managed by CernVM-FS, and a
 [Content Delivery Network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network)
 can be used to help limit the time required to download files that are not cached yet.
+
+
+---
+
+*(next: [Flagship CernVM-FS repositories](flagship-repositories.md))*

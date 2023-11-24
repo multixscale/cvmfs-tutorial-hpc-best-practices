@@ -44,6 +44,9 @@ The [*European Environment for Scientific Software Installations (EESSI)*](https
 of scientific software for `x86_64` (Intel + AMD) and `aarch64` (64-bit Arm) systems that work on any Linux
 distribution.
 
-We will use EESSI as an example repository throughout this tutorial.
+We will use EESSI as an example CernVM-FS repository throughout this tutorial.
 
-More detailed information on EESSI is available in the [next part of this tutorial](../eessi.md).
+
+---
+
+*(next: [What is EESSI?](../eessi/what-is-eessi.md))*
