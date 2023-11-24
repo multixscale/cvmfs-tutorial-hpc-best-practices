@@ -1,7 +1,7 @@
 site_name: "Best Practices for CernVM-FS in HPC"
 theme:
   name: material
-  logo: img/cvmfs_logo.png
+  logo: img/logos/cvmfs_logo.png
   features:
       - instant
 extra_css:
@@ -39,6 +39,8 @@ markdown_extensions:
   - attr_list
   # notes, warnings, hints, ...
   - admonition
+  # use MarkDown formatting in HTML blocks
+  - md_in_html
   # code blocks with syntax highlighting, graphs
   - pymdownx.superfences
   # clickable details

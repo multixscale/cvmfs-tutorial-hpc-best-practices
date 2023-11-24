@@ -120,4 +120,4 @@ to distribute the contents of a repository.
 
 ---
 
-For more technical details on how CernVM-FS implements these features, see [here](technical-details.md).
+*(next: [Technical details of CernVM-FS](technical-details.md))*
