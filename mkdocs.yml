@@ -19,7 +19,7 @@ nav:
     - "What is EESSI?": eessi/what-is-eessi.md
     - "Motivation & goals": eessi/motivation-goals.md
     - "Inspiration": eessi/inspiration.md
-    - "High-level overview": eessi/high-level-overview.md
+    - "High-level design": eessi/high-level-design.md
     - "Using EESSI": eessi/using-eessi.md
     - "MultiXscale EuroHPC CoE": eessi/multixscale.md
     - "More information": eessi/more-info.md

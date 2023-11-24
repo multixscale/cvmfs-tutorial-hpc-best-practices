@@ -1,30 +1,34 @@
 # Inspiration for EESSI
 
 The EESSI concept is heavily inspired by software stack provided by the
-[Digital Research Alliance of Canada](https://alliancecan.ca/en/about/alliance),
-for known as *Compute Canada* (see also [here](../cvmfs/flagship-repositories.md)), but is significantly more ambitious by:
+[Digital Research Alliance of Canada](https://alliancecan.ca/en/about/alliance) (a.k.a. The Alliance, formerly known as *Compute Canada*), which is a shared software stack used on all
+[national host sites for Advanced Research Computing in Canada](
+https://alliancecan.ca/en/services/advanced-research-computing/federation/national-host-sites)
+that is distributed across Canada (and beyond) using [CerVM-FS](../cvmfs/what-is-cvmfs.md);
+see also [here](../cvmfs/flagship-repositories.md#the-alliance).
 
-* Aiming to support a broader range of system architectures than what is currently supported by the
-  Compute Canada software stack;
-* Enabling the community
+EESSI is significantly more ambitious in its goals however, in various ways.
+
+It intends to support a **broader range of system architectures** than what is currently supported by the
+Compute Canada software stack, like Arm 64-bit microprocessors, accelerators beyond NVIDIA GPUs, etc.
+
+In addition, EESSI is set up to be a **community project**, by setting up services and infrastructure to automate the
+software build and installation process as much as possible, providing extensive [documentation](https://eessi.io/docs/)
+*and* [support](https://www.eessi.io/docs/support/) to end users, user support teams, and system administrators
+who want to employ EESSI, and allowing contributors to [propose
+additions](https://www.eessi.io/docs/adding_software/overview/) to the software stack.
+
+The design of the Compute Canada software stack is discussed in detail in the
+[PEARC'19 paper *"Providing a Unified Software Environment for Canada’s National Advanced Computing Centers"*](
+https://dl.acm.org/doi/10.1145/3332186.3332210).
+
+It has also been presented at the 5th [EasyBuild User Meeting](https://easybuild.io/eum), see
+[slides](https://easybuild.io/eum23/eum23_008_Digital-Research-Alliance-Canada.pdf) and
+[talk recording](https://www.youtube.com/watch?v=gRNYp4gQKls).
+
+More information on the Compute Canada software stack is available in
+[their documentation](https://docs.alliancecan.ca/wiki/Accessing_CVMFS/en),
+and in their [overview of available software](https://docs.alliancecan.ca/wiki/Available_software).
 
 
-More information on the Compute Canada software stack is available in:
-
-* [their documentation]();
-* 
-
-, which is a shared software stack used on all 5 major national systems in Canada and a bunch of smaller ones.
-
-The design of the Compute Canada software stack is discussed in detail in the PEARC'19 paper "Providing a Unified Software Environment for Canada’s National Advanced Computing Centers"[^2].
-
-It has also been presented at the 5th EasyBuild User Meetings (slides[^3], recorded talk[^4]), and is well documented.
-
-[^2]: you can access the paper via the following link: https://dl.acm.org/doi/10.1145/3332186.3332210.
-
-[^3]: the slides are available at https://easybuild.io/eum23/eum23_008_Digital-Research-Alliance-Canada.pdf.
-
-[^4]: the recording is available at https://www.youtube.com/watch?v=gRNYp4gQKls.
-
-
-*(next: [High-level Overview of EESSI](high-level-overview.md))*
+*(next: [High-level Overview of EESSI](high-level-design.md))*
