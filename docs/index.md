@@ -5,6 +5,14 @@
 </p>
 
 
+!!! warning
+
+    *(Nov'23)* This tutorial is under development, please come back later
+    when the tutorial contents have been completed.
+
+    An online version of this tutorial is planned for **Mon 4 Dec 2023 (13:30-17:00 CET)**,
+    register via <https://event.ugent.be/registration/cvmfshpc202312>.
+
 ## Scope
 
 This is an introductory tutorial to using [CernVM-FS](https://cernvm.cern.ch/fs/), the CernVM File System.
@@ -27,7 +35,9 @@ CernVM-FS repositories on HPC infrastructure.
 
 ## Practical information
 
-We hope to organise a fully online tutorial using this material some time in Sept-Dec 2023.
+A first virtual edition of this tutorial is planned for Monday 4 December 2023 (13:30-17:00 CET).
+
+Attendance is free, but **registration is required**: <https://event.ugent.be/registration/cvmfshpc202312>.
 
 *(more info soon)*
 
@@ -57,10 +67,10 @@ We hope to organise a fully online tutorial using this material some time in Sep
 * Jakob Blomer (CERN, Switzerland)
 * Bob Dröge (University of Groningen, The Netherlands)
 * Kenneth Hoste (HPC-UGent, Belgium)
-* Alan O'Cais (University of Barcelona, Spain)
+* Alan O'Cais (University of Barcelona, Spain + CECAM)
 * Lara Peeters (HPC-UGent, Belgium)
 * Laura Promberger (CERN, Switzerland)
-* Valentin Volkl (CERN, Switzerland)
+* Valentin Völkl (CERN, Switzerland)
 
 ## Additional resources
 
