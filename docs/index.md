@@ -44,8 +44,8 @@ Attendance is free, but **registration is required**: <https://event.ugent.be/re
 
 ## Tutorial contents
 
-- [What is CernVM-FS?](00_what_is_cvmfs.md)
-- [European Environment for Scientific Software (EESSI)](01_eessi.md)
+- [Introduction to CernVM-FS](cvmfs/index.md)
+- [European Environment for Scientific Software (EESSI)](eessi.md)
 - [Accessing a CernVM-FS repository](02_access.md)
 - [Configuring CernVM-FS on HPC infrastructure](03_configuration.md)
 - [Troubleshooting and debugging CernVM-FS](04_troubleshooting_debugging.md)
@@ -53,6 +53,7 @@ Attendance is free, but **registration is required**: <https://event.ugent.be/re
 - [Different storage backends for CernVM-FS](06_storage_backends.md)
 - [Containers and CernVM-FS](07_containers.md)
 - [Getting started with CernVM-FS (from scratch)](10_getting_started.md)
+- [Appendix: Terminology](appendix/terminology.md)
 
 *(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
