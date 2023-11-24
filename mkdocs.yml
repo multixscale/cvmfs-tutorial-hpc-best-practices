@@ -1,7 +1,7 @@
 site_name: "Best Practices for CernVM-FS in HPC"
 theme:
   name: material
-  logo: img/cvmfs_logo.png
+  logo: img/logos/cvmfs_logo.png
   features:
       - instant
 extra_css:
