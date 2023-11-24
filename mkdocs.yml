@@ -22,12 +22,12 @@ nav:
     - "High-level design": eessi/high-level-design.md
     - "Using EESSI": eessi/using-eessi.md
   - Accessing a repository: access.md
-  - Configuration on HPC systems: 03_configuration.md
-  - Troubleshooting and debugging: 04_troubleshooting_debugging.md
-  - Performance aspects: 05_performance.md
-  - Storage backends: 06_storage_backends.md
-  - Containers: 07_containers.md
-  - Creating a CernVM-FS repository: 10_getting_started.md
+  - Configuration on HPC systems: configuration.md
+  - Troubleshooting and debugging: troubleshooting.md
+  - Performance aspects: performance.md
+  - Storage backends: storage_backends.md
+  - Containers: containers.md
+  - Creating a CernVM-FS repository: getting-started.md
   - "Appendix: Terminology": appendix/terminology.md
 plugins:
   # show revision date at bottom of each page
