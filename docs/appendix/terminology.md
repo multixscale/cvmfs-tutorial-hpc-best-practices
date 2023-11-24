@@ -25,6 +25,9 @@ It is used for the CERN [Large Hadron Collider (LHC)](https://home.cern/science/
 experiment, and was created to remove a need for the installation of the experiment software and to minimize the
 number of platforms (compiler-OS combinations) on which experiment software needs to be supported and tested.
 
+While originally developed in conjunction, the [CernVM File System](#cvmfs) today is a product
+that is completely independent from the CernVM virtual appliance.
+
 For more information on CernVM, see the [website](https://cernvm.cern.ch/appliance/)
 and [documentation](https://cernvm.readthedocs.io).
 
