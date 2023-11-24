@@ -54,9 +54,18 @@ CernVM-FS clients **automatically pull in updates** to the contents of a reposit
 [published](../appendix/terminology.md#publishing) server-side.
 This happens in *transactions*, to ensure that clients observe a consistent state of the repository.
 
-Hence, once a CernVM-FS repository is accessible on a client system, no subsequent actions must be taken
-to keep clients up-to-date other than updating CernVM-FS itself on a regular basis,
-which significantly limits the maintenance burden.
+Once a CernVM-FS repository is accessible on a client system, no subsequent actions must be taken
+to keep clients up-to-date other than updating CernVM-FS itself on a regular basis.
+
+This significantly limits the maintenance burden, since no action is required on client systems
+to update the software stack that is provided through a CernVM-FS repository, since the updates are
+*streamed in* automatically by CernVM-FS.
+
+Only the CernVM-FS client should be updated on a regular basis on client systems.
+
+For more elaborate setups that involve [proxies](../appendix/terminology.md#proxy) or
+[CernVM-FS replica servers](../appendix/terminology.md#stratum1), additional maintenance is necessary,
+but again only to update the CernVM-FS components themselves.
 
 
 ### Multi-level caching { #features-caching }
