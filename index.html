@@ -83,7 +83,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="Best Practices for CernVM-FS in HPC" class="md-header__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="img/cvmfs_logo.png" alt="logo">
+  <img src="img/logos/cvmfs_logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -186,7 +186,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="Best Practices for CernVM-FS in HPC" class="md-nav__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="img/cvmfs_logo.png" alt="logo">
+  <img src="img/logos/cvmfs_logo.png" alt="logo">
 
     </a>
     Best Practices for CernVM-FS in HPC
@@ -258,15 +258,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scope
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#intended-audience" class="md-nav__link">
     <span class="md-ellipsis">
       Intended audience
@@ -294,18 +285,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tutorial-contents" class="md-nav__link">
+  <a href="#slides" class="md-nav__link">
     <span class="md-ellipsis">
-      Tutorial contents
+      Slides
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#slides" class="md-nav__link">
+  <a href="#multixscale" class="md-nav__link">
     <span class="md-ellipsis">
-      Slides
+      MultiXscale
     </span>
   </a>
   
@@ -638,15 +629,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scope
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#intended-audience" class="md-nav__link">
     <span class="md-ellipsis">
       Intended audience
@@ -674,18 +656,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tutorial-contents" class="md-nav__link">
+  <a href="#slides" class="md-nav__link">
     <span class="md-ellipsis">
-      Tutorial contents
+      Slides
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#slides" class="md-nav__link">
+  <a href="#multixscale" class="md-nav__link">
     <span class="md-ellipsis">
-      Slides
+      MultiXscale
     </span>
   </a>
   
@@ -729,7 +711,7 @@
 
 <h1 id="best-practices-for-cernvm-fs-in-hpc">Best Practices for CernVM-FS in HPC<a class="headerlink" href="#best-practices-for-cernvm-fs-in-hpc" title="Permanent link">&para;</a></h1>
 <p align="center">
-<img src="img/cvmfs_logo.png" alt="CernVM-FS logo" width="100px"/></br>
+<img src="img/cvmfs_hpc.png" alt="CernVM-FS logo" width="40%"/></br>
 </p>
 
 <div class="admonition warning">
@@ -739,13 +721,17 @@ when the tutorial contents have been completed.</p>
 <p>An online version of this tutorial is planned for <strong>Mon 4 Dec 2023 (13:30-17:00 CET)</strong>,
 register via <a href="https://event.ugent.be/registration/cvmfshpc202312">https://event.ugent.be/registration/cvmfshpc202312</a>.</p>
 </div>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>This is an introductory tutorial to using <a href="https://cernvm.cern.ch/fs/">CernVM-FS</a>, the CernVM File System.</p>
+<p>This is an introductory tutorial to <a href="https://cernvm.cern.ch/fs/">CernVM-FS</a>, the CernVM File System,
+with a focus on employing it in the context of High-Performance Computing (HPC).</p>
 <p>In this tutorial you will learn what CernVM-FS is, how to get access to existing CernVM-FS repositories,
-and how to configure CernVM-FS on High-Performance Computing (HPC) infrastructure.</p>
+how to configure CernVM-FS, and how to use CernVM-FS <a href="appendix/terminology/#repository">repositories</a>
+on HPC infrastructure.</p>
+<div style="text-align:center;">
+<p><strong><a href="cvmfs/what-is-cvmfs/">Ready to go? Click here to start the tutorial!</a></strong></p>
+</div>
 <h2 id="intended-audience">Intended audience<a class="headerlink" href="#intended-audience" title="Permanent link">&para;</a></h2>
 <p>This tutorial is intended for people with a background in HPC (system administrators, support team members,
-end users, etc.) who are new to CernVM-FS: no specific prior knowledge or experience with it is required.</p>
+end users, etc.) and who are new to CernVM-FS; no specific prior knowledge or experience with it is required.</p>
 <p>We expect it to be most valuable to people who are interested in using or providing access to one or more existing
 CernVM-FS repositories on HPC infrastructure.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
@@ -753,31 +739,30 @@ CernVM-FS repositories on HPC infrastructure.</p>
 <h2 id="practical-information">Practical information<a class="headerlink" href="#practical-information" title="Permanent link">&para;</a></h2>
 <p>A first virtual edition of this tutorial is planned for Monday 4 December 2023 (13:30-17:00 CET).</p>
 <p>Attendance is free, but <strong>registration is required</strong>: <a href="https://event.ugent.be/registration/cvmfshpc202312">https://event.ugent.be/registration/cvmfshpc202312</a>.</p>
-<p><em>(more info soon)</em></p>
-<h2 id="tutorial-contents">Tutorial contents<a class="headerlink" href="#tutorial-contents" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="cvmfs/">Introduction to CernVM-FS</a></li>
-<li><a href="eessi/">European Environment for Scientific Software (EESSI)</a></li>
-<li><a href="02_access/">Accessing a CernVM-FS repository</a></li>
-<li><a href="03_configuration/">Configuring CernVM-FS on HPC infrastructure</a></li>
-<li><a href="04_troubleshooting_debugging/">Troubleshooting and debugging CernVM-FS</a></li>
-<li><a href="05_performance/">Performance aspects of CernVM-FS</a></li>
-<li><a href="06_storage_backends/">Different storage backends for CernVM-FS</a></li>
-<li><a href="07_containers/">Containers and CernVM-FS</a></li>
-<li><a href="10_getting_started/">Getting started with CernVM-FS (from scratch)</a></li>
-<li><a href="appendix/terminology/">Appendix: Terminology</a></li>
-</ul>
-<p><em>(sections indicated with</em> <code>(*)</code> <em>involve hands-on exercises)</em></p>
+<p><em>(more practical info soon)</em></p>
 <h2 id="slides">Slides<a class="headerlink" href="#slides" title="Permanent link">&para;</a></h2>
 <p><em>(coming soon)</em></p>
+<h2 id="multixscale">MultiXscale<a class="headerlink" href="#multixscale" title="Permanent link">&para;</a></h2>
+<div align="center">
+<a href="https://www.multixscale.eu">
+<img src="img/logos/multixscale_logo.png" alt="MultiXscale logo" width="50%"/>
+</a>
+</div>
+
+<p>This tutorial is being developed and organised in the context of the <a href="https://multixscale.eu">MultiXscale EuroHPC
+Centre-of-Excellence</a>.</p>
+<p>Funded by the European Union. This work has received funding from the <a href="https://eurohpc-ju.europa.eu">European High Performance Computing Joint
+Undertaking (JU)</a> and countries participating in the project under grant agreement No 101093169.</p>
 <h2 id="contributors">Contributors<a class="headerlink" href="#contributors" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Jakob Blomer (CERN, Switzerland)</li>
 <li>Bob Dröge (University of Groningen, The Netherlands)</li>
-<li>Kenneth Hoste (HPC-UGent, Belgium)</li>
-<li>Alan O'Cais (University of Barcelona, Spain + CECAM)</li>
-<li>Lara Peeters (HPC-UGent, Belgium)</li>
+<li>Kenneth Hoste (Ghent University, Belgium)</li>
+<li>Alan O'Cais (University of Barcelona, Spain; CECAM)</li>
+<li>Lara Peeters (Ghent University, Belgium)</li>
 <li>Laura Promberger (CERN, Switzerland)</li>
+<li>Thomas Röblitz (University of Bergen, Norway)</li>
+<li>Caspar van Leeuwen (SURF, The Netherlands)</li>
 <li>Valentin Völkl (CERN, Switzerland)</li>
 </ul>
 <h2 id="additional-resources">Additional resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
