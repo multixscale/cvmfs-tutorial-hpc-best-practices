@@ -18,7 +18,7 @@ The EESSI project consists of 3 layers, which are constructed by leveraging vari
 </p>
 
 
-### Filesystem layer
+### Filesystem layer {: #filesystem_layer }
 
 The *filesystem layer* is responsible for **distributing** the EESSI software stack to systems on which is it used.
 
@@ -46,7 +46,7 @@ More on that in the [next section](../access.md) of this tutorial.
     or even available, nor that the software installations it provides are actually functional,
     since it may be used for experimentation purposes by the EESSI maintainers.
 
-### Compatibility layer
+### Compatibility layer {: #compat_layer }
 
 The *compatibility layer* of EESSI **levels the ground** across different (versions of) the Linux operating system (OS)
 of client systems that use the software installations provided by EESSI.
@@ -104,25 +104,25 @@ regardless of the (version of) Linux distribution being used.
     This is very similar to the OS tools and libraries that are included in container images,
     except that no container runtime is involved here (typically), only CernVM-FS.
 
-### Software layer
+### Software layer {: #software_layer }
 
 The top layer of EESSI is called the *software layer*, which contains the actual scientific software applications
 and their dependencies.
 
-#### EasyBuild to install software
+#### EasyBuild to install software {: #easybuild }
 
 Building, managing, and optimising the software installations included in the software layer is
 layer is done using [**EasyBuild**](https://easybuild.io), a well-established software build and installation framework
 for managing (scientific) software stacks on High-Performance Computing (HPC) systems.
 
-#### Lmod as user interface
+#### Lmod as user interface {: #lmod }
 
 Next to installing the software itself, EasyBuild also automatically generates [*environment module
 files*](https://en.wikipedia.org/wiki/Environment_Modules_(software)).
 These files, which are essentially small Lua scripts, are consumed via [**Lmod**](https://lmod.readthedocs.io),
 a modern implementation of the concept of environment modules which provides a user-friendly interface to end users of EESSI.
 
-#### CPU detection via archspec
+#### CPU detection via archspec {: #cpu_detection }
 
 The [**`archspec`**](https://archspec.readthedocs.io) Python library is leveraged by
 an initialisation script that is included in the EESSI repository to detect the CPU family and microarchitecture of
@@ -134,7 +134,7 @@ to start using it.
 A more lightweight pure bash alternative to `archspec` named `archdetect` is being evaluated
 to become part of the initialisation procedure (and replace `archspec`).
 
-#### Structure of the software layer
+#### Structure of the software layer {: #software_layer_structure }
 
 For now, we just briefly show the structure of `software` subdirectory that contains the software layer
 of a particular version of EESSI below.

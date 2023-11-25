@@ -1,103 +1,137 @@
 # Using EESSI
 
-## Pilot repositories (TO REVIEW)
+Using the software installations provided by the EESSI CernVM-FS repository `software.eessi.io`
+is fairly straightforward.
 
-### The current pilot repositories
+Let's break it down step by step.
 
-- 2021.12
-- 2023.04
-- 2023.06
+## 0) Is EESSI available?
 
-### How to get access
+First, check whether the EESSI [CernVM-FS](../cvmfs/what-is-cvmfs.md) repository is available on your system.
 
-**step 1: Is EESSI accessible on your system?**
+Try checking the contents of the `/cvmfs/software.eessi.io` directory with the `ls` command:
 
-you can run a command to see if you already have access to the EESSI repository on your system.
-
-If you run the command and get the following result. You have access to EESSI on your system:
-```
-$ ls /cvmfs/pilot.eessi-hpc.org
-host_injections  latest  versions
-```
-If see an error message, you do not yet have aceess to EESSI on your system:
-```
-$ ls /cvmfs/pilot.eessi-hpc.org
-ls: /cvmfs/pilot.eessi-hpc.org: No such file or directory
-```
-You and find in the EESSI documentation how to install CernVM-FS [natively](https://www.eessi.io/docs/getting_access/native_installation/) or in a [container](https://www.eessi.io/docs/getting_access/eessi_container/).
-
-**step2: Setting up you environment**
-
-To set up the EESSI environment, simply run the command:
-```
-$ source /cvmfs/pilot.eessi-hpc.org/latest/init/bash
-```
-If you would like specify the repository you can simply replace `latest` with one of the pilot repositories (`2021.12`, `2023.04`, `2023.06`).
-
-<!-- Maybe link to EESSI documentation on how to get access -->
-
-**Step 3: Run some basic commands**
-
-To see which modules are available. you can run:
-```
-[EESSI pilot 2021.12] $ module avail 
-
----------------------------------------------------- /cvmfs/pilot.eessi-hpc.org/versions/2021.12/software/linux/x86_64/amd/zen2/modules/all ----------------------------------------------------
-ant/1.10.8-Java-11                                              jbigkit/2.1-GCCcore-10.3.0                      OpenMPI/4.1.1-GCC-10.3.0
-Arrow/0.17.1-foss-2020a-Python-3.8.2                            JsonCpp/1.9.4-GCCcore-9.3.0                     OpenPGM/5.2.122-GCCcore-9.3.0
-Bazel/3.6.0-GCCcore-9.3.0                                       LAME/3.100-GCCcore-9.3.0                        OpenSSL/1.1                                        (D)
-Bison/3.5.3-GCCcore-9.3.0                                       LAME/3.100-GCCcore-10.3.0                       OSU-Micro-Benchmarks/5.6.3-gompi-2020a
-Bison/3.7.6-GCCcore-10.3.0                                      libarchive/3.5.1-GCCcore-10.3.0                 OSU-Micro-Benchmarks/5.7.1-gompi-2021a
-Boost/1.72.0-gompi-2020a
+```bash
+$ ls /cvmfs/software.eessi.io
+host_injections  README  versions
 ```
 
-Load modules with module load package/version, e.g., module load R/4.1.0-foss-2021a, and try out the software. See below for a short session:
+If you see an error message like "`No such file or directory`", then either the CernVM-FS client
+is not installed on your system, or the configuration for the EESSI repository is not available.
+In that case, you may want to revise the [Accessing a CernVM-FS repository](../access.md) section,
+or go through the [Troubleshooting](../troubleshooting.md) section.
 
-```
-[EESSI pilot 2021.12] $ module load R/4.1.0-foss-2021a
-[EESSI pilot 2021.12] $ which R
-/cvmfs/pilot.eessi-hpc.org/versions/2021.12/software/linux/x86_64/intel/skylake_avx512/software/R/4.1.0-foss-2021a/bin/R
-[EESSI pilot 2021.12] $ R --version
-R version 4.1.0 (2021-05-18) -- "Camp Pontanezen"
-Copyright (C) 2021 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
+??? note "Don't be fooled by `autofs` *(click to expand)*"
 
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under the terms of the
-GNU General Public License versions 2 or 3.
-For more information about these matters see
-https://www.gnu.org/licenses/.
+    The `/cvmfs` directory may seem empty at first, because CernVM-FS repositories are automatically mounted
+    as they are accessed via [`autofs`](https://www.kernel.org/doc/html/latest/filesystems/autofs.html).
+
+    So rather than just using "`ls /cvmfs/`" to check which CernVM-FS repositories are available on your system,
+    you should try to directly access a specific repository as shown above with EESSI.
+
+    For more information on various aspects of mounting of CernVM-FS repositories, [see the CernVM-FS documentation](
+    https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
+
+## 1) Initialise shell environment
+
+If the EESSI repository is available, you can proceed to preparing your shell environment for using
+a particular version of EESSI by *sourcing* the provided initialisation script by running the `source` command:
+
+```shell
+$ source /cvmfs/software.eessi.io/versions/2023.06/init/bash
+Found EESSI pilot repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/amd/zen2
+Using x86_64/amd/zen2 as software subdirectory.
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/modules/all as the directory to be added to MODULEPATH.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/.lmod/lmodrc.lua
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/modules/all to $MODULEPATH...
+Environment set up to use EESSI pilot software stack, have fun!
 ```
 
-**Step 4: run a demo with GROMACS**
+??? note "Details on changes made to the shell environment *(click to expand)*"
 
-First clone the eessi-demo git repository and move into the resulting directory.
-```
-$ git clone https://github.com/EESSI/eessi-demo.git
-$ cd eessi-demo
-$ls -l
-drwxr-xr-x  5 example  users    160 Nov 23  2020 Bioconductor
-drwxr-xr-x  3 example  users     96 Jan 26 20:17 CitC
-drwxr-xr-x  5 example  users    160 Jan 26 20:17 GROMACS
--rw-r--r--  1 example  users  18092 Jan 26 20:17 LICENSE
-drwxr-xr-x  3 example  users     96 Jan 26 20:17 Magic_Castle
-drwxr-xr-x  4 example  users    128 Nov 24  2020 OpenFOAM
--rw-r--r--  1 example  users    546 Jan 26 20:17 README.md
-drwxr-xr-x  5 example  users    160 Nov 23  2020 TensorFlow
-drwxr-xr-x  6 example  users    192 Jan 26 20:17 scripts
-```
-Then run the following commands to do a demo with GROMACS
-```
-$ source /cvmfs/pilot.eessi-hpc.org/latest/init/bash
-[EESSI pilot 2021.12] $ cd GROMACS
-[EESSI pilot 2021.12] $ ./run.sh
+    The initialisation script is a simple bash script that changes a couple of environment variables:
 
-GROMACS:      gmx mdrun, version 2020.1-EasyBuild-4.5.0
-Executable:   /cvmfs/pilot.eessi-hpc.org/versions/2021.12/software/linux/x86_64/intel/haswell/software/GROMACS/2020.1-foss-2020a-Python-3.8.2/bin/gmx
-...
-starting mdrun 'Protein'
-1000 steps,      2.5 ps.
+    * A set of `$EESSI_*` environment variables is defined;
+    * The `$PS1` environment variable that specifies the [shell prompt](https://en.wikipedia.org/wiki/Command-line_interface#Command_prompt)
+      is updated to indicate that your shell session has been initialised for EESSI;
+    * The location of the tools provided by the EESSI compatibility layer are prepended to the `$PATH` environment variable;
+    * Lmod, which is included in the EESSI compatibility layer, is initialised to ensure that the `module` command is defined,
+      and that the Lmod spider cache that is included in the EESSI software layer is picked up;
+    * The location to the software installations that are optimised for the CPU microarchitecture of the client system
+      is prepended to the `$MODULEPATH` environment variable by running a "`module use`" command.
+
+Note how the CPU microarchitecture is being auto-detected, which determines which path that points to a set of
+environment module files is used to update `$MODULEPATH`.
+
+This ensures that the modules that will be loaded provide access to software installations from the EESSI software
+layer that are *optimised* for the system you are using EESSI on.
+
+
+## 2) Load module(s)
+
+After initialising your shell environment for using EESSI, you can start exploring the EESSI software layer
+using the `module` command.
+
+Using "`module avail`" (or "`ml av`"), you can check which software is available.
+Without extra arguments, "`module avail`" will produce an overview of *all* available software.
+By passing an extra argument you can filter the results and search for specific software:
+
+```shell
+$ module avail tensorflow
+
+----- /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/modules/all -----
+    
+    TensorFlow/2.13.0-foss-2023a
 ```
+
+To start *using* software you should *load* the corresponding environment module files
+using "`module load`" (or "`ml`"). For example:
+
+```shell
+$ module load TensorFlow/2.13.0-foss-2023a
+```
+
+A "`module load`" command usually does not produce any output, but it updates you shell environment
+to make the software ready to use.
+
+For more information on the `module` command, see the
+[User Guide for Lmod](https://lmod.readthedocs.io/en/latest/010_user.html).
+
+## 3) Use software
+
+After loading a module, you should be able to use the corresponding software.
+
+For example, after loading the `TensorFlow/2.13.0-foss-2023a` module, you can start a Python session
+and play with the `tensorflow` Python package:
+
+```python
+$ python
+>>> import tensorflow as tf
+>>> tf.__version__
+'2.13.0'
+```
+
+Keep in mind that you are using a Python installation provided by the EESSI software layer here,
+*not* the Python version that may be provided by your client OS:
+
+```shell
+$ command -v python
+/cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/software/Python/3.11.3-GCCcore-12.3.0/bin/python
+```
+
+??? note "Initial start-up delay *(click to expand)*"
+
+    You may notice a bit of "lag" initially when starting to use software provided by the EESSI software layer.
+
+    This is expected, since CernVM-FS may need to first download the files that are required
+    to run the software you are using;
+    see also [On-demand downloading of files and metadata](../cvmfs/what-is-cvmfs.md#features-ondemand).
+
+    You should not observe any significant start-up delays anymore when running the same software shortly after,
+    since then CernVM-FS will be able to serve the necessary files from the local client cache;
+    see also [Multi-level caching](../cvmfs/what-is-cvmfs.md#features-caching).
 
 ---
 
