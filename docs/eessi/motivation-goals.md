@@ -21,7 +21,7 @@ ways, including:
   scientists with running the software they require on high-end (and complex) infrastructure like supercomputers
   (and beyond);
 
-Collectively, these indicate that there is a strong need for **more collaboration** on building and installating
+Collectively, these indicate that there is a strong need for **more collaboration** on building and installing
 scientific software to **avoid duplicate work** across computational scientists and HPC user support teams.
 
 
