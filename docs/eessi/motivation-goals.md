@@ -29,7 +29,7 @@ scientific software to **avoid duplicate work** across computational scientists 
 
 The main goal of EESSI is to provide a collection of scientific software installations that work across a
 **wide range of different platforms**, including HPC clusters, cloud infrastructure, and personal workstations
-and laptops, without making comprimes on the **performance** of that software.
+and laptops, without making compromises on the **performance** of that software.
 
 While initially the focus of EESSI is to support Linux systems with an established system architectures like
 AMD + Intel CPUs and NVIDIA GPUs, the ambition is to also cover emerging technologies like Arm 64-bit CPUs,
