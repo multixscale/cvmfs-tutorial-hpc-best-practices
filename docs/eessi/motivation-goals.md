@@ -21,8 +21,8 @@ ways, including:
   scientists with running the software they require on high-end (and complex) infrastructure like supercomputers
   (and beyond);
 
-This results in a strong need for **more collaboration** to **avoid duplicate work** across HPC user support teams
-and computational scientists.
+Collectively, these indicate that there is a strong need for **more collaboration** on building and installating
+scientific software to **avoid duplicate work** across computational scientists and HPC user support teams.
 
 
 ## Goals
