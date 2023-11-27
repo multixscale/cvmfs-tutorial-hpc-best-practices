@@ -122,17 +122,16 @@ files*](https://en.wikipedia.org/wiki/Environment_Modules_(software)).
 These files, which are essentially small Lua scripts, are consumed via [**Lmod**](https://lmod.readthedocs.io),
 a modern implementation of the concept of environment modules which provides a user-friendly interface to end users of EESSI.
 
-#### CPU detection via archspec {: #cpu_detection }
+#### CPU detection via `archspec` or `archdetect` {: #cpu_detection }
 
-The [**`archspec`**](https://archspec.readthedocs.io) Python library is leveraged by
-an initialisation script that is included in the EESSI repository to detect the CPU family and microarchitecture of
-a client system. Based on the supported CPU features, the EESSI initialisation
+The initialisation script that is included in the EESSI repository automatically detects the CPU family and
+microarchitecture of a client system by leveraging either [**`archspec`**](https://archspec.readthedocs.io), a small
+Python library, or `archdetect`, a minimal pure bash implementation of the same concept.
+
+Based on the features of the detected CPU microarchitecture, the EESSI initialisation
 script will **automatically select the best suited subdirectory** of the software layer that contains
 software installations that are optimised for that particular type of CPU, and update the session environment
 to start using it.
-
-A more lightweight pure bash alternative to `archspec` named `archdetect` is being evaluated
-to become part of the initialisation procedure (and replace `archspec`).
 
 #### Structure of the software layer {: #software_layer_structure }
 
