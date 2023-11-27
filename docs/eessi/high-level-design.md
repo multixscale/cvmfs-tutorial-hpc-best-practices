@@ -3,7 +3,7 @@
 The design of EESSI is very similar to that of the [Compute Canada software stack](inspiration.md) it is inspired by,
 and is aligned with the [motivation and goals](motivation-goals.md) of the project.
 
-In this remainder of this section of the tutorial, we will **explore the structure of the EESSI CernVM-FS repository**,
+In the remainder of this section of the tutorial, we will **explore the layered structure of the EESSI software stack**,
 and [how to use it](using-eessi.md).
 
 In the [next section](../access.md) will cover in detail how you can get access to EESSI
