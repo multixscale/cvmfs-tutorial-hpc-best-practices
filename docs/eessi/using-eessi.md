@@ -39,7 +39,7 @@ a particular version of EESSI by *sourcing* the provided initialisation script b
 
 ```shell
 $ source /cvmfs/software.eessi.io/versions/2023.06/init/bash
-Found EESSI pilot repo @ /cvmfs/software.eessi.io/versions/2023.06!
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
 archdetect says x86_64/amd/zen2
 Using x86_64/amd/zen2 as software subdirectory.
 Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/modules/all as the directory to be added to MODULEPATH.
