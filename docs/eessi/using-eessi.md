@@ -46,7 +46,7 @@ Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/m
 Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/.lmod/lmodrc.lua
 Initializing Lmod...
 Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen2/modules/all to $MODULEPATH...
-Environment set up to use EESSI pilot software stack, have fun!
+Environment set up to use EESSI (2023.06), have fun!
 ```
 
 ??? note "Details on changes made to the shell environment *(click to expand)*"
