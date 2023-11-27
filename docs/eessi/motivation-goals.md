@@ -31,7 +31,7 @@ The main goal of EESSI is to provide a collection of scientific software install
 **wide range of different platforms**, including HPC clusters, cloud infrastructure, and personal workstations
 and laptops, without making compromises on the **performance** of that software.
 
-While initially the focus of EESSI is to support Linux systems with an established system architectures like
+While initially the focus of EESSI is to support Linux systems with established system architectures like
 AMD + Intel CPUs and NVIDIA GPUs, the ambition is to also cover emerging technologies like Arm 64-bit CPUs,
 other accelerators like the [AMD Instinct](https://en.wikipedia.org/wiki/AMD_Instinct) and
 [Intel Xe](https://en.wikipedia.org/wiki/Intel_Xe), and eventually also
