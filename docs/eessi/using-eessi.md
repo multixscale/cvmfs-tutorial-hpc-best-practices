@@ -18,7 +18,7 @@ host_injections  README  versions
 
 If you see an error message like "`No such file or directory`", then either the CernVM-FS client
 is not installed on your system, or the configuration for the EESSI repository is not available.
-In that case, you may want to revise the [Accessing a CernVM-FS repository](../access.md) section,
+In that case, you may want to revisit the [Accessing a CernVM-FS repository](../access.md) section,
 or go through the [Troubleshooting](../troubleshooting.md) section.
 
 ??? note "Don't be fooled by `autofs` *(click to expand)*"
