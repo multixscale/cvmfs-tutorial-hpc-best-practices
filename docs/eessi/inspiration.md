@@ -4,7 +4,7 @@ The EESSI concept is heavily inspired by software stack provided by the
 [Digital Research Alliance of Canada](https://alliancecan.ca/en/about/alliance) (a.k.a. The Alliance, formerly known as *Compute Canada*), which is a shared software stack used on all
 [national host sites for Advanced Research Computing in Canada](
 https://alliancecan.ca/en/services/advanced-research-computing/federation/national-host-sites)
-that is distributed across Canada (and beyond) using [CerVM-FS](../cvmfs/what-is-cvmfs.md);
+that is distributed across Canada (and beyond) using [CernVM-FS](../cvmfs/what-is-cvmfs.md);
 see also [here](../cvmfs/flagship-repositories.md#the-alliance).
 
 EESSI is significantly more ambitious in its goals however, in various ways.
