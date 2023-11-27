@@ -27,7 +27,7 @@ or go through the [Troubleshooting](../troubleshooting.md) section.
     as they are accessed via [`autofs`](https://www.kernel.org/doc/html/latest/filesystems/autofs.html).
 
     So rather than just using "`ls /cvmfs/`" to check which CernVM-FS repositories are available on your system,
-    you should try to directly access a specific repository as shown above with EESSI.
+    you should try to directly access a specific repository as shown above for EESSI with `ls /cvmfs/software.eessi.io` .
 
     For more information on various aspects of mounting of CernVM-FS repositories, [see the CernVM-FS documentation](
     https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
