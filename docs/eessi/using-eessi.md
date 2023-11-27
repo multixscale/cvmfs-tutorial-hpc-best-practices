@@ -74,8 +74,8 @@ layer that are *optimised* for the system you are using EESSI on.
 After initialising your shell environment for using EESSI, you can start exploring the EESSI software layer
 using the `module` command.
 
-Using "`module avail`" (or "`ml av`"), you can check which software is available.
-Without extra arguments, "`module avail`" will produce an overview of *all* available software.
+Using `module avail` (or `ml av`), you can check which software is available.
+Without extra arguments, `module avail` will produce an overview of *all* available software.
 By passing an extra argument you can filter the results and search for specific software:
 
 ```shell
@@ -87,13 +87,13 @@ $ module avail tensorflow
 ```
 
 To start *using* software you should *load* the corresponding environment module files
-using "`module load`" (or "`ml`"). For example:
+using `module load` (or `ml`). For example:
 
 ```shell
 $ module load TensorFlow/2.13.0-foss-2023a
 ```
 
-A "`module load`" command usually does not produce any output, but it updates you shell environment
+A `module load` command usually does not produce any output, but it updates your shell environment
 to make the software ready to use.
 
 For more information on the `module` command, see the
