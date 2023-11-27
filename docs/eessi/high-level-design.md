@@ -203,7 +203,8 @@ Each of the other subdirectories for specific CPU microarchitectures will have t
 and provide the same software installations and accompanying environment module files to access them with Lmod.
 
 A key aspect here is that binaries and libraries that make part of the software installations
-included in the EESSI software layer only rely on libraries provided by the compatibility layer.
+included in the EESSI software layer only rely on libraries provided by the compatibility layer and/or
+other software installations in the EESSI software layer.
 
 See for example libraries to which the OpenBLAS library links:
 
