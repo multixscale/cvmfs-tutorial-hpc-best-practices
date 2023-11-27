@@ -7,7 +7,7 @@ is a collaboration between different European partners in the HPC (High Performa
 <img src="../../img/logos/EESSI_logo_horizontal.png" alt="EESSI logo" width="80%"/></br>
 </div>
 
-It consists of a common stack of *optimized* scientific software installations that work on any Linux distribution,
+EESSI provides a common stack of *optimized* scientific software installations that work on any Linux distribution,
 and currently supports both `x86_64` (AMD/Intel) and `aarch64` (Arm 64-bit) systems, which is distributed
 via [CernVM-FS](../cvmfs/what-is-cvmfs.md).
 
