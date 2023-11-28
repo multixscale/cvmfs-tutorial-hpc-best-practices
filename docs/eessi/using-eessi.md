@@ -135,4 +135,4 @@ $ command -v python
 
 ---
 
-*(next: [Accessing a CernVM-FS repository](../access.md))*
+*(next: [Getting support for EESSI](support.md))*

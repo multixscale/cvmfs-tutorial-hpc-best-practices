@@ -1,4 +1,4 @@
-# Accessing a CernVM-FS repository
+# Accessing CernVM-FS repositories
 
 ## Client configuration
 
