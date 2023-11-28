@@ -21,7 +21,8 @@ nav:
     - "Inspiration": eessi/inspiration.md
     - "High-level design": eessi/high-level-design.md
     - "Using EESSI": eessi/using-eessi.md
-  - Accessing a repository: access.md
+    - "Getting support": eessi/support.md
+  - Accessing repositories: access.md
   - Configuration on HPC systems: configuration.md
   - Troubleshooting and debugging: troubleshooting.md
   - Performance aspects: performance.md
