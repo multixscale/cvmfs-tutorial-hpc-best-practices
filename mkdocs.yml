@@ -15,14 +15,19 @@ nav:
     - What is CernVM-FS?: cvmfs/what-is-cvmfs.md
     - Technical details: cvmfs/technical-details.md
     - Flagship repositories: cvmfs/flagship-repositories.md
-  - EESSI: eessi.md
-  - Accessing a repository: 02_access.md
-  - Configuration on HPC systems: 03_configuration.md
-  - Troubleshooting and debugging: 04_troubleshooting_debugging.md
-  - Performance aspects: 05_performance.md
-  - Storage backends: 06_storage_backends.md
-  - Containers: 07_containers.md
-  - Creating a CernVM-FS repository: 10_getting_started.md
+  - EESSI:
+    - "What is EESSI?": eessi/what-is-eessi.md
+    - "Motivation & goals": eessi/motivation-goals.md
+    - "Inspiration": eessi/inspiration.md
+    - "High-level design": eessi/high-level-design.md
+    - "Using EESSI": eessi/using-eessi.md
+  - Accessing a repository: access.md
+  - Configuration on HPC systems: configuration.md
+  - Troubleshooting and debugging: troubleshooting.md
+  - Performance aspects: performance.md
+  - Storage backends: storage-backends.md
+  - Containers: containers.md
+  - Creating a CernVM-FS repository: getting-started.md
   - "Appendix: Terminology": appendix/terminology.md
 plugins:
   # show revision date at bottom of each page
