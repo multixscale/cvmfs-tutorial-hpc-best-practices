@@ -6,7 +6,7 @@
 </a>
 </div>
 
-Thanks to the funding provided by the [MultiXscale EuroHPC Centre-of-Excellence](../index.md#multixscale),
+Thanks to the funding provided by the [MultiXscale EuroHPC JU Centre-of-Excellence](../index.md#multixscale),
 a dedicated support team is available to provide help on accessing or using EESSI.
 
 If you have any questions, or if you are experiencing problems, do not hesitate to reach out
