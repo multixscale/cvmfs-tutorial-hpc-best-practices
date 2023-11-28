@@ -46,7 +46,8 @@ markdown_extensions:
   # clickable details
   - pymdownx.details
   # tabbed contents
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
 extra:
