@@ -22,8 +22,11 @@ nav:
     - "High-level design": eessi/high-level-design.md
     - "Using EESSI": eessi/using-eessi.md
     - "Getting support": eessi/support.md
-  - Accessing repositories: access.md
-  - Configuration on HPC systems: configuration.md
+  - Accessing repositories:
+    - "Setting up a client system": access/client.md
+    - "Setting up a proxy server": access/proxy.md
+    - "Setting up a replica server": access/stratum1.md
+  - Configuration on HPC systems: configuration_hpc.md
   - Troubleshooting and debugging: troubleshooting.md
   - Performance aspects: performance.md
   - Storage backends: storage-backends.md

@@ -1,0 +1,194 @@
+# Setting up a CernVM-FS client system
+
+The recommended way to gain access to CernVM-FS repositories is to set up
+a *system-wide native installation* of CernVM-FS on the client system(s),
+which comes down to:
+
+* Installing the client component of CernVM-FS;
+* Creating a minimal client configuration file (`/etc/cvmfs/default.local`);
+* Completing the client setup by:
+    * Creating a`cvmfs` user account and group;
+    * Creating the `/cvmfs`, `/var/lib/cvmfs` directories;
+    * Configuring `autofs` to enable auto-mounting of CernVM-FS repositories *(optional)*.
+
+For repositories that are not included in the default
+CernVM-FS configuration you also need to provide some additional information
+specific to those repositories in order to access them.
+
+!!! danger "This is not a production-ready setup (yet)!"
+
+    While these basic steps are enough to *gain access* to CernVM-FS repositories,
+    this is not sufficient to obtain a production-ready setup.
+    
+    This is especially true on HPC infrastructure that typically consists of a
+    large number of worker nodes on which software provided by one or more
+    CernVM-FS repositories will be used.
+
+    After covering the basic steps in this section, we will outline
+    how to make the setup more reliable and performant,
+    by setting up a [proxy server](proxy.md) and [CernVM-FS Stratum 1
+    replica server](stratum1.md).
+
+
+## Installing CernVM-FS client
+
+Start with installing the `cvmfs` package which provides the CernVM-FS client component:
+
+=== "For RHEL-based Linux distros (incl. CentOS, Rocky, Fedora, ...)"
+
+    ``` { .bash .copy }
+    # install cvmfs-release package to add yum repository
+    sudo yum install -y https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest.noarch.rpm
+
+    # install CernVM-FS client package
+    sudo yum install -y cvmfs
+    ```
+
+=== "For Debian-based Linux distros (incl. Ubuntu)"
+
+    ``` { .bash .copy }
+    # install cvmfs-release package to add apt repository
+    sudo apt install lsb-release
+    curl -OL https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
+    sudo dpkg -i cvmfs-release-latest_all.deb
+    sudo apt update
+
+    # install CernVM-FS client package
+    sudo apt install -y cvmfs
+    ```
+
+If none of the available `cvmfs` packages are compatible with your system,
+you can also [build CernVM-FS from
+source](https://cvmfs.readthedocs.io/en/stable/cpt-quickstart.html#building-from-source).
+
+
+## Minimal client configuration {: #minimal_configuration }
+
+Next to installing the CernVM-FS client, you should also create a minimal configuration file for it.
+
+This is typically done in `/etc/cvmfs/default.local`,
+which should contain something like:
+
+``` { .ini .copy }
+CVMFS_CLIENT_PROFILE="single"
+CVMFS_QUOTA_LIMIT=10000
+```
+
+More information on the structure of `/etc/cvmfs` and supported configuration settings is available
+[in the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html).
+
+### Client profile setting
+
+With `CVMFS_CLIENT_PROFILE="single"` we specify that this CernVM-FS client should:
+
+* Use the [proxy server](../appendix/terminology.md#proxy) specified via `CVMFS_HTTP_PROXY`, if that configuration setting is defined;
+* Directly connect to a [Stratum-1 replica server](../appendix/terminology.md#stratum1) that provides the repository being used if no proxy server
+  is specified via `CVMFS_HTTP_PROXY`.
+
+As an alternative to defining `CVMFS_CLIENT_PROFILE`, you can also set `CVMFS_HTTP_PROXY` to `DIRECT` to specify
+that no proxy server should be used by CernVM-FS:
+
+``` { .ini .copy }
+CVMFS_HTTP_PROXY="DIRECT"
+```
+
+We will get back to `CVMFS_HTTP_PROXY` later when [setting up a proxy server](proxy.md).
+
+### Quota limit for client cache
+
+The `CVMFS_QUOTA_LIMIT` configuration setting specifies the maximum size of the CernVM-FS client cache (in MBs).
+
+In the example above, we specify that no more than ~10GB should be used for the client cache.
+
+Once the quota limit is reached, CernVM-FS will automatically remove files from the cache according
+to the Least Recently Used (LRU) policy, until half of the maximum cache size has been freed.
+
+The location of the cache directory can be controlled by `CVMFS_CACHE_BASE` if needed (default: `/var/run/cvmfs`),
+but **must** be a on a *local* file system of the client, not a network file system that can be modified by multiple
+hosts.
+
+For more information on cache-related configuration settings,
+[see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#cache-settings).
+
+
+## Completing the client setup
+
+To complete the setup of the CernVM-FS client component,
+a`cvmfs` user account and group must be added to the system,
+and the `/cvmfs` and `/var/lib/cvmfs` directories must be created.
+
+In addition, it is recommended to update the `autofs` configuration
+to enable auto-mounting of CernVM-FS repositories *(optional)*.
+
+All these actions can be performed in one go by running the following command:
+
+``` { .bash .copy }
+sudo cvmfs_config setup
+```
+
+Additional options can be passed to this command to disable some of the actions,
+like `nouser` to not create the `cvmfs` user and group, or `noautofs` not
+update the `autofs` configuration.
+
+??? note "Impact of not updating `autofs` configuration *(click to expand)*"
+
+    If you prefer not to use `autofs`, you will either need to:
+
+    * Manually mount the CernVM-FS repositories you want to use, for example:
+      ``` { .bash .copy }
+      sudo mount -t cvmfs software.eessi.io /cvmfs/software.eessi.io
+      ```
+
+    * or update `/etc/fstab` to ensure that the CernVM-FS repositories
+      are mounted at boot time.
+
+    For more information on mounting repositories,
+    [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
+
+## Checking client setup
+
+To ensure that the setup of the CernVM-FS client component is valid, you can run:
+
+``` { .bash .copy }
+sudo cvmfs_config chksetup
+```
+
+You should see `OK` as output of this command.
+
+## Default repositories
+
+The default configuration of CernVM-FS, provided by the `cvmfs-config-default`
+packages, provides the public keys and configuration for a number of
+commonly used CernVM-FS repositories.
+
+One particular repository included in the default CernVM-FS configuration is
+`cvmfs-config.cern.ch`, which is a [CernVM-FS *config repository*](
+https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#the-config-repository)
+that provides public keys and configuration for additional [flagship
+CernVM-FS repositories](../cvmfs/flagship-repositories.md),
+like [EESSI](../eessi/high-level-design.md#filesystem_layer).
+
+To check whether a specific repository is accessible, we can *probe* it:
+
+```
+$ cvmfs_config probe software.eessi.io
+Probing /cvmfs/software.eessi.io... OK
+```
+
+To view the configuration for a specific repository, use `showconfig`:
+``` { .bash .copy }
+cvmfs_config showconfig software.eessi.io
+```
+
+## Additional repositories
+
+To access additional CernVM-FS repositories beyond those that are available by default, you will need to:
+
+* Add the public keys for those repositories into a domain-specific subdirectory of `/etc/cvmfs/keys/`;
+* Add the configuration for those repositories into `/etc/cvmfs/domain.d` (domain-specific) or `/etc/cvmfs/config.d` (repository-specific).
+
+For examples, see the `/etc/cvmfs` subdirectory in the [config-repo GitHub repository](https://github.com/cvmfs-contrib/config-repo).
+
+---
+
+*(next: [Setting up a proxy server](../access/proxy.md))*
