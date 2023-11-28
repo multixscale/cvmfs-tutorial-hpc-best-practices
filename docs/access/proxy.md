@@ -1,5 +1,155 @@
 # Setting up a proxy server
 
+As a first step towards a production-ready CernVM-FS setup
+we will install a [Squid forward proxy server](http://www.squid-cache.org),
+which is strongly recommended in the context of HPC systems.
+
+The proxy server will (often dramatically) **reduce the latency** for client systems,
+and hence **significantly improve start-up performance** of software provided via a CernVM-FS
+repository. In addition, it reduces the load on the Stratum 1 replica servers that
+support the CernVM-FS repositories being used.
+
+This is particularly important when running large-scale [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface)
+software, since starting the software requires that the corresponding binary and the libraries
+it depends on are available on *all* worker nodes being employed.
+
+## General recommendations
+
+It is strongly recommended to have **at least two proxy servers** available,
+to have some redundancy available in case of unexpected problems or when performance maintenance.
+
+As a rule of thumb, it is recommended to have (at least) *one proxy server for every couple
+of hundred worker nodes* (100-500).
+
+The load on the proxy servers is highly dependent on the workload mix on the client systems.
+
+## Proxy server setup
+
+### Installation
+
+First, install the `squid` package using your OS package manager:
+
+=== "For RHEL-based Linux distros (incl. CentOS, Rocky, Fedora, ...)"
+
+    ``` { .bash .copy }
+    sudo yum install -y squid
+    ```
+
+=== "For Debian-based Linux distros (incl. Ubuntu)"
+
+    ``` { .bash .copy }
+    sudo apt install -y squid
+    ```
+
+### Configuration
+
+Create a configuration file for the Squid proxy in `/etc/squid/squid.conf`.
+
+You can use the following template for this:
+
+```{ .apache .copy }
+# List of local IP addresses (separate IPs and/or CIDR notation) allowed to access your local proxy
+acl local_nodes src YOUR_CLIENT_IPS
+
+# Destination domains that are allowed
+#acl stratum_ones dstdomain .YOURDOMAIN.ORG
+#acl stratum_ones dstdom_regex YOUR_REGEX
+
+# Squid port
+http_port 3128
+
+# Deny access to anything which is not part of our stratum_ones ACL.
+http_access deny !stratum_ones
+
+# Only allow access from our local machines
+http_access allow local_nodes
+http_access allow localhost
+
+# Finally, deny all other access to this proxy
+http_access deny all
+
+minimum_expiry_time 0
+maximum_object_size 1024 MB
+
+# proxy memory cache of 1GB
+cache_mem 1024 MB
+maximum_object_size_in_memory 128 KB
+# 50 GB disk cache
+cache_dir ufs /var/spool/squid 50000 16 256
+```
+
+In this template, you *must* change two things in the Access Control List (ACL) settings:
+
+1) Specify which client systems can access your proxy by replacing "`YOUR_CLIENT_IPS`" with the corresponding IP range, using [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation);
+
+2) Make sure that Squid allows access to all Stratum 1 replica servers that are relevant for the CernVM-FS repositories
+   you are using, by specifying an ACL for each of them via a line that starts with "`acl stratum_ones`"
+   (see also the [Squid ACL documentation](http://www.squid-cache.org/Doc/config/acl/)).
+
+For example, to allow the EESSI Stratum 1 replica servers, you can use:
+
+```{ .apache .copy }
+acl stratum_ones dstdomain .eessi.science
+```
+
+To check your Squid configuration, use:
+
+```{ .bash .copy }
+squid -k parse
+```
+
+If no warnings or errors are printed by this command, you should be all set (provided that the ACLs are set correctly).
+
+For more information on configuring a Squid proxy, [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-squid.html),
+
+### Starting the service
+
+To start the Squid and enable it on booting the proxy server, run:
+
+```{ .bash .copy }
+sudo systemctl start squid
+sudo systemctl enable squid
+```
+
+To check the status of the Squid, you can use:
+
+```{ .bash .copy }
+sudo systemctl status squid
+```
+
+## Client system configuration
+
+To make a CernVM-FS client system use the proxy server,
+the `/etc/cvmfs/default.local` configuration file *on the client system* should be updated to include:
+
+```{ .ini .copy }
+CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
+```
+
+in which "`<PROXY_IP>`" is replaced with the IP address or hostname of the proxy server.
+
+To apply the change we need to reload the CernVM-FS configuration:
+
+```{ .bash .copy }
+sudo cvmfs_config reload
+```
+
+You can test the new configuration and verify whether the proxy is indeed being used
+via `cvmfs_config stat`:
+
+```{ .bash .copy }
+ls /cvmfs/software.eessi.io
+cvmfs_config stat -v software.eessi.io
+```
+
+Here we fist inspect the contents of the repository using `ls` to make sure that the repository is mounted,
+which is assumed by `cvmfs_config stat`.
+
+The output of the `stat` command should include a link like this:
+
+```
+Connection: .../software.eessi.io through proxy http://<PROXY_IP>:3128 (online)
+```
 
 ---
 
