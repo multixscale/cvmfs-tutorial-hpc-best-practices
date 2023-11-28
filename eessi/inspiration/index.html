@@ -9,22 +9,22 @@
       
       
       
-        <link rel="prev" href="../05_performance/">
+        <link rel="prev" href="../motivation-goals/">
       
       
-        <link rel="next" href="../07_containers/">
+        <link rel="next" href="../high-level-design/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
     
     
       
-        <title>Storage backends - Best Practices for CernVM-FS in HPC</title>
+        <title>Inspiration - Best Practices for CernVM-FS in HPC</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
       
       
 
@@ -43,9 +43,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#different-storage-backends-for-cernvm-fs" class="md-skip">
+        <a href="#inspiration-for-eessi" class="md-skip">
           Skip to content
         </a>
       
@@ -83,9 +83,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Best Practices for CernVM-FS in HPC" class="md-header__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-header__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="../img/logos/cvmfs_logo.png" alt="logo">
+  <img src="../../img/logos/cvmfs_logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Storage backends
+              Inspiration
             
           </span>
         </div>
@@ -186,9 +186,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Best Practices for CernVM-FS in HPC" class="md-nav__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-nav__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="../img/logos/cvmfs_logo.png" alt="logo">
+  <img src="../../img/logos/cvmfs_logo.png" alt="logo">
 
     </a>
     Best Practices for CernVM-FS in HPC
@@ -213,8 +213,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -229,6 +230,7 @@
     
       
       
+  
   
   
   
@@ -268,8 +270,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../cvmfs/what-is-cvmfs/" class="md-nav__link">
+      <a href="../../cvmfs/what-is-cvmfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -288,8 +291,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../cvmfs/technical-details/" class="md-nav__link">
+      <a href="../../cvmfs/technical-details/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -308,8 +312,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../cvmfs/flagship-repositories/" class="md-nav__link">
+      <a href="../../cvmfs/flagship-repositories/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -334,17 +339,159 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../eessi/" class="md-nav__link">
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     EESSI
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            EESSI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-is-eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is EESSI?
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../motivation-goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Motivation & goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Inspiration
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../high-level-design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    High-level design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using EESSI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -354,8 +501,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../02_access/" class="md-nav__link">
+      <a href="../../access/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -373,8 +521,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../03_configuration/" class="md-nav__link">
+      <a href="../../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -392,8 +541,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../04_troubleshooting_debugging/" class="md-nav__link">
+      <a href="../../troubleshooting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -411,8 +561,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../05_performance/" class="md-nav__link">
+      <a href="../../performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -429,29 +580,10 @@
       
   
   
-    
   
   
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Storage backends
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../storage-backends/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -460,44 +592,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#s3" class="md-nav__link">
-    <span class="md-ellipsis">
-      S3
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tradeoffs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tradeoffs
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -507,8 +601,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../07_containers/" class="md-nav__link">
+      <a href="../../containers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -526,8 +621,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../10_getting_started/" class="md-nav__link">
+      <a href="../../getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -545,8 +641,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../appendix/terminology/" class="md-nav__link">
+      <a href="../../appendix/terminology/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -579,32 +676,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#s3" class="md-nav__link">
-    <span class="md-ellipsis">
-      S3
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tradeoffs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tradeoffs
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -621,16 +692,37 @@
   
 
 
-<h1 id="different-storage-backends-for-cernvm-fs">Different storage backends for CernVM-FS<a class="headerlink" href="#different-storage-backends-for-cernvm-fs" title="Permanent link">&para;</a></h1>
-<h2 id="s3">S3<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h2>
-<h2 id="tradeoffs">Tradeoffs<a class="headerlink" href="#tradeoffs" title="Permanent link">&para;</a></h2>
+<h1 id="inspiration-for-eessi">Inspiration for EESSI<a class="headerlink" href="#inspiration-for-eessi" title="Permanent link">&para;</a></h1>
+<p>The EESSI concept is heavily inspired by software stack provided by the
+<a href="https://alliancecan.ca/en/about/alliance">Digital Research Alliance of Canada</a> (a.k.a. The Alliance, formerly known as <em>Compute Canada</em>), which is a shared software stack used on all
+<a href="https://alliancecan.ca/en/services/advanced-research-computing/federation/national-host-sites">national host sites for Advanced Research Computing in Canada</a>
+that is distributed across Canada (and beyond) using <a href="../../cvmfs/what-is-cvmfs/">CernVM-FS</a>;
+see also <a href="../../cvmfs/flagship-repositories/#the-alliance">here</a>.</p>
+<p>EESSI is significantly more ambitious in its goals however, in various ways.</p>
+<p>It intends to support a <strong>broader range of system architectures</strong> than what is currently supported by the
+Compute Canada software stack, like Arm 64-bit microprocessors, accelerators beyond NVIDIA GPUs, etc.</p>
+<p>In addition, EESSI is set up to be a <strong>community project</strong>, by setting up services and infrastructure to automate the
+software build and installation process as much as possible, providing extensive <a href="https://eessi.io/docs/">documentation</a>
+<em>and</em> <a href="https://www.eessi.io/docs/support/">support</a> to end users, user support teams, and system administrators
+who want to employ EESSI, and allowing contributors to <a href="https://www.eessi.io/docs/adding_software/overview/">propose
+additions</a> to the software stack.</p>
+<p>The design of the Compute Canada software stack is discussed in detail in the
+<a href="https://dl.acm.org/doi/10.1145/3332186.3332210">PEARC'19 paper <em>"Providing a Unified Software Environment for Canada’s National Advanced Computing Centers"</em></a>.</p>
+<p>It has also been presented at the 5th <a href="https://easybuild.io/eum">EasyBuild User Meeting</a>, see
+<a href="https://easybuild.io/eum23/eum23_008_Digital-Research-Alliance-Canada.pdf">slides</a> and
+<a href="https://www.youtube.com/watch?v=gRNYp4gQKls">talk recording</a>.</p>
+<p>More information on the Compute Canada software stack is available in
+<a href="https://docs.alliancecan.ca/wiki/Accessing_CVMFS/en">their documentation</a>,
+and in their <a href="https://docs.alliancecan.ca/wiki/Available_software">overview of available software</a>.</p>
+<hr />
+<p><em>(next: <a href="../high-level-design/">High-level Overview of EESSI</a>)</em></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 27, 2023</span>
       
     
   </small>
@@ -673,10 +765,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      <script src="../../assets/javascripts/bundle.cd18aaf1.min.js"></script>
       
     
   </body>

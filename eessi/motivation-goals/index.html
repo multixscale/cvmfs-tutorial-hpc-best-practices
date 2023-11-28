@@ -9,22 +9,22 @@
       
       
       
-        <link rel="prev" href="../06_storage_backends/">
+        <link rel="prev" href="../what-is-eessi/">
       
       
-        <link rel="next" href="../10_getting_started/">
+        <link rel="next" href="../inspiration/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
     
     
       
-        <title>Containers - Best Practices for CernVM-FS in HPC</title>
+        <title>Motivation & goals - Best Practices for CernVM-FS in HPC</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
       
       
 
@@ -43,9 +43,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#containers-and-cernvm-fs" class="md-skip">
+        <a href="#motivation-goals-of-eessi" class="md-skip">
           Skip to content
         </a>
       
@@ -83,9 +83,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Best Practices for CernVM-FS in HPC" class="md-header__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-header__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="../img/logos/cvmfs_logo.png" alt="logo">
+  <img src="../../img/logos/cvmfs_logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Containers
+              Motivation & goals
             
           </span>
         </div>
@@ -186,9 +186,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Best Practices for CernVM-FS in HPC" class="md-nav__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-nav__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
       
-  <img src="../img/logos/cvmfs_logo.png" alt="logo">
+  <img src="../../img/logos/cvmfs_logo.png" alt="logo">
 
     </a>
     Best Practices for CernVM-FS in HPC
@@ -213,8 +213,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -229,6 +230,7 @@
     
       
       
+  
   
   
   
@@ -268,8 +270,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../cvmfs/what-is-cvmfs/" class="md-nav__link">
+      <a href="../../cvmfs/what-is-cvmfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -288,8 +291,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../cvmfs/technical-details/" class="md-nav__link">
+      <a href="../../cvmfs/technical-details/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -308,8 +312,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../cvmfs/flagship-repositories/" class="md-nav__link">
+      <a href="../../cvmfs/flagship-repositories/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -334,32 +339,53 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../eessi/" class="md-nav__link">
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     EESSI
   </span>
   
 
-      </a>
-    </li>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            EESSI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
   
-
-    
-      
-      
   
   
   
     <li class="md-nav__item">
-      <a href="../02_access/" class="md-nav__link">
+      <a href="../what-is-eessi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Accessing a repository
+    What is EESSI?
   </span>
   
 
@@ -367,88 +393,14 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../03_configuration/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuration on HPC systems
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04_troubleshooting_debugging/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Troubleshooting and debugging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05_performance/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Performance aspects
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06_storage_backends/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Storage backends
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -463,7 +415,7 @@
           
   
   <span class="md-ellipsis">
-    Containers
+    Motivation & goals
   </span>
   
 
@@ -474,7 +426,7 @@
         
   
   <span class="md-ellipsis">
-    Containers
+    Motivation & goals
   </span>
   
 
@@ -496,18 +448,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-a-cernvm-fs-repository-via-apptainer" class="md-nav__link">
+  <a href="#motivation" class="md-nav__link">
     <span class="md-ellipsis">
-      Accessing a CernVM-FS repository via Apptainer
+      Motivation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingesting-container-images-in-a-cernvm-fs-repository" class="md-nav__link">
+  <a href="#goals" class="md-nav__link">
     <span class="md-ellipsis">
-      Ingesting container images in a CernVM-FS repository
+      Goals
     </span>
   </a>
   
@@ -520,14 +472,206 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inspiration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inspiration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../high-level-design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    High-level design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using EESSI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../10_getting_started/" class="md-nav__link">
+      <a href="../../access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accessing a repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration on HPC systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting and debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance aspects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage-backends/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storage backends
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -545,8 +689,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../appendix/terminology/" class="md-nav__link">
+      <a href="../../appendix/terminology/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -586,18 +731,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-a-cernvm-fs-repository-via-apptainer" class="md-nav__link">
+  <a href="#motivation" class="md-nav__link">
     <span class="md-ellipsis">
-      Accessing a CernVM-FS repository via Apptainer
+      Motivation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingesting-container-images-in-a-cernvm-fs-repository" class="md-nav__link">
+  <a href="#goals" class="md-nav__link">
     <span class="md-ellipsis">
-      Ingesting container images in a CernVM-FS repository
+      Goals
     </span>
   </a>
   
@@ -621,16 +766,53 @@
   
 
 
-<h1 id="containers-and-cernvm-fs">Containers and CernVM-FS<a class="headerlink" href="#containers-and-cernvm-fs" title="Permanent link">&para;</a></h1>
-<h2 id="accessing-a-cernvm-fs-repository-via-apptainer">Accessing a CernVM-FS repository via Apptainer<a class="headerlink" href="#accessing-a-cernvm-fs-repository-via-apptainer" title="Permanent link">&para;</a></h2>
-<h2 id="ingesting-container-images-in-a-cernvm-fs-repository">Ingesting container images in a CernVM-FS repository<a class="headerlink" href="#ingesting-container-images-in-a-cernvm-fs-repository" title="Permanent link">&para;</a></h2>
+<h1 id="motivation-goals-of-eessi">Motivation &amp; Goals of EESSI<a class="headerlink" href="#motivation-goals-of-eessi" title="Permanent link">&para;</a></h1>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>EESSI is motivated by the observation that the landscape of computational science is changing in various
+ways, including:</p>
+<ul>
+<li><strong>Increasing diversity in system architectures</strong>: additional families of general-purpose
+  microprocessors including <a href="https://en.wikipedia.org/wiki/AArch64">Arm 64-bit (<code>aarch64</code>)</a> and
+  <a href="https://en.wikipedia.org/wiki/RISC-V">RISC-V</a> on top of the well-established Intel and AMD processors (both <code>x86_64</code>),
+  and different types of GPUS (NVIDIA, AMD, Intel);</li>
+<li><strong>Rapid expansion of computational science</strong> beyond traditional domains like physics and computational chemistry,
+  including bioinformatis, Machine Learning (ML) and Artificial Intelligence (AI), etc.,
+  which leads to a <strong>significant growth of the software stack</strong> that is used for running scientific workloads;</li>
+<li><strong>Emergence of commercial cloud infrastructure</strong> (<a href="https://aws.amazon.com/ec2/">Amazon EC2</a>,
+  <a href="https://azure.microsoft.com/en-us">Microsoft Azure</a>, ...)
+  that has competitive advantages over on-premise infrastructure for computational workloads, such as near-instant
+  availability, increased flexibility, a broader variety of hardware platforms, and faster access to
+  new generations of microprocessors;</li>
+<li><strong>Limited manpower</strong> that is available in the HPC user support teams that are responsible for helping
+  scientists with running the software they require on high-end (and complex) infrastructure like supercomputers
+  (and beyond);</li>
+</ul>
+<p>Collectively, these indicate that there is a strong need for <strong>more collaboration</strong> on building and installing
+scientific software to <strong>avoid duplicate work</strong> across computational scientists and HPC user support teams.</p>
+<h2 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">&para;</a></h2>
+<p>The main goal of EESSI is to provide a collection of scientific software installations that work across a
+<strong>wide range of different platforms</strong>, including HPC clusters, cloud infrastructure, and personal workstations
+and laptops, without making compromises on the <strong>performance</strong> of that software.</p>
+<p>While initially the focus of EESSI is to support Linux systems with established system architectures like
+AMD + Intel CPUs and NVIDIA GPUs, the ambition is to also cover emerging technologies like Arm 64-bit CPUs,
+other accelerators like the <a href="https://en.wikipedia.org/wiki/AMD_Instinct">AMD Instinct</a> and
+<a href="https://en.wikipedia.org/wiki/Intel_Xe">Intel Xe</a>, and eventually also
+<a href="https://en.wikipedia.org/wiki/RISC-V">RISC-V</a> microprocessors.</p>
+<p>The software installations included in EESSI are <strong>optimized</strong> for specific generations of microprocessors
+by targeting a variety of <a href="https://en.wikipedia.org/wiki/Instruction_set_architecture">instruction set architectures (ISAs)</a>,
+like for example Intel and AMD processors supporting
+the <a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#Advanced_Vector_Extensions_2">AVX2</a> or
+<a href="https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#AVX-512">AVX-512</a> instructions, and
+Arm processors that support <a href="https://en.wikipedia.org/wiki/AArch64#Scalable_Vector_Extension_(SVE)">SVE</a> instructions.</p>
+<hr />
+<p><em>(next: <a href="../inspiration/">Inspiration for EESSI</a>)</em></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 27, 2023</span>
       
     
   </small>
@@ -673,10 +855,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      <script src="../../assets/javascripts/bundle.cd18aaf1.min.js"></script>
       
     
   </body>

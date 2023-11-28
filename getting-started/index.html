@@ -9,18 +9,18 @@
       
       
       
-        <link rel="prev" href="../02_access/">
+        <link rel="prev" href="../containers/">
       
       
-        <link rel="next" href="../04_troubleshooting_debugging/">
+        <link rel="next" href="../appendix/terminology/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.12">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
     
     
       
-        <title>Configuration on HPC systems - Best Practices for CernVM-FS in HPC</title>
+        <title>Creating a CernVM-FS repository - Best Practices for CernVM-FS in HPC</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuring-cernvm-fs-on-hpc-infrastructure" class="md-skip">
+        <a href="#getting-started-with-cernvm-fs-from-scratch" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuration on HPC systems
+              Creating a CernVM-FS repository
             
           </span>
         </div>
@@ -213,6 +213,7 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         
@@ -229,6 +230,7 @@
     
       
       
+  
   
   
   
@@ -268,6 +270,7 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../cvmfs/what-is-cvmfs/" class="md-nav__link">
         
@@ -288,6 +291,7 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../cvmfs/technical-details/" class="md-nav__link">
         
@@ -305,6 +309,7 @@
             
               
                 
+  
   
   
   
@@ -335,16 +340,146 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../eessi/" class="md-nav__link">
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     EESSI
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            EESSI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eessi/what-is-eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is EESSI?
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eessi/motivation-goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Motivation & goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eessi/inspiration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inspiration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eessi/high-level-design/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    High-level design
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eessi/using-eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using EESSI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -354,8 +489,9 @@
   
   
   
+  
     <li class="md-nav__item">
-      <a href="../02_access/" class="md-nav__link">
+      <a href="../access/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -372,7 +508,108 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration on HPC systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting and debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance aspects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage-backends/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storage backends
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../containers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -387,7 +624,7 @@
           
   
   <span class="md-ellipsis">
-    Configuration on HPC systems
+    Creating a CernVM-FS repository
   </span>
   
 
@@ -398,7 +635,7 @@
         
   
   <span class="md-ellipsis">
-    Configuration on HPC systems
+    Creating a CernVM-FS repository
   </span>
   
 
@@ -420,45 +657,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#diskless-workernodes" class="md-nav__link">
+  <a href="#setting-up-the-stratum-0-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Diskless workernodes
+      Setting up the Stratum-0 server
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#offline-workernodes" class="md-nav__link">
+  <a href="#creating-a-cernvm-fs-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      Offline workernodes
+      Creating a CernVM-FS repository
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#alien-cache" class="md-nav__link">
+  <a href="#setting-up-a-stratum-1-replica-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Alien cache
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
-    <span class="md-ellipsis">
-      Security
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#syncing-a-cernvm-fs-repository-to-another-filesystem" class="md-nav__link">
-    <span class="md-ellipsis">
-      Syncing a CernVM-FS repository to another filesystem
+      Setting up a Stratum-1 replica server
     </span>
   </a>
   
@@ -475,100 +694,6 @@
       
       
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../04_troubleshooting_debugging/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Troubleshooting and debugging
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05_performance/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Performance aspects
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../06_storage_backends/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Storage backends
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07_containers/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Containers
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10_getting_started/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Creating a CernVM-FS repository
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
   
   
   
@@ -613,45 +738,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#diskless-workernodes" class="md-nav__link">
+  <a href="#setting-up-the-stratum-0-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Diskless workernodes
+      Setting up the Stratum-0 server
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#offline-workernodes" class="md-nav__link">
+  <a href="#creating-a-cernvm-fs-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      Offline workernodes
+      Creating a CernVM-FS repository
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#alien-cache" class="md-nav__link">
+  <a href="#setting-up-a-stratum-1-replica-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Alien cache
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
-    <span class="md-ellipsis">
-      Security
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#syncing-a-cernvm-fs-repository-to-another-filesystem" class="md-nav__link">
-    <span class="md-ellipsis">
-      Syncing a CernVM-FS repository to another filesystem
+      Setting up a Stratum-1 replica server
     </span>
   </a>
   
@@ -675,19 +782,17 @@
   
 
 
-<h1 id="configuring-cernvm-fs-on-hpc-infrastructure">Configuring CernVM-FS on HPC infrastructure<a class="headerlink" href="#configuring-cernvm-fs-on-hpc-infrastructure" title="Permanent link">&para;</a></h1>
-<h2 id="diskless-workernodes">Diskless workernodes<a class="headerlink" href="#diskless-workernodes" title="Permanent link">&para;</a></h2>
-<h2 id="offline-workernodes">Offline workernodes<a class="headerlink" href="#offline-workernodes" title="Permanent link">&para;</a></h2>
-<h2 id="alien-cache">Alien cache<a class="headerlink" href="#alien-cache" title="Permanent link">&para;</a></h2>
-<h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
-<h2 id="syncing-a-cernvm-fs-repository-to-another-filesystem">Syncing a CernVM-FS repository to another filesystem<a class="headerlink" href="#syncing-a-cernvm-fs-repository-to-another-filesystem" title="Permanent link">&para;</a></h2>
+<h1 id="getting-started-with-cernvm-fs-from-scratch">Getting started with CernVM-FS (from scratch)<a class="headerlink" href="#getting-started-with-cernvm-fs-from-scratch" title="Permanent link">&para;</a></h1>
+<h2 id="setting-up-the-stratum-0-server">Setting up the Stratum-0 server<a class="headerlink" href="#setting-up-the-stratum-0-server" title="Permanent link">&para;</a></h2>
+<h2 id="creating-a-cernvm-fs-repository">Creating a CernVM-FS repository<a class="headerlink" href="#creating-a-cernvm-fs-repository" title="Permanent link">&para;</a></h2>
+<h2 id="setting-up-a-stratum-1-replica-server">Setting up a Stratum-1 replica server<a class="headerlink" href="#setting-up-a-stratum-1-replica-server" title="Permanent link">&para;</a></h2>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 24, 2023</span>
       
     
   </small>
@@ -733,7 +838,7 @@
     <script id="__config" type="application/json">{"base": "..", "features": ["instant"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
       
     
   </body>

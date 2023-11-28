@@ -1,0 +1,1143 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../inspiration/">
+      
+      
+        <link rel="next" href="../using-eessi/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>High-level design - Best Practices for CernVM-FS in HPC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#high-level-design-of-eessi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-header__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
+      
+  <img src="../../img/logos/cvmfs_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Best Practices for CernVM-FS in HPC
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              High-level design
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/multixscale/cvmfs-tutorial-hpc-best-practices" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Best Practices for CernVM-FS in HPC
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Best Practices for CernVM-FS in HPC" class="md-nav__button md-logo" aria-label="Best Practices for CernVM-FS in HPC" data-md-component="logo">
+      
+  <img src="../../img/logos/cvmfs_logo.png" alt="logo">
+
+    </a>
+    Best Practices for CernVM-FS in HPC
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/multixscale/cvmfs-tutorial-hpc-best-practices" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Best Practices for CernVM-FS in HPC
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction to CernVM-FS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction to CernVM-FS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cvmfs/what-is-cvmfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is CernVM-FS?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cvmfs/technical-details/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Technical details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cvmfs/flagship-repositories/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Flagship repositories
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    EESSI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            EESSI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-is-eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What is EESSI?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../motivation-goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Motivation & goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inspiration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inspiration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    High-level design
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    High-level design
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#layered-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layered structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layered structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filesystem_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filesystem layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compat_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compatibility layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Software layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#easybuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      EasyBuild to install software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lmod as user interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU detection via archspec or archdetect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software_layer_structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure of the software layer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using-eessi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Using EESSI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Accessing a repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration on HPC systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting and debugging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance aspects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage-backends/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storage backends
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../containers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Containers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating a CernVM-FS repository
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/terminology/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix: Terminology
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#layered-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layered structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layered structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filesystem_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filesystem layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compat_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compatibility layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Software layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#easybuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      EasyBuild to install software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lmod as user interface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu_detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU detection via archspec or archdetect
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software_layer_structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structure of the software layer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="high-level-design-of-eessi">High-level design of EESSI<a class="headerlink" href="#high-level-design-of-eessi" title="Permanent link">&para;</a></h1>
+<p>The design of EESSI is very similar to that of the <a href="../inspiration/">Compute Canada software stack</a> it is inspired by,
+and is aligned with the <a href="../motivation-goals/">motivation and goals</a> of the project.</p>
+<p>In the remainder of this section of the tutorial, we will <strong>explore the layered structure of the EESSI software stack</strong>,
+and <a href="../using-eessi/">how to use it</a>.</p>
+<p>In the <a href="../../access/">next section</a> will cover in detail how you can get access to EESSI
+(and other publicly available CernVM-FS repositories).</p>
+<h2 id="layered-structure">Layered structure<a class="headerlink" href="#layered-structure" title="Permanent link">&para;</a></h2>
+<p>The EESSI project consists of 3 layers, which are constructed by leveraging various open source software projects.</p>
+<p align="center">
+<img src="../../img/eessi-high-level-design.png" alt="High-level design of EESSI" width="90%"/></br>
+</p>
+
+<h3 id="filesystem_layer">Filesystem layer<a class="headerlink" href="#filesystem_layer" title="Permanent link">&para;</a></h3>
+<p>The <em>filesystem layer</em> is responsible for <strong>distributing</strong> the EESSI software stack to systems on which is it used.</p>
+<p>This is done using <a href="../../cvmfs/what-is-cvmfs/"><strong>CernVM-FS</strong></a>, which is a mature open source software project
+that was created exactly for this purpose:
+to distribute software installations worldwide reliably and efficiently in a scalable way.
+As such, it aligns very well with the <a href="../motivation-goals/">goals of EESSI</a>.</p>
+<p>The CernVM-FS repository for EESSI is <strong><code>/cvmfs/software.eessi.io</code></strong>.</p>
+<p>It is part of the default CernVM-FS configuration since 21 November 2023, so no additional action is required to
+<em>gain access</em> to it other than installing the CernVM-FS client and creating a minimal general configuration file for it.
+More on that in the <a href="../../access/">next section</a> of this tutorial.</p>
+<details class="note">
+<summary>Note on the EESSI pilot repository <em>(click to expand)</em></summary>
+<p>There is also a <a href="http://www.eessi.io/docs/pilot">"pilot" CernVM-FS repository for EESSI (<code>/cvmfs/pilot.eessi-hpc.org</code>)</a>,
+which was primarily used to gain experience with CernVM-FS in the early years of the EESSI project.</p>
+<p><strong><em>Although it is still available currently, we do <span style="text-decoration:underline;">not</span> recommend using it</em></strong>.</p>
+<p>Not only will you need to <a href="https://github.com/EESSI/filesystem-layer/tree/v0.5.0#method-2-packages">install the CernVM-FS configuration for EESSI</a>
+to gain access to it, there also are <strong>no guarantees</strong> that the EESSI pilot repository will remain stable
+or even available, nor that the software installations it provides are actually functional,
+since it may be used for experimentation purposes by the EESSI maintainers.</p>
+</details>
+<h3 id="compat_layer">Compatibility layer<a class="headerlink" href="#compat_layer" title="Permanent link">&para;</a></h3>
+<p>The <em>compatibility layer</em> of EESSI <strong>levels the ground</strong> across different (versions of) the Linux operating system (OS)
+of client systems that use the software installations provided by EESSI.</p>
+<p>It consists of a limited set of libraries and tools that are installed in a non-standard filesystem
+location (a "prefix"), which were built from source for the supported CPU families
+using <a href="https://wiki.gentoo.org/wiki/Project:Prefix"><strong>Gentoo Prefix</strong></a>.</p>
+<p>The installation path of the EESSI compatibility layer corresponds to the <code>compat</code> subdirectory of a specific version
+of EESSI (like <code>2023.06</code>) in the EESSI CernVM-FS repository, which is specific to a particular type of OS
+(currently only <code>linux</code>) and CPU family (currently <code>x86_64</code> and <code>aarch64</code>):</p>
+<div class="highlight"><pre><span></span><code>$ ls /cvmfs/software.eessi.io/versions/2023.06/compat
+linux
+
+$ ls /cvmfs/software.eessi.io/versions/2023.06/compat/linux
+aarch64  x86_64
+
+$ ls /cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64
+bin  etc  lib  lib64  opt  reprod  run  sbin  stage1.log  stage2.log  stage3.log  startprefix  tmp  usr  var
+
+$ ls -l /cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64/lib64
+total 4923
+-rwxr-xr-x 1 cvmfs cvmfs  210528 Nov 15 11:22 ld-linux-x86-64.so.2
+...
+-rwxr-xr-x 1 cvmfs cvmfs 1876824 Nov 15 11:22 libc.so.6
+...
+-rwxr-xr-x 1 cvmfs cvmfs  911600 Nov 15 11:22 libm.so.6
+...
+</code></pre></div>
+<p>Libraries included in the compatibility layer can be used on any Linux client system,
+as long as the CPU family is compatible and taken into account.</p>
+<div class="highlight"><pre><span></span><code>$ uname -m
+x86_64
+
+$ cat /etc/redhat-release
+Red Hat Enterprise Linux release 8.8 (Ootpa)
+
+$ /cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64/lib64/libc.so.6
+GNU C Library (Gentoo 2.37-r7 (patchset 10)) stable release version 2.37.
+...
+</code></pre></div>
+<p>By making sure that the software installations included in EESSI <strong>only rely on tools and libraries
+provided by the compatibility layer</strong>, and do not (directly) require anything from the client OS,
+we can ensure that they can be used in a broad variety of Linux systems,
+regardless of the (version of) Linux distribution being used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is very similar to the OS tools and libraries that are included in container images,
+except that no container runtime is involved here (typically), only CernVM-FS.</p>
+</div>
+<h3 id="software_layer">Software layer<a class="headerlink" href="#software_layer" title="Permanent link">&para;</a></h3>
+<p>The top layer of EESSI is called the <em>software layer</em>, which contains the actual scientific software applications
+and their dependencies.</p>
+<h4 id="easybuild">EasyBuild to install software<a class="headerlink" href="#easybuild" title="Permanent link">&para;</a></h4>
+<p>Building, managing, and optimising the software installations included in the software layer is
+layer is done using <a href="https://easybuild.io"><strong>EasyBuild</strong></a>, a well-established software build and installation framework
+for managing (scientific) software stacks on High-Performance Computing (HPC) systems.</p>
+<h4 id="lmod">Lmod as user interface<a class="headerlink" href="#lmod" title="Permanent link">&para;</a></h4>
+<p>Next to installing the software itself, EasyBuild also automatically generates <a href="https://en.wikipedia.org/wiki/Environment_Modules_(software)"><em>environment module
+files</em></a>.
+These files, which are essentially small Lua scripts, are consumed via <a href="https://lmod.readthedocs.io"><strong>Lmod</strong></a>,
+a modern implementation of the concept of environment modules which provides a user-friendly interface to end users of EESSI.</p>
+<h4 id="cpu_detection">CPU detection via <code>archspec</code> or <code>archdetect</code><a class="headerlink" href="#cpu_detection" title="Permanent link">&para;</a></h4>
+<p>The initialisation script that is included in the EESSI repository automatically detects the CPU family and
+microarchitecture of a client system by leveraging either <a href="https://archspec.readthedocs.io"><strong><code>archspec</code></strong></a>, a small
+Python library, or <code>archdetect</code>, a minimal pure bash implementation of the same concept.</p>
+<p>Based on the features of the detected CPU microarchitecture, the EESSI initialisation
+script will <strong>automatically select the best suited subdirectory</strong> of the software layer that contains
+software installations that are optimised for that particular type of CPU, and update the session environment
+to start using it.</p>
+<h4 id="software_layer_structure">Structure of the software layer<a class="headerlink" href="#software_layer_structure" title="Permanent link">&para;</a></h4>
+<p>For now, we just briefly show the structure of <code>software</code> subdirectory that contains the software layer
+of a particular version of EESSI below.</p>
+<p>The <code>software</code> subdirectory is located at the same level as the <code>compat</code> directory for a particular version of EESSI,
+along with the <code>init</code> subdirectory that provides initialisation scripts:</p>
+<div class="highlight"><pre><span></span><code>$ cd /cvmfs/software.eessi.io/versions/2023.06
+$ ls
+compat  init  software
+</code></pre></div>
+<p>In the <code>software</code> subdirectory, a subtree of directories is located that contains
+software installations that are specific to a particular OS family (only <code>linux</code> currently)
+and a specific CPU microarchitecture (with <code>generic</code> as a fallback):</p>
+<div class="highlight"><pre><span></span><code>$ ls software
+linux
+
+$ ls software/linux
+aarch64  x86_64
+
+$ ls software/linux/aarch64
+generic  neoverse_n1  neoverse_v1
+
+$ ls software/linux/x86_64
+amd  generic  intel
+
+$ ls software/linux/x86_64/amd
+zen2  zen3
+
+$ ls software/linux/x86_64/intel
+haswell  skylake_avx512
+</code></pre></div>
+<p>Each subdirectory that is specific to a particular CPU microarchitecure provides
+the actual optimised software installations (in <code>software</code>) and environment module files (in <code>modules/all</code>).</p>
+<p>Here we explore the path that is specific to AMD Milan CPUs, which have the Zen3 microarchitecture,
+focusing on the installations of <a href="https://github.com/OpenMathLib/OpenBLAS">OpenBLAS</a>:</p>
+<div class="highlight"><pre><span></span><code>$ ls software/linux/x86_64/amd/zen3
+modules  software
+
+$ ls software/linux/x86_64/amd/zen3/software
+
+... (long list of directories of software names omitted) ...
+
+$ ls software/linux/x86_64/amd/zen3/software/OpenBLAS/
+0.3.21-GCC-12.2.0  0.3.23-GCC-12.3.0
+
+$ ls software/linux/x86_64/amd/zen3/software/OpenBLAS/0.3.23-GCC-12.3.0/
+bin  easybuild  include  lib  lib64
+
+$ ls software/linux/x86_64/amd/zen3/modules/all
+
+... (long list of directories of software names omitted) ...
+
+$ ls software/linux/x86_64/amd/zen3/modules/all/OpenBLAS
+0.3.21-GCC-12.2.0.lua  0.3.23-GCC-12.3.0.lua
+</code></pre></div>
+<p>Each of the other subdirectories for specific CPU microarchitectures will have the exact same structure,
+and provide the same software installations and accompanying environment module files to access them with Lmod.</p>
+<p>A key aspect here is that binaries and libraries that make part of the software installations
+included in the EESSI software layer only rely on libraries provided by the compatibility layer and/or
+other software installations in the EESSI software layer.</p>
+<p>See for example libraries to which the OpenBLAS library links:</p>
+<div class="highlight"><pre><span></span><code>$ ldd software/linux/x86_64/amd/zen3/software/OpenBLAS/0.3.23-GCC-12.3.0/lib/libopenblas.so
+    linux-vdso.so.1 (0x00007ffd4373d000)
+    libm.so.6 =&gt; /cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64/lib/../lib64/libm.so.6 (0x000014d0884c8000)
+    libgfortran.so.5 =&gt; /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen3/software/GCCcore/12.3.0/lib64/libgfortran.so.5 (0x000014d087115000)
+    libgomp.so.1 =&gt; /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen3/software/GCCcore/12.3.0/lib64/libgomp.so.1 (0x000014d088480000)
+    libc.so.6 =&gt; /cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64/lib/../lib64/libc.so.6 (0x000014d086f43000)
+    /lib64/ld-linux-x86-64.so.2 (0x000014d08837e000)
+    libpthread.so.0 =&gt; /cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64/lib/../lib64/libpthread.so.0 (0x000014d088479000)
+    libdl.so.2 =&gt; /cvmfs/software.eessi.io/versions/2023.06/compat/linux/x86_64/lib/../lib64/libdl.so.2 (0x000014d088474000)
+    libquadmath.so.0 =&gt; /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen3/software/GCCcore/12.3.0/lib64/libquadmath.so.0 (0x000014d08842d000)
+    libgcc_s.so.1 =&gt; /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/amd/zen3/software/GCCcore/12.3.0/lib64/libgcc_s.so.1 (0x000014d08840d000)
+</code></pre></div>
+<details class="note">
+<summary>Note on <code>/lib64/ld-linux-x86-64.so.2</code> <em>(click to expand)</em></summary>
+<p>The <code>/lib64/ld-linux-x86-64.so.2</code> path, which corresponds to the dynamic linker/loader of the Linux client OS,
+that is shown in the output of <code>ldd</code> above is a bit misleading.</p>
+<p>It only pops up because we are running the <code>ldd</code> command provided by the client OS, which typically
+resides at <code>/usr/bin/ldd</code>.</p>
+<p>When actually running software provided by the EESSI software layer, the loader provided
+by the EESSI compatibility layer is used to launch binaries.</p>
+</details>
+<p>We will explore the EESSI software layer a bit more in the <a href="../using-eessi/">next subsection of this tutorial</a>,
+when we demonstrate how to use the software installations provided in the EESSI software layer.</p>
+<hr />
+<p><em>(next: <a href="../using-eessi/">Using EESSI</a>)</em></p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 27, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+    
+  </body>
+</html>
