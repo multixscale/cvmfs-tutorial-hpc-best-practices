@@ -104,7 +104,7 @@ When the specified quota limit is reached, CernVM-FS will automatically remove f
 to the [Least Recently Used (LRU) policy](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU),
 until half of the maximum cache size has been freed.
 
-The location of the cache directory can be controlled by `CVMFS_CACHE_BASE` if needed (default: `/var/run/cvmfs`),
+The location of the cache directory can be controlled by `CVMFS_CACHE_BASE` if needed (default: `/var/lib/cvmfs`),
 but **must** be a on a *local* file system of the client, not a network file system that can be modified by multiple
 hosts.
 
