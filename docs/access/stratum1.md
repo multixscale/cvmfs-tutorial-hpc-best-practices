@@ -32,7 +32,7 @@ replica server in your local network.
 
 In the context of using CernVM-FS on HPC infrastructure this is highly recommended:
 
-- To improve the overall reliability of the setup, for example in case of (temporariy) loss of connectivity to the public Stratum 1 replica servers;
+- To improve the overall reliability of the setup, for example in case of (temporary) loss of connectivity to the public Stratum 1 replica servers;
 - To reduce the load on the public Stratum 1 servers;
 - To mitigate the impact of poor network bandwidth to the closest public Stratum 1 server;
 - To improve the latency and hence start-up time of software in situations where the cache of the proxy servers has insufficient capacity;
