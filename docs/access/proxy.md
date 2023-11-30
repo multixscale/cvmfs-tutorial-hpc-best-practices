@@ -52,8 +52,7 @@ You can use the following template for this:
 acl local_nodes src YOUR_CLIENT_IPS
 
 # Destination domains that are allowed
-#acl stratum_ones dstdomain .YOURDOMAIN.ORG
-#acl stratum_ones dstdom_regex YOUR_REGEX
+acl stratum_ones dstdomain .YOURDOMAIN.ORG
 
 # Squid port
 http_port 3128
@@ -83,14 +82,16 @@ In this template, you *must* change two things in the Access Control List (ACL) 
 1) Specify which client systems can access your proxy by replacing "`YOUR_CLIENT_IPS`" with the corresponding IP range, using [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation);
 
 2) Make sure that the proxy server allows access to the Stratum 1 replica servers that are relevant for the CernVM-FS repositories
-   you are using, by specifying an ACL for each of them via a line that starts with "`acl stratum_ones`"
+   you are using, by replacing "`.YOURDOMAIN.ORG`" with domain name for the Stratum 1 replica servers
    (see also the [Squid ACL documentation](http://www.squid-cache.org/Doc/config/acl/)).
 
-For example, to allow the EESSI Stratum 1 replica servers, you can use:
+For example, to allow connecting to the EESSI Stratum 1 replica servers, use:
 
 ```{ .apache .copy }
 acl stratum_ones dstdomain .eessi.science
 ```
+
+Note that this configuration assumes that port 3128 is accessible on the proxy server.
 
 To check your Squid configuration, use:
 
@@ -123,10 +124,9 @@ To make a CernVM-FS client system use the proxy server,
 the `/etc/cvmfs/default.local` configuration file *on the client system* should be updated to include:
 
 ```{ .ini .copy }
-CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
+# replace PROXY_IP with the IP address of the proxy server
+CVMFS_HTTP_PROXY="http://PROXY_IP:3128"
 ```
-
-in which "`<PROXY_IP>`" is replaced with the IP address or hostname of the proxy server.
 
 To apply the change we need to reload the CernVM-FS configuration on the client system:
 
@@ -142,19 +142,25 @@ ls /cvmfs/software.eessi.io
 cvmfs_config stat -v software.eessi.io
 ```
 
-Here we fist inspect the contents of the repository using `ls` to make sure that the repository is mounted,
+We first inspect the contents of the repository using `ls` to make sure that the repository is mounted,
 which is assumed by `cvmfs_config stat`.
 
-The output of the `stat` command should include a link like this:
+The output of the `stat` command should look something like this:
+
+Note the `Connection` line, which clearly shows that the proxy server is used (and is working):
 
 ```
-Connection: .../software.eessi.io through proxy http://<PROXY_IP>:3128 (online)
+Connection: .../software.eessi.io through proxy http://PROXY_IP:3128 (online)
 ```
 
-## Cleanup to prepare for Stratum 1
+## Cleanup to prepare for Stratum 1 {: #cleanup_proxy }
 
 To prepare for the next tutorial section on [setting up a private Stratum 1 replica server](stratum1.md),
-remove the `CVMFS_HTTP_PROXY` line from `/etc/cvmfs/default.local`.
+comment out the `CVMFS_HTTP_PROXY` line in `/etc/cvmfs/default.local` by prefixing it with a hash (`#`):
+
+``` { .ini .copy }
+#CVMFS_HTTP_PROXY="http://PROXY_IP:3128"
+```
 
 The full contents of `/etc/cvmfs/default.local` on the client system should again be as shown below, like it was initially created when
 [configuring the client](client.md##minimal_configuration):

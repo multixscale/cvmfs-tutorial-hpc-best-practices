@@ -32,7 +32,7 @@ or go through the [Troubleshooting](../troubleshooting.md) section.
     For more information on various aspects of mounting of CernVM-FS repositories, [see the CernVM-FS documentation](
     https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
 
-## 1) Initialise shell environment
+## 1) Initialise shell environment {: #init }
 
 If the EESSI repository is available, you can proceed to preparing your shell environment for using
 a particular version of EESSI by *sourcing* the provided initialisation script by running the `source` command:

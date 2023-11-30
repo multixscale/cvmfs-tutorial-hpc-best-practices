@@ -49,6 +49,7 @@ recommendations into account:
   is preferred (rather than [XFS](https://en.wikipedia.org/wiki/XFS)).
 - A standard Apache web server should be installed, which should be close to the
   low latency storage. Directory listing is not required.
+- HTTP connections to port `80` must be possible.
 
 ??? note "Recommendations on monitoring *(click to expand)*"
 
@@ -299,12 +300,27 @@ see the CernVM-FS documentation, in particular the following sections:
 - [CernVM-FS Server Infrastructure](https://cvmfs.readthedocs.io/en/stable/apx-serverinfra.html)
 
 
-### Client system configuration
+## Using the private Stratum 1
 
 To actually use the "private" Stratum 1 replica server that has been set up
 we need to change the configuration on each CernVM-FS client system.
 
-#### Stratum 1 replica server(s)
+Initially, we will use *only* the private Stratum 1 replica server,
+without a proxy server.
+
+!!! warning "Remove `CVMFS_HTTP_PROXY` from client configuration"
+
+    Do make sure that the **`CVMFS_HTTP_PROXY` line is removed** from the CernVM-FS configuration file
+    `/etc/cvmfs/default.local` on the client system, and that the CernVM-FS configuration
+    was reloaded (with `sudo cvmfs_config reload`), as was instructed [here](proxy.md#cleanup_proxy).
+
+After we have verified that the Stratum 1 is used by the client system,
+we will bring the proxy server back in the game,
+and demonstrate how to use both the proxy server and the Stratum 1 replica server.
+
+### Only private Stratum 1
+
+#### Client configuration
 
 The `CVMFS_SERVER_URL` configuration setting on a client system:
 
@@ -325,11 +341,11 @@ relevant for the CernVM-FS repository we have replicated on our Stratum 1.
 
 For `software.eessi.io`, we should add the following to `/etc/cvmfs/domain.d/eessi.io.conf`:
 
-``` { .bash .copy }
-CVMFS_SERVER_URL="http://STRATUM1_IP_OR_HOSTNAME/cvmfs/@fqrn@"
+``` { .ini .copy }
+CVMFS_SERVER_URL="http://STRATUM1_IP/cvmfs/@fqrn@"
 ```
 
-in which "`STRATUM1_IP_OR_HOSTNAME`" must be replaced with (you guessed it)
+in which "`STRATUM1_IP`" must be replaced with (you guessed it)
 the IP address or hostname of the private Stratum 1 replica server.
 
 To apply the configuration change, run `cvmfs_config reload`:
@@ -337,6 +353,8 @@ To apply the configuration change, run `cvmfs_config reload`:
 ```{ .bash .copy }
 sudo cvmfs_config reload
 ```
+
+#### Testing
 
 To verify that the client configuration was changed correctly, use `cvmfs_config stat`
 (which requires that the repository is mounted):
@@ -349,8 +367,101 @@ cvmfs_config stat -v software.eessi.io
 The output line that starts with `Connection` should mention `online`, like this:
 
 ```
-Connection: http://.../cvmfs/software.eessi.io through proxy ... (online)
+Connection: http://.../cvmfs/software.eessi.io through proxy DIRECT (online)
 ```
+
+The `proxy DIRECT` indicates that we are not using a proxy server yet in this setup.
+
+You can also use `curl` to check the connection to the Stratum 1, by letting it print the HTTP header
+for the `.cvmfspublished` file in the root of the repository:
+
+```{ .bash .copy }
+curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished
+```
+
+the first line of the output should be something like:
+```
+HTTP/1.1 200 OK
+```
+
+If instead you see `403 Forbidden` then the proxy server is blocking the connection:
+```
+HTTP/1.1 403 Forbidden
+```
+
+### Proxy + private Stratum 1
+
+To have a more complete view, let's now also bring the proxy server back in the game.
+
+#### Reconfigure Squid proxy
+
+First we need to make a small but important change to the configuration of the Squid proxy,
+to ensure that the proxy server is allowed to connect to the private Stratum 1 replica server.
+
+Update the ACL for the Stratum 1 servers in `/etc/squid/squid.conf` on the proxy server
+by adding the IP address of the private Stratum 1:
+```{ .apache .copy }
+# replace STRATUM1_IP with the IP address of the private Stratum 1
+acl stratum_ones dstdomain .eessi.science STRATUM1_IP
+```
+
+And then reload for configuration for the Squid proxy service:
+
+```{ .bash .copy }
+sudo systemctl reload squid
+```
+
+#### Client configuration
+
+We also need to update the client configuration to restore the `CVMFS_HTTP_PROXY` line
+in `/etc/cvmfs/default.local`, [like we did when using the proxy server](proxy.md#client-system-configuration):
+
+``` { .ini .copy }
+# replace PROXY_IP with the IP address of the proxy server
+CVMFS_HTTP_PROXY="http://PROXY_IP:3128"
+```
+
+Don't forget to reload the CernVM-FS client configuration:
+
+```{ .bash .copy }
+sudo cvmfs_config reload
+```
+
+#### Testing
+
+To test whether the setup using both the proxy server and the Stratum 1 replica server works,
+we can try accessing the EESSI repository,
+for example by [sourcing the initialisation script](../eessi/using-eessi.md#init):
+
+```{ .bash .copy }
+source /cvmfs/software.eessi.io/versions/2023.06/init/bash
+```
+
+The output of `sudo cvmfs_config stat -v software.eessi.io` should include a `Connection` line that ends with
+`(online)`, like this:
+
+```
+Connection: http://STRATUM1_IP/cvmfs/software.eessi.io through proxy http://PROXY_IP:3128 (online)
+```
+
+You can also use `curl` to check whether the Stratum 1 can be reached via the proxy server:
+
+```{ .bash .copy }
+export http_proxy=http://PROXY_IP:3128 curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished
+```
+
+## Conclusions
+
+With a private Stratum 1 replica server, we have a more production-ready setup in place for using CernVM-FS.
+
+Using both a proxy server and a Stratum 1 replica server is another step in that direction,
+since it further improves the resilience, maintainability, scalability, and performance of the setup
+(since the proxy server can serve request from its memory cache).
+
+For the sake of demonstration we have used two separate systems for the Stratum 1 replica server and the
+proxy server, but both services can also be installed and configuration on the same server, and
+also installing *multiple* proxy servers is sensible to improve load balancing, for example to serve
+different HPC clusters that have significantly different workload mixes.
 
 ---
 
