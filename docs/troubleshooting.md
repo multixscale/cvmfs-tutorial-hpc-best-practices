@@ -4,6 +4,15 @@ only client-side, assumption is that CernVM-FS replica servers and proxy servers
 
 see also https://github.com/EESSI/filesystem-layer/blob/main/README.md
 
+## Client to S1 / proxy connection
+
+`telnet STRATUM1_IP 80`
+
+`curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished`
+
+`Connection` line in `cvmfs_config stat -v software.eessi.io`
+
+
 ## Error messages
 
 ```
@@ -62,7 +71,7 @@ debug log
 
 #### Firewall
 
-- `telnet`
+- `telnet` (port 80 for Stratum 1, port 3128 for Squid proxy)
 - `tcptraceroute`
 - `curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished`
 
