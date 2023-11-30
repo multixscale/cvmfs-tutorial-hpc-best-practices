@@ -27,7 +27,6 @@ Using the alien cache still requires a very small local cache on the nodes for s
 Compared to the loopback cache described in the previous subsection, the drawback of storing the alien cache on your shared filesystem is that all metadata operations are now performed on the shared filesystem. Typically, this will result in a large number of metadata operations, and for many shared filesystems this will be the bottleneck.
 
 
-
 ## Offline worker nodes
 
 Another scenario for HPC systems is that worker nodes do not have (direct) access to the internet. In the context of CernVM-FS, this means that the clients running on the worker nodes would not be able to pull in files from (external) Stratum 1 replica servers.
@@ -50,6 +49,7 @@ Finally, a last resort could again be to use an alien cache that is being prepop
 ## Security
 
 TODO or drop the section
+
 
 ## Worker nodes without CernVM-FS client
 
