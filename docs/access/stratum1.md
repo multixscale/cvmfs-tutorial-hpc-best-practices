@@ -448,7 +448,7 @@ Connection: http://STRATUM1_IP/cvmfs/software.eessi.io through proxy http://PROX
 You can also use `curl` to check whether the Stratum 1 can be reached via the proxy server:
 
 ```{ .bash .copy }
-export http_proxy=http://PROXY_IP:3128 curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished
+http_proxy=http://PROXY_IP:3128 curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished
 ```
 
 ## Conclusions

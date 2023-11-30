@@ -157,6 +157,20 @@ Note the `Connection` line, which clearly shows that the proxy server is used (a
 Connection: .../software.eessi.io through proxy http://PROXY_IP:3128 (online)
 ```
 
+To check whether the proxy is working as intended you can use `curl` to try to access
+the `.cvmfspublished` file in the root of the repository on a Stratum 1, for example:
+
+```{ .bash .copy }
+# replace PROXY_IP with the IP address of the proxy server
+http_proxy=http://PROXY_IP:3128 curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
+```
+
+The first output line of this command should be:
+
+```
+HTTP/1.1 200 OK
+```
+
 ## Cleanup to prepare for Stratum 1 {: #cleanup_proxy }
 
 To prepare for the next tutorial section on [setting up a private Stratum 1 replica server](stratum1.md),
