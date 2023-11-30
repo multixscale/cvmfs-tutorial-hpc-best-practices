@@ -9,10 +9,6 @@
       
       
       
-        <link rel="prev" href="../eessi/support/">
-      
-      
-        <link rel="next" href="../configuration/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +16,7 @@
     
     
       
-        <title>Accessing repositories - Best Practices for CernVM-FS in HPC</title>
+        <title>Accessing CernVM-FS repositories - Best Practices for CernVM-FS in HPC</title>
       
     
     
@@ -102,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Accessing repositories
+              Accessing CernVM-FS repositories
             
           </span>
         </div>
@@ -509,84 +505,125 @@
       
   
   
+  
+  
     
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
         
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
           
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Accessing repositories
   </span>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing repositories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="client/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Accessing repositories
+    CernVM-FS client system
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+              
+            
+              
+                
   
   
   
-    
+  
+    <li class="md-nav__item">
+      <a href="proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Squid proxy server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#client-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Client configuration
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#squid-proxy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Squid proxy
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#stratum-1-replicate-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stratum-1 replicate server
-    </span>
-  </a>
+    <li class="md-nav__item">
+      <a href="stratum1/" class="md-nav__link">
+        
   
-</li>
-      
-    </ul>
+  <span class="md-ellipsis">
+    Private Stratum 1 replica server
+  </span>
   
-</nav>
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="alternatives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alternative access methods
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -599,7 +636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../configuration_hpc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -752,41 +789,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#client-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Client configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#squid-proxy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Squid proxy
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#stratum-1-replicate-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stratum-1 replicate server
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -804,11 +806,12 @@
 
 
 <h1 id="accessing-cernvm-fs-repositories">Accessing CernVM-FS repositories<a class="headerlink" href="#accessing-cernvm-fs-repositories" title="Permanent link">&para;</a></h1>
-<h2 id="client-configuration">Client configuration<a class="headerlink" href="#client-configuration" title="Permanent link">&para;</a></h2>
-<p>(minimal requirement)</p>
-<h2 id="squid-proxy">Squid proxy<a class="headerlink" href="#squid-proxy" title="Permanent link">&para;</a></h2>
-<h2 id="stratum-1-replicate-server">Stratum-1 replicate server<a class="headerlink" href="#stratum-1-replicate-server" title="Permanent link">&para;</a></h2>
-<p>(private)</p>
+<ul>
+<li><a href="client/">Setting up a CernVM-FS client system</a></li>
+<li><a href="proxy/">Setting up a proxy server</a></li>
+<li><a href="stratum1/">Setting up a Stratum 1 replica server</a></li>
+<li><a href="alternatives/">Alternative ways to access CernVM-FS repositories</a></li>
+</ul>
 
   <hr>
 <div class="md-source-file">
