@@ -1011,7 +1011,10 @@ to start an interactive shell in which EESSI is available, as follows:</p>
 apptainer<span class="w"> </span>shell<span class="w"> </span>--fusemount<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FUSEMOUNT_CVMFS_CONFIG</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--fusemount<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">FUSEMOUNT_EESSI</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>docker://ghcr.io/eessi/client-pilot:centos7
 </code></pre></div>
 <h2 id="alien-cache">Alien cache<a class="headerlink" href="#alien-cache" title="Permanent link">&para;</a></h2>
-<p><a href="../../configuration_hpc/#alien-cache">see</a></p>
+<p>An alien cache can be used, optionally in combination with preloading, as another alternative,
+typically in combination with using a container image or unprivileged user namespaces.</p>
+<p>For more information, see the <a href="../../configuration_hpc/#alien-cache">Alien cache subsection</a> in the next part of the
+tutorial.</p>
 <hr />
 <p><em>(next: <a href="../../configuration_hpc/">Configuration on HPC systems</a>)</em></p>
 
