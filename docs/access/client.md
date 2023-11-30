@@ -70,7 +70,7 @@ This is typically done in `/etc/cvmfs/default.local`,
 which should contain something like:
 
 ``` { .ini .copy }
-CVMFS_CLIENT_PROFILE="single"
+CVMFS_CLIENT_PROFILE="single" # a single node setup, not a cluster
 CVMFS_QUOTA_LIMIT=10000
 ```
 
