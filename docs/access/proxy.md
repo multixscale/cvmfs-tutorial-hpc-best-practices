@@ -16,7 +16,8 @@ employed before the software can start running.
 ## General recommendations
 
 The proxy server should have a 10Gbit link to the client systems,
-a sufficiently powerful CPU (min. 4 cores), and a decent amount of memory (~2GB/core).
+a sufficiently powerful CPU, a decent amount of memory for the kernel cache (tens of GBs),
+and fast local storage (SSD or NVMe).
 
 It is strongly recommended to have **at least two proxy servers** available,
 to have some redundancy available in case of unexpected problems, or during a maintenance window.
