@@ -252,7 +252,7 @@ cvmfs_server snapshot software.eessi.io
     server that was specified when creating the repository replica, the initial synchronisation may take a while.
 
     The time required for the initial synchronisation is heavily dependent on the size of the repository,
-    and the available network bandwidth to the synchronisation server.
+    and the available network latency to the synchronisation server.
 
 ### Periodic synchronisation
 
