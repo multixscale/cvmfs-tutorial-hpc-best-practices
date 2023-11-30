@@ -17,4 +17,4 @@ For more information, see the [support section of the EESSI documentation](https
 
 ---
 
-*(next: [Accessing CernVM-FS repositories](../access.md))*
+*(next: [CernVM-FS client system](../access/client.md))*

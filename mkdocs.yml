@@ -22,8 +22,12 @@ nav:
     - "High-level design": eessi/high-level-design.md
     - "Using EESSI": eessi/using-eessi.md
     - "Getting support": eessi/support.md
-  - Accessing repositories: access.md
-  - Configuration on HPC systems: configuration.md
+  - Accessing repositories:
+    - "CernVM-FS client system": access/client.md
+    - "Squid proxy server": access/proxy.md
+    - "Private Stratum 1 replica server": access/stratum1.md
+    - "Alternative access methods": access/alternatives.md
+  - Configuration on HPC systems: configuration_hpc.md
   - Troubleshooting and debugging: troubleshooting.md
   - Performance aspects: performance.md
   - Storage backends: storage-backends.md
@@ -47,9 +51,13 @@ markdown_extensions:
   # clickable details
   - pymdownx.details
   # tabbed contents
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 extra:
   # add links in bottom right
   social:
