@@ -1,6 +1,6 @@
 # Configuring CernVM-FS on HPC infrastructure
 
-In the previous section we provided recommendations for setting up a robust CernVM-FS infrastructure for HPC systems, by having a private Stratum 1 replica server and/or dedicated Squid proxy servers. While this approach will work for many HPC systems, some may have setups that require more dedicated solutions, which we will discuss in this section.
+In the [previous section](access.md) we provided recommendations for setting up a robust CernVM-FS infrastructure for HPC systems, by having a private Stratum 1 replica server and/or dedicated Squid proxy servers. While this approach will work for many HPC systems, some may have setups that require more dedicated solutions, which we will discuss in this section.
 
 
 ## Diskless worker nodes
