@@ -26,6 +26,7 @@ nav:
     - "CernVM-FS client system": access/client.md
     - "Squid proxy server": access/proxy.md
     - "Private Stratum 1 replica server": access/stratum1.md
+    - "Alternative access methods": access/alternatives.md
   - Configuration on HPC systems: configuration_hpc.md
   - Troubleshooting and debugging: troubleshooting.md
   - Performance aspects: performance.md

@@ -245,11 +245,12 @@ using the `cvmfs_server snapshot` command:
 sudo cvmfs_server snapshot software.eessi.io
 ```
 
-Since this will download the *full* repository contents from the synchronisation
-server that was specified when creating the repository replica, the initial synchronisation may take a while.
+!!! note "Time for a coffee..."
+    Since this will download the *full* repository contents from the synchronisation
+    server that was specified when creating the repository replica, the initial synchronisation may take a while.
 
-The time required for the initial synchronisation is heavily dependent on the size of the repository,
-and the available network bandwidth to the synchronisation server.
+    The time required for the initial synchronisation is heavily dependent on the size of the repository,
+    and the available network bandwidth to the synchronisation server.
 
 ### Periodic synchronisation
 

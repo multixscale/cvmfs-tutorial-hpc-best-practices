@@ -237,4 +237,4 @@ Examples are available in the `etc/cvmfs` subdirectory of the [config-repo GitHu
 
 ---
 
-*(next: [Setting up a proxy server](../access/proxy.md))*
+*(next: [Squid proxy server](../access/proxy.md))*
