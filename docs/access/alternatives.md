@@ -80,6 +80,48 @@ For more information on `cvmfsexec`, see <https://github.com/cvmfs/cvmfsexec>.
 
 ## Apptainer with `--fusemount`
 
+If [Apptainer](https://apptainer.org) is available, you can get access to a CernVM-FS repository
+by using a container image that includes the CernVM-FS client component (see for example the Docker recipe
+for the client container used in EESSI, which is available [here](https://github.com/EESSI/filesystem-layer/blob/main/containers/Dockerfile.EESSI-client-centos7)).
+
+Using the `--fusemount` option you can specify that a CernVM-FS repository should be mounted
+when starting the container. For example for [EESSI](../eessi/high-level-design.md#filesystem_layer),
+you should use:
+
+```bash
+apptainer ... --fusemount "container:cvmfs2 software.eessi.io /cvmfs/software.eessi.io" ...
+```
+
+There are a couple of caveats here:
+
+* If the configuration for the CernVM-FS repository is provided via the `cvmfs-config` repository,
+  you need to instruct Apptainer to also mount that, by using the `--fusemount` option twice: once for
+  the `cvmfs-config` repository, and once for the target repository itself:
+  ```bash
+  FUSEMOUNT_CVMFS_CONFIG="container:cvmfs2 cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch"
+  FUSEMOUNT_EESSI="container:cvmfs2 software.eessi.io /cvmfs/software.eessi.io"
+  apptainer ... --fusemount "${FUSEMOUNT_CVMFS_CONFIG}" --fusemount "${FUSEMOUNT_EESSI}" ...
+  ```
+
+* Next to mounting CernVM-FS repositories, you also need to *bind mount* local writable directories
+  to `/var/run/cvmfs`, since CernVM-FS needs write access in those locations (for the CernVM-FS client cache):
+  ```bash
+  mkdir -p /tmp/$USER/{var-lib-cvmfs,var-run-cvmfs}
+  export APPTAINER_BIND="/tmp/$USER/var-run-cvmfs:/var/run/cvmfs,/tmp/$USER/var-lib-cvmfs:/var/lib/cvmfs"
+  apptainer ... --fusemount ...
+  ```
+
+To try this, you can use the EESSI client container that is available in Docker Hub,
+to start an interactive shell in which EESSI is available, as follows:
+
+```{ .bash .copy }
+mkdir -p /tmp/$USER/{var-lib-cvmfs,var-run-cvmfs}
+export APPTAINER_BIND="/tmp/$USER/var-run-cvmfs:/var/run/cvmfs,/tmp/$USER/var-lib-cvmfs:/var/lib/cvmfs"
+FUSEMOUNT_CVMFS_CONFIG="container:cvmfs2 cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch"
+FUSEMOUNT_EESSI="container:cvmfs2 software.eessi.io /cvmfs/software.eessi.io"
+apptainer shell --fusemount "${FUSEMOUNT_CVMFS_CONFIG}" --fusemount "${FUSEMOUNT_EESSI}" docker://ghcr.io/eessi/client-pilot:centos7
+```
+
 ## Alien cache
 
 [see](../configuration_hpc.md#alien-cache)
