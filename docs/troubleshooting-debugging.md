@@ -22,13 +22,14 @@ ls: cannot access '/cvmfs/software.eessi.io': No such file or directory
 
 The three main causes for this error are:
 1. The CernVM-FS client software is not installed.
-2. The CernVM-FS client basic configuration is not fully set up.
+2. The CernVM-FS client basic configuration is not complete.
 3. The CernVM-FS client is not configured to access the repository.
 
-(Cause 1) To verify that the CernVM-FS client is installed, run
+**Cause 1.** To verify that the CernVM-FS client is installed, run
 ``` { .bash .copy }
 command -v cvmfs_config
 ```
+
 The output is either empty or the full path to the executable, for example,
 ```
 /usr/bin/cvmfs_config
@@ -37,33 +38,84 @@ In the latter case continue with (Cause 2) below. In the former case, see
 section [Installing CernVM-FS client](access/client/#installing-cernvm-fs-client)
 for installing the CernVM-FS client package `cvmfs`.
 
-(Cause 2) The basic environment of the CernVM-FS is not fully set up. It
+**Cause 2.** The basic configuration of the CernVM-FS client is not complete. It
 requires the following,
-- a directory `/cvmfs` (verify with `ls /cvmfs`)
-- a local service account with username `cvmfs` (verify with `getent passwd
-  cvmfs`)
-- a minimal configuration file `/etc/cvmfs/default.local` (verify with `cat
-  /etc/cvmfs/default.local`)
+- directories `/cvmfs` and `/var/lib/cvmfs`
+  - verify as follows
+    ``` { .bash .copy }
+    ls -l / | grep cvmfs
+    ```
+    which should result in
+    ```
+    drwxr-xr-x   2 root root     0 Oct 31 12:15 cvmfs
+    ```
+    and
+    ``` { .bash .copy }
+    ls -l /var/lib | grep cvmfs
+    ```
+    which should result in
+    ```
+    drwxr-xr-x  3 cvmfs     cvmfs     4096 Oct 31 12:15 cvmfs
+    ```
+- a local service account with username `cvmfs`
+  - verify with
+    ``` { .bash .copy }
+    getent passwd cvmfs
+    ```
+    which should result in something like
+    ```
+    cvmfs:x:987:987:CernVM-FS service account:/var/lib/cvmfs:/sbin/nologin
+    ```
+    for a RHEL-based Linux distribution (Rocky Linux 9) or
+    ```
+    cvmfs:x:115:121::/cvmfs:/usr/sbin/nologin
+    ```
+    for a Debian-based Linux distribution (Ubuntu 22.04)
+- a minimal configuration file `/etc/cvmfs/default.local`
+  - verify with
+    ``` { .bash .copy }
+    cat /etc/cvmfs/default.local
+    ```
+    which should result in something like
+    ```
+    CVMFS_CLIENT_PROFILE="single"
+    CVMFS_QUOTA_LIMIT=10000
+    ```
 - the command `sudo cvmfs_config setup` has been run
+  - verify with
+    ``` { .bash .copy }
+    sudo cvmfs_config chksetup
+    ```
+    which should result in a simple
+    ```
+    OK
+    ```
 
-The first two requirements are likely fulfilled if the CernVM-FS package
-`cvmfs` was installed with a package manager (see section [Installing CernVM-FS
-client](access/client/#installing-cernvm-fs-client)). For the third
-requirement, see paragraph [Minimal client configuration](access/client/#minimal_configuration).
+The first two requirements are usually met by installing the package
+`cvmfs` with a package manager. If they are not met, please install the `cvmfs`
+package (see section
+[Installing CernVM-FS client](access/client/#installing-cernvm-fs-client)).
+For the third requirement, particularly the contents of the file
+`/etc/cvmfs/default.local`, see paragraph
+[Minimal client configuration](access/client/#minimal_configuration).
+Finally, [complete the client setup](access/client/#completing-the-client-setup).
 
-
+### `Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)`
 ```
-failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
+Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
 ```
 
+### `Failed to initialize root file catalog (16 - file catalog failure)`
 ```
 Failed to initialize root file catalog (16 - file catalog failure)
 ```
 
+### `Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs`
 ```
 Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
 ```
 
+### transport endpoint is not connected
 ```
 transport endpoint is not connected
 ```
