@@ -1,10 +1,73 @@
 # Troubleshooting and debugging CernVM-FS
 
-<!-- only client-side, assumption is that CernVM-FS replica servers and proxy
-servers are working correctly (?) -->
+## Common errors
 
-In this section we list typical error messages, describe how their root cause
-can be determined, and suggest actions to resolve them.
+## Logs
+
+## General tools
+
+```
+sudo cvmfs_config chksetup
+```
+
+```
+cvmfs_config status
+```
+
+```
+cvmfs_config probe software.eessi.io
+```
+
+## Common problems
+
+### Configuration issues
+
+```
+cvmfs_config showconfig
+```
+
+vs
+
+```
+ls /cvmfs/software.eessi.io
+sudo cmvfs_talk -i software.eessi.io
+```
+
+### Connectivity issues
+
+- firewall blocking ports or hosts
+
+- squid proxy configuration
+
+- tools: `curl`, `telnet`, `tcptraceroute` (*), `cvmfs_config stat`
+
+### Mounting problems
+
+`autofs`
+
+try manual mount:
+
+```
+mount -t cvmfs software.eessi.io /tmp/eessi
+```
+
+use cvmfs directly to mount, see https://github.com/cvmfs/cvmfs/blob/devel/doc/developer/60-debugging-and-testing.md#client
+
+### Resource problems
+
+disk full on proxy or Stratum 1 or client cache
+
+### Cache problems
+
+```
+sudo cvmfs_config wipecache
+```
+
+---
+
+## Logs
+
+only client-side, assumption is that CernVM-FS replica servers and proxy servers are working correctly (?)
 
 see also https://github.com/EESSI/filesystem-layer/blob/main/README.md
 
@@ -19,115 +82,30 @@ see also https://github.com/EESSI/filesystem-layer/blob/main/README.md
 
 ## Error messages
 
-### `ls: cannot access '/cvmfs/software.eessi.io': No such file or directory`
-
-One of the first actions to verify that a CernVM-FS repository, say
-`software.eessi.io`, can be accessed, is simply running the command
-```bash
-ls /cvmfs/software.eessi.io
 ```
-which could result in the following output
-``` { .bash .no-copy }
+$ ls /cvmfs
+ls: cannot access '/cvmfs': No such file or directory
+```
+
+```
+$ ls /cvmfs/software.eessi.io
 ls: cannot access '/cvmfs/software.eessi.io': No such file or directory
 ```
 
-The two main causes for this error are:
-1. The CernVM-FS client software is not installed.
-2. The CernVM-FS client basic configuration is not complete.
-
-**Cause 1.** To verify that the CernVM-FS client is installed, run
-``` { .bash .copy }
-command -v cvmfs_config
+```
+failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
 ```
 
-The output is either empty or the full path to the executable, for example,
-``` { .bash .no-copy }
-/usr/bin/cvmfs_config
-```
-In the latter case continue with (Cause 2) below. In the former case, see
-section [Installing CernVM-FS client](access/client/#installing-cernvm-fs-client)
-for installing the CernVM-FS client package `cvmfs`.
-
-**Cause 2.** The basic configuration of the CernVM-FS client is not complete. It
-requires the following,
-- directories `/cvmfs` and `/var/lib/cvmfs`
-  - verify as follows
-    ``` { .bash .copy }
-    ls -l / | grep cvmfs
-    ```
-    which should result in
-    ``` { .bash .no-copy }
-    drwxr-xr-x   2 root root     0 Oct 31 12:15 cvmfs
-    ```
-    and
-    ``` { .bash .copy }
-    ls -l /var/lib | grep cvmfs
-    ```
-    which should result in
-    ``` { .bash .no-copy }
-    drwxr-xr-x  3 cvmfs     cvmfs     4096 Oct 31 12:15 cvmfs
-    ```
-- a local service account with username `cvmfs`
-  - verify with
-    ``` { .bash .copy }
-    getent passwd cvmfs
-    ```
-    which should result in something like
-    ``` { .bash .no-copy }
-    cvmfs:x:987:987:CernVM-FS service account:/var/lib/cvmfs:/sbin/nologin
-    ```
-    for a RHEL-based Linux distribution (Rocky Linux 9) or
-    ``` { .bash .no-copy }
-    cvmfs:x:115:121::/cvmfs:/usr/sbin/nologin
-    ```
-    for a Debian-based Linux distribution (Ubuntu 22.04)
-- a minimal configuration file `/etc/cvmfs/default.local`
-  - verify with
-    ``` { .bash .copy }
-    cat /etc/cvmfs/default.local
-    ```
-    which should result in something like
-    ``` { .ini .copy }
-    CVMFS_CLIENT_PROFILE="single"
-    CVMFS_QUOTA_LIMIT=10000
-    ```
-- the command `sudo cvmfs_config setup` has been run
-  - verify with
-    ``` { .bash .copy }
-    sudo cvmfs_config chksetup
-    ```
-    which should result in a simple
-    ``` { .bash .no-copy }
-    OK
-    ```
-
-The first two requirements are usually met by installing the package
-`cvmfs` with a package manager. If they are not met, please install the `cvmfs`
-package (see section
-[Installing CernVM-FS client](access/client/#installing-cernvm-fs-client)).
-For the third requirement, particularly the contents of the file
-`/etc/cvmfs/default.local`, see paragraph
-[Minimal client configuration](access/client/#minimal_configuration).
-Finally, [complete the client setup](access/client/#completing-the-client-setup).
-
-### `Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)`
-```
-Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
-```
-
-### `Failed to initialize root file catalog (16 - file catalog failure)`
 ```
 Failed to initialize root file catalog (16 - file catalog failure)
 ```
 
-### `Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs`
 ```
 Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
 ```
 
-### transport endpoint is not connected
 ```
-transport endpoint is not connected
+ls: cannot access '/cvmfs/software.eessi.io': Transport endpoint is not connected
 ```
 
 ```
@@ -149,22 +127,8 @@ sudo cvmfs_talk -i software.eessi.io parameters
 
 ## Logs
 
-### syslog
-=== On RHEL-based Linux distributions
-    Simply run
-    ``` { .bash .copy }
-    sudo grep -i cvmfs /var/log/messages
-    ```
-    to check for any messages regarding CernVM-FS.
+only syslog?
 
-=== On Debian-based Linux distributions
-    Simply run
-    ``` { .bash .copy }
-    sudo grep -i cvmfs /var/log/syslog
-    ```
-    to check for any messages regarding CernVM-FS.
-
-### debug log
 debug log
 - `CVMFS_DEBUGLOG=/tmp/cvmfs.log`
 - https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs
@@ -174,6 +138,10 @@ debug log
 ## Stats
 
 ## Common problems
+
+## Monitoring
+
+## Mounting in debug mode
 
 ### Network issues
 
