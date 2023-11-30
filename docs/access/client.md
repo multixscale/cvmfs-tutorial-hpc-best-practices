@@ -77,43 +77,44 @@ CVMFS_QUOTA_LIMIT=10000
 More information on the structure of `/etc/cvmfs` and supported configuration settings is available
 [in the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html).
 
-### Client profile setting
 
-With `CVMFS_CLIENT_PROFILE="single"` we specify that this CernVM-FS client should:
+??? note "Client profile setting *(click to expand)*"
 
-* Use the [proxy server](../appendix/terminology.md#proxy) specified via `CVMFS_HTTP_PROXY`, if that configuration setting is defined;
-* Directly connect to a [Stratum-1 replica server](../appendix/terminology.md#stratum1) that provides the repository being used if no proxy server
-  is specified via `CVMFS_HTTP_PROXY`.
+    With `CVMFS_CLIENT_PROFILE="single"` we specify that this CernVM-FS client should:
 
-As an alternative to defining `CVMFS_CLIENT_PROFILE`, you can also set `CVMFS_HTTP_PROXY` to `DIRECT` to specify
-that no proxy server should be used by CernVM-FS:
+    * Use the [proxy server](../appendix/terminology.md#proxy) specified via `CVMFS_HTTP_PROXY`, if that configuration setting is defined;
+    * Directly connect to a [Stratum-1 replica server](../appendix/terminology.md#stratum1) that provides the repository being used if no proxy server
+      is specified via `CVMFS_HTTP_PROXY`.
 
-``` { .ini .copy }
-CVMFS_HTTP_PROXY="DIRECT"
-```
+    As an alternative to defining `CVMFS_CLIENT_PROFILE`, you can also set `CVMFS_HTTP_PROXY` to `DIRECT` to specify
+    that no proxy server should be used by CernVM-FS:
 
-We will get back to `CVMFS_HTTP_PROXY` later when [setting up a proxy server](proxy.md).
+    ``` { .ini .copy }
+    CVMFS_HTTP_PROXY="DIRECT"
+    ```
 
-### Quota limit for client cache
+    We will get back to `CVMFS_HTTP_PROXY` later when [setting up a proxy server](proxy.md).
 
-The `CVMFS_QUOTA_LIMIT` configuration setting specifies the maximum size of the CernVM-FS client cache (in MBs).
+??? note "Maximum size of client cache *(click to expand)*"
 
-In the example above, we specify that no more than ~10GB should be used for the client cache.
+    The `CVMFS_QUOTA_LIMIT` configuration setting specifies the maximum size of the CernVM-FS client cache (in MBs).
 
-When the specified quota limit is reached, CernVM-FS will automatically remove files from the cache according
-to the [Least Recently Used (LRU) policy](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU),
-until half of the maximum cache size has been freed.
+    In the example above, we specify that no more than ~10GB should be used for the client cache.
 
-The location of the cache directory can be controlled by `CVMFS_CACHE_BASE` if needed (default: `/var/lib/cvmfs`),
-but **must** be a on a *local* file system of the client, not a network file system that can be modified by multiple
-hosts.
+    When the specified quota limit is reached, CernVM-FS will automatically remove files from the cache according
+    to the [Least Recently Used (LRU) policy](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU),
+    until half of the maximum cache size has been freed.
 
-Using a directory in a RAM disk (like `/dev/shm`) for the CernVM-FS client cache
-can be considered if enough memory is available in the client system, which would
-help reduce latency and start-up performance of software.
+    The location of the cache directory can be controlled by `CVMFS_CACHE_BASE` if needed (default: `/var/lib/cvmfs`),
+    but **must** be a on a *local* file system of the client, not a network file system that can be modified by multiple
+    hosts.
 
-For more information on cache-related configuration settings,
-[see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#cache-settings).
+    Using a directory in a RAM disk (like `/dev/shm`) for the CernVM-FS client cache
+    can be considered if enough memory is available in the client system, which would
+    help reduce latency and start-up performance of software.
+
+    For more information on cache-related configuration settings,
+    [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#cache-settings).
 
 
 ## Completing the client setup
@@ -230,6 +231,25 @@ If not, you will see an error like this:
 $ sudo cvmfs_talk -i software.eessi.io parameters
 Seems like CernVM-FS is not running in /var/lib/cvmfs/shared (not found: /var/lib/cvmfs/shared/cvmfs_io.software.eessi.io)
 ```
+
+## Accessing a repository
+
+To access the contents of the repository, just use the corresponding subdirectory as if it were a local filesystem.
+
+While the contents of the files you are accessing are not actually available on the client system the first time
+they are being accessed, CernVM-FS will automatically downloaded them in the background, providing the illusion
+that the whole repository is already there.
+
+We like to refer to this as "streaming" of software installations, much like streaming music or video services.
+
+To start using EESSI just [source the initialisation script](../eessi/using-eessi.md#init) included in the repository:
+
+```{ .bash .copy }
+source /cvmfs/software.eessi.io/versions/2023.06/init/bash
+```
+
+
+You may notice some "lag" when files are being accessed, or not, depending on the network latency.
 
 ## Additional repositories
 
