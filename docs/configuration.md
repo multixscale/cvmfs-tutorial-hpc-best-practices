@@ -55,7 +55,7 @@ TODO or drop the section
 
 ## Worker nodes without CernVM-FS client
 
-The last scenario that we describe is for HPC systems that do not have CernVM-FS clients installed on the worker nodes. This can, for instance, be the case if the administrators of the cluster are not willing to install the clients. Though less ideal, solutions to make CernVM-FS repositories available still exist in this case.
+The last scenario that we describe is for HPC systems that do not have CernVM-FS clients installed on the worker nodes. This can, for instance, be the case if the administrators of the cluster are not willing to install the client. Though less ideal, solutions to make CernVM-FS repositories available still exist in this case.
 
 ### Syncing a CernVM-FS repository to another filesystem
 
