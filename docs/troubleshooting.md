@@ -6,6 +6,17 @@ servers are working correctly (?) -->
 In this section we list typical error messages, describe how their root cause
 can be determined, and suggest actions to resolve them.
 
+see also https://github.com/EESSI/filesystem-layer/blob/main/README.md
+
+## Client to S1 / proxy connection
+
+`telnet STRATUM1_IP 80`
+
+`curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished`
+
+`Connection` line in `cvmfs_config stat -v software.eessi.io`
+
+
 ## Error messages
 
 ### `ls: cannot access '/cvmfs/software.eessi.io': No such file or directory`
@@ -119,6 +130,11 @@ Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
 transport endpoint is not connected
 ```
 
+```
+$ /cvmfs/config-repo.cern.ch
+ls: cannot open directory '/cvmfs/config-repo.cern.ch': Too many levels of symbolic links
+```
+
 ## Configuration
 
 ```
@@ -163,8 +179,9 @@ debug log
 
 #### Firewall
 
-- `telnet`
+- `telnet` (port 80 for Stratum 1, port 3128 for Squid proxy)
 - `tcptraceroute`
+- `curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished`
 
 #### Bandwidth
 
@@ -175,6 +192,17 @@ debug log
 `CVMFS_HTTP_PROXY`
 
 https://cvmfs.readthedocs.io/en/stable/cpt-squid.html
+
+`http_proxy=http://squid.vega.pri:3128 curl -vs http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished | cat -v`
+
+```
+http_proxy=http://squid.vega.pri:3128 curl --head http://aws-eu-west1.stratum1.cvmfs.eessi-infra.org/cvmfs/pilot.eessi-hpc.org/.cvmfspublished
+HTTP/1.1 200 OK
+```
+```
+$ http_proxy=http://squid.vega.pri:3128 curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
+HTTP/1.1 403 Forbidden
+```
 
 ### Incorrect repository configuration
 
