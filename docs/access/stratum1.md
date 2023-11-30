@@ -30,7 +30,7 @@ Next to the *public* Stratum 1 servers that are operated by the maintainers
 of a CernVM-FS repository, you can also set up your own "private" Stratum 1
 replica server in your local network.
 
-In the context of using CernVM-FS on HPC infrastructure this is highly recommended:
+In the context of using CernVM-FS on HPC infrastructure this brings the following benefits:
 
 - To improve the overall reliability of the setup, for example in case of (temporary) loss of connectivity to the public Stratum 1 replica servers;
 - To reduce the load on the public Stratum 1 servers;
