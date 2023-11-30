@@ -22,7 +22,7 @@ The loopback filesystem files can be created using the `dd` or `mkfs` tools. The
 An alien cache is basically a cache that is outside of the (full) control of CernVM-FS.
 In this scenario it allows you to store the cache on a shared filesystem, and have the CernVM-FS processes on all worker nodes use and fill it simultaneously. These processes can pull in the required files that are being accessed by users/jobs, or you can even preload a cache manually.
 
-Using the alien cache still requires a very small local cache on the nodes for storing some control files; these can be stored in, for instance, memory.
+Using the alien cache still requires a very small local cache on the nodes for storing some control files; given the size, you can store this small cache on a shared filesystem or in memory.
 
 Compared to the loopback cache described in the previous subsection, the drawback of storing the alien cache on your shared filesystem is that all metadata operations are now performed on the shared filesystem. Typically, this will result in a large number of metadata operations, and for many shared filesystems this will be the bottleneck.
 
