@@ -133,8 +133,22 @@ sudo cvmfs_talk -i software.eessi.io parameters
 
 ## Logs
 
-only syslog?
+### syslog
+=== On RHEL-based Linux distributions
+    Simply run
+    ``` { .bash .copy }
+    sudo grep -i cvmfs /var/log/messages
+    ```
+    to check for any messages regarding CernVM-FS.
 
+=== On Debian-based Linux distributions
+    Simply run
+    ``` { .bash .copy }
+    sudo grep -i cvmfs /var/log/syslog
+    ```
+    to check for any messages regarding CernVM-FS.
+
+### debug log
 debug log
 - `CVMFS_DEBUGLOG=/tmp/cvmfs.log`
 - https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs
