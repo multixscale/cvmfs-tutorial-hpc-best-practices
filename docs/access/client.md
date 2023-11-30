@@ -119,6 +119,7 @@ For more information on cache-related configuration settings,
 ## Completing the client setup
 
 To complete the setup of the CernVM-FS client component,
+
 a`cvmfs` user account and group must be added to the system,
 and the `/cvmfs` and `/var/lib/cvmfs` directories must be created.
 
@@ -155,6 +156,7 @@ If you prefer not to use `autofs`, you will need to use static mounting, by eith
 
 * Manually mounting the CernVM-FS repositories you want to use, for example:
   ``` { .bash .copy }
+  sudo mkdir -p /cvmfs/software.eessi.io
   sudo mount -t cvmfs software.eessi.io /cvmfs/software.eessi.io
   ```
 
