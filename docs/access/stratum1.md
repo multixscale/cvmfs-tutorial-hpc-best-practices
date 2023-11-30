@@ -122,7 +122,7 @@ In the sections below, we will set up a Stratum 1 replica server for the [EESSI 
 
 ### Installing CernVM-FS server
 
-Start with installing the `cvmfs-server` package which provides the CernVM-FS client component.
+Start with installing the `cvmfs-server` package which provides the CernVM-FS server tools.
 
 Although we won't actually use the functionality that requires it,
 we also need to install a package that provides the `mod_wsgi` Apache adapter module.
