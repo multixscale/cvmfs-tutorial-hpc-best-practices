@@ -124,7 +124,11 @@ apptainer shell --fusemount "${FUSEMOUNT_CVMFS_CONFIG}" --fusemount "${FUSEMOUNT
 
 ## Alien cache
 
-[see](../configuration_hpc.md#alien-cache)
+An alien cache can be used, optionally in combination with preloading, as another alternative,
+typically in combination with using a container image or unprivileged user namespaces.
+
+For more information, see the [Alien cache subsection](../configuration_hpc.md#alien-cache) in the next part of the
+tutorial.
 
 ---
 
