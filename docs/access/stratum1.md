@@ -213,13 +213,14 @@ echo 'CVMFS_GEO_DB_FILE=NONE' | sudo tee -a /etc/cvmfs/server.local
 
 #### Creating replica
 
-To actually create the replica, run the `cvmfs_server add-replica` command as follows:
+To actually create the replica, run the `cvmfs_server add-replica` command as follows,
+specifying that the current user account should be the repository owner via `-o $USER`:
 
 ``` { .bash .copy }
 sync_server='aws-eu-west-s1-sync.eessi.science'
 repo='software.eessi.io'
 key_dir='/etc/cvmfs/keys/eessi.io'
-sudo cvmfs_server add-replica http://${sync_server}/cvmfs/${repo} ${key_dir}
+sudo cvmfs_server add-replica -o $USER http://${sync_server}/cvmfs/${repo} ${key_dir}
 ```
 
 ??? note "Starting Apache *(click to expand)*"
@@ -242,7 +243,7 @@ After creating the replica, we should trigger the initial synchronisation of the
 using the `cvmfs_server snapshot` command:
 
 ``` { .bash .copy }
-sudo cvmfs_server snapshot software.eessi.io
+cvmfs_server snapshot software.eessi.io
 ```
 
 !!! note "Time for a coffee..."
@@ -279,8 +280,11 @@ Create `/etc/logrotate.d/cvmfs` with the following contents:
 To synchronize all active replica repositories every 5 minutes, we can create a cron job `/etc/cron.d/cvmfs_stratum1_snapshot` that runs `cvmfs_server snapshot -a -i`:
 
 ``` { .bash .copy }
-*/5 * * * * root output=$(/usr/bin/cvmfs_server snapshot -a -i 2>&1) || echo "$output"
+*/5 * * * * OWNER output=$(/usr/bin/cvmfs_server snapshot -a -i 2>&1) || echo "$output"
 ```
+
+In here, you must replace "`OWNER`" with the account name of the repository owner (cfr. the `-o $USER` option
+used in the `add-replica` command above).
 
 The `-a` option enables synchronisation of *all active* replica repositories,
 while `-i` indicates that that repositories for which an initial snapshot has not been run should be skipped.
