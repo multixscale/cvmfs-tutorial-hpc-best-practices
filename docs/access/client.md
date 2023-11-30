@@ -177,7 +177,7 @@ You should see `OK` as output of this command.
 ## Default repositories
 
 The default configuration of CernVM-FS, provided by the `cvmfs-config-default`
-packages, provides the public keys and configuration for a number of
+package, provides the public keys and configuration for a number of
 commonly used CernVM-FS repositories.
 
 One particular repository included in the default CernVM-FS configuration is
