@@ -13,7 +13,7 @@ and the [proxy servers](../appendix/terminology.md#proxy) can be seen as
 a [content delivery network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network).
 
 A Stratum 1 replica server is a **standard web server** that uses the CernVM-FS server
-component to provide a full mirror of one or more CernVM-FS repositories,
+tools to provide a full mirror of one or more CernVM-FS repositories,
 which are served and managed through a central Stratum 0 server.
 
 The figure below shows the CernVM-FS network for repositories in the `cern.ch` domain,
