@@ -119,12 +119,14 @@ For more information on cache-related configuration settings,
 ## Completing the client setup
 
 To complete the setup of the CernVM-FS client component,
+we need to make sure that a `cvmfs` service account and group are present on the system,
+and the `/cvmfs` and `/var/lib/cvmfs` directories exist with the correct ownership and permissions.
 
-a`cvmfs` user account and group must be added to the system,
-and the `/cvmfs` and `/var/lib/cvmfs` directories must be created.
+This should be taken care of by the post-install script that is run when installing the `cvmfs` package,
+so you will only need to take action on these aspects if you were installing the CernVM-FS client from source.
 
 In addition, it is recommended to update the `autofs` configuration
-to enable auto-mounting of CernVM-FS repositories *(optional)*.
+to enable auto-mounting of CernVM-FS repositories, and to make sure the `autofs` service is running.
 
 All these actions can be performed in one go by running the following command:
 
@@ -138,7 +140,7 @@ update the `autofs` configuration.
 
 ### Recommendations for `autofs` {: #autofs }
 
-It is recommended to configure `autofs` to never unmount repositories due to inactivity,
+It is recommended to configure `autofs` to *never unmount* repositories due to inactivity,
 since that [can cause problems in specific situations](https://github.com/cvmfs/cvmfs/issues/3402).
 
 This can be done by setting additional options in `/etc/sysconfig/autofs` (on RHEL-based Linux distributions)
