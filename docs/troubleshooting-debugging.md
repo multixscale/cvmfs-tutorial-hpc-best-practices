@@ -16,14 +16,13 @@ One of the first actions to verify that a CernVM-FS repository, say
 ls /cvmfs/software.eessi.io
 ```
 which could result in the following output
-```
+``` { .bash .no-copy }
 ls: cannot access '/cvmfs/software.eessi.io': No such file or directory
 ```
 
-The three main causes for this error are:
+The two main causes for this error are:
 1. The CernVM-FS client software is not installed.
 2. The CernVM-FS client basic configuration is not complete.
-3. The CernVM-FS client is not configured to access the repository.
 
 **Cause 1.** To verify that the CernVM-FS client is installed, run
 ``` { .bash .copy }
@@ -31,7 +30,7 @@ command -v cvmfs_config
 ```
 
 The output is either empty or the full path to the executable, for example,
-```
+``` { .bash .no-copy }
 /usr/bin/cvmfs_config
 ```
 In the latter case continue with (Cause 2) below. In the former case, see
@@ -46,7 +45,7 @@ requires the following,
     ls -l / | grep cvmfs
     ```
     which should result in
-    ```
+    ``` { .bash .no-copy }
     drwxr-xr-x   2 root root     0 Oct 31 12:15 cvmfs
     ```
     and
@@ -54,7 +53,7 @@ requires the following,
     ls -l /var/lib | grep cvmfs
     ```
     which should result in
-    ```
+    ``` { .bash .no-copy }
     drwxr-xr-x  3 cvmfs     cvmfs     4096 Oct 31 12:15 cvmfs
     ```
 - a local service account with username `cvmfs`
@@ -63,11 +62,11 @@ requires the following,
     getent passwd cvmfs
     ```
     which should result in something like
-    ```
+    ``` { .bash .no-copy }
     cvmfs:x:987:987:CernVM-FS service account:/var/lib/cvmfs:/sbin/nologin
     ```
     for a RHEL-based Linux distribution (Rocky Linux 9) or
-    ```
+    ``` { .bash .no-copy }
     cvmfs:x:115:121::/cvmfs:/usr/sbin/nologin
     ```
     for a Debian-based Linux distribution (Ubuntu 22.04)
@@ -77,7 +76,7 @@ requires the following,
     cat /etc/cvmfs/default.local
     ```
     which should result in something like
-    ```
+    ``` { .ini .copy }
     CVMFS_CLIENT_PROFILE="single"
     CVMFS_QUOTA_LIMIT=10000
     ```
@@ -87,7 +86,7 @@ requires the following,
     sudo cvmfs_config chksetup
     ```
     which should result in a simple
-    ```
+    ``` { .bash .no-copy }
     OK
     ```
 
