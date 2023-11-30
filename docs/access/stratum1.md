@@ -13,7 +13,7 @@ and the [proxy servers](../appendix/terminology.md#proxy) can be seen as
 a [content delivery network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network).
 
 A Stratum 1 replica server is a **standard web server** that uses the CernVM-FS server
-component to provide a full mirror of one or more CernVM-FS repositories,
+tools to provide a full mirror of one or more CernVM-FS repositories,
 which are served and managed through a central Stratum 0 server.
 
 The figure below shows the CernVM-FS network for repositories in the `cern.ch` domain,
@@ -30,9 +30,9 @@ Next to the *public* Stratum 1 servers that are operated by the maintainers
 of a CernVM-FS repository, you can also set up your own "private" Stratum 1
 replica server in your local network.
 
-In the context of using CernVM-FS on HPC infrastructure this is highly recommended:
+In the context of using CernVM-FS on HPC infrastructure this brings the following benefits:
 
-- To improve the overall reliability of the setup, for example in case of (temporariy) loss of connectivity to the public Stratum 1 replica servers;
+- To improve the overall reliability of the setup, for example in case of (temporary) loss of connectivity to the public Stratum 1 replica servers;
 - To reduce the load on the public Stratum 1 servers;
 - To mitigate the impact of poor network bandwidth to the closest public Stratum 1 server;
 - To improve the latency and hence start-up time of software in situations where the cache of the proxy servers has insufficient capacity;
@@ -76,7 +76,7 @@ recommendations into account:
     sees an updated [catalog](../appendix/terminology.md#catalog) from one Stratum 1, but then tries to read corresponding data files from another that does not yet have the files.
 
     Instead, different Stratum 1 replica servers
-    should either be separate configured on the clients, or a pair can be configured 
+    should either be separately configured on the clients, or a pair can be configured 
     as a high availability active/standby pair using the
     [`cvmfs-hastratum1`](https://github.com/cvmfs-contrib/cvmfs-hastratum1) package. 
 
@@ -122,7 +122,7 @@ In the sections below, we will set up a Stratum 1 replica server for the [EESSI 
 
 ### Installing CernVM-FS server
 
-Start with installing the `cvmfs-server` package which provides the CernVM-FS client component.
+Start with installing the `cvmfs-server` package which provides the CernVM-FS server tools.
 
 Although we won't actually use the functionality that requires it,
 we also need to install a package that provides the `mod_wsgi` Apache adapter module.
@@ -235,6 +235,7 @@ sudo cvmfs_server add-replica -o $USER http://${sync_server}/cvmfs/${repo} ${key
 
     ``` { .bash .copy }
     sudo systemctl start httpd.service
+    sudo systemctl enable httpd.service
     ```
 
 ### Initial synchronisation
