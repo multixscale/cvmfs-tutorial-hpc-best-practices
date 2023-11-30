@@ -340,7 +340,7 @@ The `@fqrn@` substring is replaced by CernVM-FS with the *fully qualified reposi
 `CVMFS_SERVER_URL` should be specified in the *domain-specific configuration file* in `/etc/cvmfs` that is
 relevant for the CernVM-FS repository we have replicated on our Stratum 1.
 
-For `software.eessi.io`, we should add the following to `/etc/cvmfs/domain.d/eessi.io.conf`:
+For `software.eessi.io`, we should add the following to `/etc/cvmfs/domain.d/eessi.io.local`:
 
 ``` { .ini .copy }
 CVMFS_SERVER_URL="http://STRATUM1_IP/cvmfs/@fqrn@"
