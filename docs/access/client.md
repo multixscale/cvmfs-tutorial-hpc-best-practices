@@ -135,20 +135,19 @@ Additional options can be passed to the `cvmfs_config setup` command to disable 
 like `nouser` to not create the `cvmfs` user and group, or `noautofs` to not
 update the `autofs` configuration.
 
-### Recommendations for `autofs`
+### Recommendations for `autofs` {: #autofs }
 
-It is recommended to increase the timeout used by `autofs` for unmounting due to inactivity,
-by setting additional options in `/etc/sysconfig/autofs`, for example:
+It is recommended to configure `autofs` to never unmount repositories due to inactivity,
+since that [can cause problems in specific situations](https://github.com/cvmfs/cvmfs/issues/3402).
+
+This can be done by setting additional options in `/etc/sysconfig/autofs` (on RHEL-based Linux distributions)
+or `/etc/default/autofs` (on Debian-based distributions):
 
 ```{ .ini .copy }
-OPTIONS="--timeout 3600"
+OPTIONS="--timeout 0"
 ```
 
-This sets the timeout for `autofs` to 1 hour (3600 seconds).
-
-The default timeout is typically 5 minutes (300 seconds), which is usually specified in `/etc/autofs.conf`.
-
-Using "`--timeout 0`" so that `autofs` never unmounts is preferable to using static mounts.
+The default `autofs` timeout is typically 5 minutes (300 seconds), which is usually specified in `/etc/autofs.conf`.
 
 ### Using static mounts
 
@@ -160,6 +159,8 @@ If you prefer not to use `autofs`, you will need to use static mounting, by eith
   ```
 
 * Updating `/etc/fstab` to ensure that the CernVM-FS repositories are mounted at boot time.
+
+[Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts.
 
 For more information on mounting repositories,
 [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
