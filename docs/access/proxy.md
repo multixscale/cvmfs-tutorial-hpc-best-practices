@@ -151,6 +151,26 @@ The output of the `stat` command should include a link like this:
 Connection: .../software.eessi.io through proxy http://<PROXY_IP>:3128 (online)
 ```
 
+## Cleanup to prepare for Stratum 1
+
+To prepare for the next tutorial section on [setting up a private Stratum 1 replica server](stratum1.md),
+remove the `CVMFS_HTTP_PROXY` line from `/etc/cvmfs/default.local`.
+
+The full contents of `/etc/cvmfs/default.local` on the client system should again be as shown below, like it was initially created when
+[configuring the client](client.md##minimal_configuration):
+
+``` { .ini .copy }
+CVMFS_CLIENT_PROFILE="single"
+CVMFS_QUOTA_LIMIT=10000
+```
+
+Do not forget to also reload the CernVM-FS client configuration:
+```{ .bash .copy }
+sudo cvmfs_config reload
+```
+
+We will later reconfigure the proxy server so it can be used together with our private Stratum 1.
+
 ---
 
 *(next: [Setting up a Stratum 1 replica server](stratum1.md))*
