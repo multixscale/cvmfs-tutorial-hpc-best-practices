@@ -109,8 +109,8 @@ but **must** be a on a *local* file system of the client, not a network file sys
 hosts.
 
 Using a directory in a RAM disk (like `/dev/shm`) for the CernVM-FS client cache
-is possible but not recommended in general, mostly because the internal implementation
-in CernVM-FS to support this is pretty involved, and not extensively tested.
+can be considered if enough memory is available in the client system, which would
+help reduce latency and start-up performance of software.
 
 For more information on cache-related configuration settings,
 [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#cache-settings).
