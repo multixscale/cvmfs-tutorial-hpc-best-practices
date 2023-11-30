@@ -234,6 +234,7 @@ sudo cvmfs_server add-replica http://${sync_server}/cvmfs/${repo} ${key_dir}
 
     ``` { .bash .copy }
     sudo systemctl start httpd.service
+    sudo systemctl enable httpd.service
     ```
 
 ### Initial synchronisation
