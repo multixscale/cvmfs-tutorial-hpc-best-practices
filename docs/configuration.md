@@ -61,10 +61,6 @@ The last scenario that we describe is for HPC systems that do not have CernVM-FS
 
 A solution that sounds straightforward is to synchronize (a part of) the contents of a CernVM-FS repository to another filesystem, and make that available on worker nodes. CernVM-FS provides [a utility `cvmfs_shrinkwrap`](https://cvmfs.readthedocs.io/en/stable/cpt-shrinkwrap.html) that can be used to achieve this. However, though the solution may sound easy, it has some severe disadvantages: this utility puts a heavy load on the server that is being used to pull in the contents, as it has to fetch all the contents (which may be a large amount of data) in one large bulk. Also, the contents will have to be kept synchronized in some way, which involves rerunning this process regularly. Finally, it somewhat defeats the purpose of CernVM-FS, as you will be replacing a filesystem that is optimized for distributing software by one that most likely is not.
 
-### Mount the CernVM-FS repository in a container
+### Mount the CernVM-FS repository in an alternative way
 
-More and more HPC systems provide a container runtime that can be used by users, and Singularity or Apptainer is a popular one nowadays. These two have support for FUSE mounting CernVM-FS repositories inside the container, allowing users to access the repository without special privileges. This is further explained in [Accessing a CernVM-FS repository via Apptainer](containers.md#accessing-a-cernvm-fs-repository-via-apptainer).
-
-### Use `cvmfs-exec` to mount a CernVM-FS repository
-
-A [`cvmfs-exec` package](https://github.com/cvmfs/cvmfsexec) is available to mount CernVM-FS repositories as an unprivileged user. This tool does depend on the availability of certain kernel features and/or Singularity/Apptainer being available on the host. Also, it currently only supports RHEL and SUSE and their derivatives.
+Alternative ways, e.g. using a container runtime or the [`cvmfsexec` package](https://github.com/cvmfs/cvmfsexec), may exist for users to make CernVM-FS repositories available on HPC systems without requiring special privileges. Note that it does depend on the availability of the container runtime and/or kernel features. These methods are further described in [Alternative ways to access CernVM-FS repositories](access/alternatives.md).
