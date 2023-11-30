@@ -26,6 +26,8 @@ Using the alien cache still requires a very small local cache on the nodes for s
 
 Compared to the loopback cache described in the previous subsection, the drawback of storing the alien cache on your shared filesystem is that all metadata operations are now performed on the shared filesystem. Typically, this will result in a large number of metadata operations, and for many shared filesystems this will be the bottleneck.
 
+For more information about an alien cache and configuring it, see the [Alien Cache](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#alien-cache) section in the official documentation.
+
 
 ## Offline worker nodes
 
