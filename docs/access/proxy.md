@@ -1,27 +1,27 @@
-# Setting up a proxy server
+# Squid proxy server
 
 As a first step towards a production-ready CernVM-FS setup
-we will install a [Squid forward proxy server](http://www.squid-cache.org),
+we can install a [Squid forward proxy server](http://www.squid-cache.org),
 which is strongly recommended in the context of HPC systems.
 
-The proxy server will (often dramatically) **reduce the latency** for client systems,
-and hence **significantly improve start-up performance** of software provided via a CernVM-FS
-repository. In addition, it reduces the load on the Stratum 1 replica servers that
-support the CernVM-FS repositories being used.
+The proxy server will (often dramatically) **reduce the latency** for client systems for accessing CernVM-FS repositories,
+and hence **significantly improve start-up performance** of software provided via CernVM-FS.
+In addition, it reduces the load on the Stratum 1 replica servers that
+support the repositories being used.
 
 This is particularly important when running large-scale [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface)
-software, since starting the software requires that the corresponding binary and the libraries
-it depends on are available on *all* worker nodes being employed.
+software, since the software binary and all the libraries it requires must be available on *all* worker nodes being
+employed before the software can start running.
 
 ## General recommendations
 
 It is strongly recommended to have **at least two proxy servers** available,
-to have some redundancy available in case of unexpected problems or when performance maintenance.
+to have some redundancy available in case of unexpected problems, or during a maintenance window.
 
 As a rule of thumb, it is recommended to have (at least) *one proxy server for every couple
 of hundred worker nodes* (100-500).
 
-The load on the proxy servers is highly dependent on the workload mix on the client systems.
+Note that the load on the proxy servers used by CernVM-FS is highly dependent on the workload mix on the client systems.
 
 ## Proxy server setup
 
@@ -82,7 +82,7 @@ In this template, you *must* change two things in the Access Control List (ACL) 
 
 1) Specify which client systems can access your proxy by replacing "`YOUR_CLIENT_IPS`" with the corresponding IP range, using [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation);
 
-2) Make sure that Squid allows access to all Stratum 1 replica servers that are relevant for the CernVM-FS repositories
+2) Make sure that the proxy server allows access to the Stratum 1 replica servers that are relevant for the CernVM-FS repositories
    you are using, by specifying an ACL for each of them via a line that starts with "`acl stratum_ones`"
    (see also the [Squid ACL documentation](http://www.squid-cache.org/Doc/config/acl/)).
 
@@ -95,10 +95,10 @@ acl stratum_ones dstdomain .eessi.science
 To check your Squid configuration, use:
 
 ```{ .bash .copy }
-squid -k parse
+sudo squid -k parse
 ```
 
-If no warnings or errors are printed by this command, you should be all set (provided that the ACLs are set correctly).
+If no warnings or errors are printed by this command, you should be all set (assuming that the ACLs are set correctly).
 
 For more information on configuring a Squid proxy, [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-squid.html),
 
@@ -128,14 +128,14 @@ CVMFS_HTTP_PROXY="http://<PROXY_IP>:3128"
 
 in which "`<PROXY_IP>`" is replaced with the IP address or hostname of the proxy server.
 
-To apply the change we need to reload the CernVM-FS configuration:
+To apply the change we need to reload the CernVM-FS configuration on the client system:
 
 ```{ .bash .copy }
 sudo cvmfs_config reload
 ```
 
 You can test the new configuration and verify whether the proxy is indeed being used
-via `cvmfs_config stat`:
+by the client system via `cvmfs_config stat`:
 
 ```{ .bash .copy }
 ls /cvmfs/software.eessi.io

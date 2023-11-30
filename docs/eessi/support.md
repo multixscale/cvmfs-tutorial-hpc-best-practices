@@ -17,4 +17,4 @@ For more information, see the [support section of the EESSI documentation](https
 
 ---
 
-*(next: [Setting up a CernVM-FS client system](../access/client.md))*
+*(next: [CernVM-FS client system](../access/client.md))*

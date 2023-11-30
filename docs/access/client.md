@@ -1,15 +1,15 @@
-# Setting up a CernVM-FS client system
+# CernVM-FS client system
 
 The recommended way to gain access to CernVM-FS repositories is to set up
-a *system-wide native installation* of CernVM-FS on the client system(s),
+a *system-wide native installation* of CernVM-FS on the [client system(s)](../appendix/terminology.md#client),
 which comes down to:
 
 * Installing the client component of CernVM-FS;
 * Creating a minimal client configuration file (`/etc/cvmfs/default.local`);
 * Completing the client setup by:
     * Creating a`cvmfs` user account and group;
-    * Creating the `/cvmfs`, `/var/lib/cvmfs` directories;
-    * Configuring `autofs` to enable auto-mounting of CernVM-FS repositories *(optional)*.
+    * Creating the `/cvmfs` and `/var/lib/cvmfs` directories;
+    * Configuring `autofs` to enable auto-mounting of repositories *(recommended)*.
 
 For repositories that are not included in the default
 CernVM-FS configuration you also need to provide some additional information
@@ -24,9 +24,9 @@ specific to those repositories in order to access them.
     large number of worker nodes on which software provided by one or more
     CernVM-FS repositories will be used.
 
-    After covering the basic steps in this section, we will outline
-    how to make the setup more reliable and performant,
-    by setting up a [proxy server](proxy.md) and [CernVM-FS Stratum 1
+    After covering the basic client setup in this section, we will outline
+    how to make accessing of CernVM-FS repositories more reliable and performant,
+    by also setting up a [proxy server](proxy.md) and [CernVM-FS Stratum 1
     replica server](stratum1.md).
 
 
@@ -100,12 +100,17 @@ The `CVMFS_QUOTA_LIMIT` configuration setting specifies the maximum size of the 
 
 In the example above, we specify that no more than ~10GB should be used for the client cache.
 
-Once the quota limit is reached, CernVM-FS will automatically remove files from the cache according
-to the Least Recently Used (LRU) policy, until half of the maximum cache size has been freed.
+When the specified quota limit is reached, CernVM-FS will automatically remove files from the cache according
+to the [Least Recently Used (LRU) policy](https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU),
+until half of the maximum cache size has been freed.
 
 The location of the cache directory can be controlled by `CVMFS_CACHE_BASE` if needed (default: `/var/run/cvmfs`),
 but **must** be a on a *local* file system of the client, not a network file system that can be modified by multiple
 hosts.
+
+Using a directory in a RAM disk (like `/dev/shm`) for the CernVM-FS client cache
+is possible but not recommended in general, mostly because the internal implementation
+in CernVM-FS to support this is pretty involved, and not extensively tested.
 
 For more information on cache-related configuration settings,
 [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#cache-settings).
@@ -126,24 +131,38 @@ All these actions can be performed in one go by running the following command:
 sudo cvmfs_config setup
 ```
 
-Additional options can be passed to this command to disable some of the actions,
+Additional options can be passed to the `cvmfs_config setup` command to disable some of the actions,
 like `nouser` to not create the `cvmfs` user and group, or `noautofs` not
 update the `autofs` configuration.
 
-??? note "Impact of not updating `autofs` configuration *(click to expand)*"
+### Recommendations for `autofs`
 
-    If you prefer not to use `autofs`, you will either need to:
+It is recommended to increase the timeout used by `autofs` for unmounting due to inactivity,
+by setting additional options in `/etc/sysconfig/autofs`, for example:
 
-    * Manually mount the CernVM-FS repositories you want to use, for example:
-      ``` { .bash .copy }
-      sudo mount -t cvmfs software.eessi.io /cvmfs/software.eessi.io
-      ```
+```{ .ini .copy }
+OPTIONS="--timeout 3600"
+```
 
-    * or update `/etc/fstab` to ensure that the CernVM-FS repositories
-      are mounted at boot time.
+This sets the timeout for `autofs` to 1 hour (3600 seconds).
 
-    For more information on mounting repositories,
-    [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
+The default timeout is typically 5 minutes (300 seconds), which is usually specified in `/etc/autofs.conf`.
+
+Using "`--timeout 0`" so that `autofs` never unmounts is preferable to using static mounts.
+
+### Using static mounts
+
+If you prefer not to use `autofs`, you will need to use static mounting, by either:
+
+* Manually mounting the CernVM-FS repositories you want to use, for example:
+  ``` { .bash .copy }
+  sudo mount -t cvmfs software.eessi.io /cvmfs/software.eessi.io
+  ```
+
+* Updating `/etc/fstab` to ensure that the CernVM-FS repositories are mounted at boot time.
+
+For more information on mounting repositories,
+[see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
 
 ## Checking client setup
 
@@ -166,18 +185,45 @@ One particular repository included in the default CernVM-FS configuration is
 https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#the-config-repository)
 that provides public keys and configuration for additional [flagship
 CernVM-FS repositories](../cvmfs/flagship-repositories.md),
-like [EESSI](../eessi/high-level-design.md#filesystem_layer).
+like [`software.eessi.io`](../eessi/high-level-design.md#filesystem_layer):
 
-To check whether a specific repository is accessible, we can *probe* it:
+```bash
+$ ls /cvmfs/cvmfs-config.cern.ch/etc/cvmfs
+common.conf  config.d  default.conf  domain.d  keys
+
+$ find /cvmfs/cvmfs-config.cern.ch/etc/cvmfs -type f -name '*eessi*'
+/cvmfs/cvmfs-config.cern.ch/etc/cvmfs/domain.d/eessi.io.conf
+/cvmfs/cvmfs-config.cern.ch/etc/cvmfs/keys/eessi.io/eessi.io.pub
+```
+
+## Inspecting repository configuration
+
+To check whether a specific CernVM-FS repository is accessible, we can *probe* it:
 
 ```
 $ cvmfs_config probe software.eessi.io
 Probing /cvmfs/software.eessi.io... OK
 ```
 
-To view the configuration for a specific repository, use `showconfig`:
+To view the configuration for a specific repository, use `cvmfs_config showconfig`:
 ``` { .bash .copy }
 cvmfs_config showconfig software.eessi.io
+```
+
+To check the *active* configuration for a specific repository used
+by the running CernVM-FS instance,
+use `cvmfs_talk -i <repo> parameters` (which requires admin privileges):
+
+``` { .bash .copy }
+sudo cvmfs_talk -i software.eessi.io parameters
+```
+
+`cvmfs_talk` requires that the repository is currently mounted.
+If not, you will see an error like this:
+
+```bash
+$ sudo cvmfs_talk -i software.eessi.io parameters
+Seems like CernVM-FS is not running in /var/lib/cvmfs/shared (not found: /var/lib/cvmfs/shared/cvmfs_io.software.eessi.io)
 ```
 
 ## Additional repositories
@@ -187,7 +233,7 @@ To access additional CernVM-FS repositories beyond those that are available by d
 * Add the public keys for those repositories into a domain-specific subdirectory of `/etc/cvmfs/keys/`;
 * Add the configuration for those repositories into `/etc/cvmfs/domain.d` (domain-specific) or `/etc/cvmfs/config.d` (repository-specific).
 
-For examples, see the `/etc/cvmfs` subdirectory in the [config-repo GitHub repository](https://github.com/cvmfs-contrib/config-repo).
+Examples are available in the `etc/cvmfs` subdirectory of the [config-repo GitHub repository](https://github.com/cvmfs-contrib/config-repo).
 
 ---
 
