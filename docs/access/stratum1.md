@@ -76,7 +76,7 @@ recommendations into account:
     sees an updated [catalog](../appendix/terminology.md#catalog) from one Stratum 1, but then tries to read corresponding data files from another that does not yet have the files.
 
     Instead, different Stratum 1 replica servers
-    should either be separate configured on the clients, or a pair can be configured 
+    should either be separately configured on the clients, or a pair can be configured 
     as a high availability active/standby pair using the
     [`cvmfs-hastratum1`](https://github.com/cvmfs-contrib/cvmfs-hastratum1) package. 
 
