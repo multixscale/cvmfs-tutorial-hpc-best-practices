@@ -18,7 +18,7 @@ host_injections  README  versions
 
 If you see an error message like "`No such file or directory`", then either the CernVM-FS client
 is not installed on your system, or the configuration for the EESSI repository is not available.
-In that case, you may want to revisit the [Accessing a CernVM-FS repository](../access.md) section,
+In that case, you may want to revisit the [Accessing a CernVM-FS repository](../access/index.md) section,
 or go through the [Troubleshooting](../troubleshooting.md) section.
 
 ??? note "Don't be fooled by `autofs` *(click to expand)*"
@@ -32,7 +32,7 @@ or go through the [Troubleshooting](../troubleshooting.md) section.
     For more information on various aspects of mounting of CernVM-FS repositories, [see the CernVM-FS documentation](
     https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
 
-## 1) Initialise shell environment
+## 1) Initialise shell environment {: #init }
 
 If the EESSI repository is available, you can proceed to preparing your shell environment for using
 a particular version of EESSI by *sourcing* the provided initialisation script by running the `source` command:

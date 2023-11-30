@@ -6,7 +6,7 @@ and is aligned with the [motivation and goals](motivation-goals.md) of the proje
 In the remainder of this section of the tutorial, we will **explore the layered structure of the EESSI software stack**,
 and [how to use it](using-eessi.md).
 
-In the [next section](../access.md) will cover in detail how you can get access to EESSI
+In the [next section](../access/index.md) will cover in detail how you can get access to EESSI
 (and other publicly available CernVM-FS repositories).
 
 ## Layered structure
@@ -27,11 +27,11 @@ that was created exactly for this purpose:
 to distribute software installations worldwide reliably and efficiently in a scalable way.
 As such, it aligns very well with the [goals of EESSI](motivation-goals.md).
 
-The CernVM-FS repository for EESSI is **`/cvmfs/software.eessi.io`**.
+The CernVM-FS repository for EESSI is **`/cvmfs/software.eessi.io`**,
+which is part of the default CernVM-FS configuration since 21 November 2023, so no additional action is required to
+*gain access* to it other than installing and configuration the client component of CernVM-FS.
 
-It is part of the default CernVM-FS configuration since 21 November 2023, so no additional action is required to
-*gain access* to it other than installing the CernVM-FS client and creating a minimal general configuration file for it.
-More on that in the [next section](../access.md) of this tutorial.
+More on that in the [next section](../access/index.md) of this tutorial.
 
 ??? note "Note on the EESSI pilot repository *(click to expand)*"
 
