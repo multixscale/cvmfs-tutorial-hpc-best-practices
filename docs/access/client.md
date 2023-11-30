@@ -132,7 +132,7 @@ sudo cvmfs_config setup
 ```
 
 Additional options can be passed to the `cvmfs_config setup` command to disable some of the actions,
-like `nouser` to not create the `cvmfs` user and group, or `noautofs` not
+like `nouser` to not create the `cvmfs` user and group, or `noautofs` to not
 update the `autofs` configuration.
 
 ### Recommendations for `autofs`
