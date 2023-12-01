@@ -19,7 +19,7 @@ specific to those repositories in order to access them.
 
     While these basic steps are enough to *gain access* to CernVM-FS repositories,
     this is not sufficient to obtain a production-ready setup.
-    
+
     This is especially true on HPC infrastructure that typically consists of a
     large number of worker nodes on which software provided by one or more
     CernVM-FS repositories will be used.
@@ -165,7 +165,10 @@ If you prefer not to use `autofs`, you will need to use static mounting, by eith
 
 * Updating `/etc/fstab` to ensure that the CernVM-FS repositories are mounted at boot time.
 
-[Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts.
+[Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts,
+because the latter requires that every repository is mounted individually,
+even if is already known in your CernVM-FS configuration.
+When using `autofs` you can access all repositories that are known to CernVM-FS through its active configuration.
 
 For more information on mounting repositories,
 [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
