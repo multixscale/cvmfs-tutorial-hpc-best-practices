@@ -167,6 +167,10 @@ Cache usage is included in the output of
 cvmfs_config stat -v software.eessi.io
 ```
 
+Check consistency of the CernVM-FS cache directory
+```
+sudo time cvmfs_fsck -j 8 /var/lib/cvmfs/shared
+```
 
 ## Logs
 
@@ -304,9 +308,3 @@ _(maybe skip?)_
 `/etc/cvmfs/default.local`
 
 `/etc/cvmfs/domain.d`
-
-### Cache corruption
-
-```
-sudo time cvmfs_fsck -j 8 /var/lib/cvmfs/shared
-```
