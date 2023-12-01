@@ -166,8 +166,9 @@ If you prefer not to use `autofs`, you will need to use static mounting, by eith
 * Updating `/etc/fstab` to ensure that the CernVM-FS repositories are mounted at boot time.
 
 [Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts,
-because the latter requires you (or your system administrator) to mount every repository individually,
-even if they are already part of your CernVM-FS configuration. With `autofs` you automatically get access to these repositories.
+because the latter requires that every repository is mounted individually,
+even if is already known in your CernVM-FS configuration.
+When using `autofs` you can access all repositories that are known to CernVM-FS through its active configuration.
 
 For more information on mounting repositories,
 [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
