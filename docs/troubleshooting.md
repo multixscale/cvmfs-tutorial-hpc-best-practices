@@ -13,10 +13,10 @@ Considering the CernVM-FS client, errors could be related to
   (see [Configuration issues](#configuration-issues)),
 - the current status of the client,
   (see [Mounting problems](#mounting-problems) and [Cache problems](#cache-problems)),
-- the network connection to a Squid proxy and/or Stratum-1.
-  (see [Connectivity issues](#connectivity-issues)),
+- the network connection to a Squid proxy and/or Stratum-1
+  (see [Connectivity issues](#connectivity-issues))
 
-_(add diagram illustrating a potential setup)_
+_(add diagram illustrating a potential setup?)_
 
 ## Common problems
 
