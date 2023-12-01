@@ -153,6 +153,7 @@ which prints lots of information for debugging (option `-d`).
 
 ### Resource problems
 _(skip ?)_
+
 disk full on proxy or Stratum 1 or client cache
 
 ### Cache problems
@@ -272,6 +273,7 @@ ls: cannot open directory '/cvmfs/config-repo.cern.ch': Too many levels of symbo
 #### Bandwidth
 
 _(maybe skip? or something for performance section?)_
+
 - `iperf`
 
 #### Proxy
@@ -296,6 +298,7 @@ HTTP/1.1 403 Forbidden
 ### Incorrect repository configuration
 
 _(maybe skip?)_
+
 `/etc/cvmfs/keys`
 
 `/etc/cvmfs/default.local`
