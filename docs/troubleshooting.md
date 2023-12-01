@@ -61,6 +61,11 @@ sudo cvmfs_talk -i cvmfs-config.cern.ch version
 If the latter succeeds, there rather is an issue with the configuration of or
 the access to the former (`software.eessi.io` in this example).
 
+An alternative means to show configuration settings for a mounted repository is
+``` { .bash .copy }
+sudo cvmfs_talk -i software.eessi.io parameters
+```
+
 ### Connectivity issues
 
 There could be various issues related to connectivity. Because CernVM-FS uses
@@ -144,9 +149,14 @@ _(skip ?)_
 disk full on proxy or Stratum 1 or client cache
 
 ### Cache problems
-_(skip ?)_
-```
+Clean the cache to exclude any cache corruption as root cause of issues
+``` { .bash .copy }
 sudo cvmfs_config wipecache
+```
+
+Cache usage is included in the output of
+``` { .bash .copy }
+cvmfs_config stat -v software.eessi.io
 ```
 
 
@@ -165,29 +175,54 @@ CernVM-FS logs more information to `/tmp/cvmfs_debug.log` after the command
 ``` { .bash .copy }
 sudo cvmfs_config reload
 ```
-has been run.
+has been run. See
+[CernVM-FS documentation / debug-logs](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs)
+for more information.
+
+An interesting command for mounted repositories is
+``` { .bash .copy }
+attr -g logbuffer /cvmfs/software.eessi.io
+```
+
 
 ## General tools
 
-```
-sudo cvmfs_config chksetup
+If the repository `software.eessi.io` is mounted, the following command provides
+useful information and statistics
+``` { .bash .copy }
+cvmfs_config stat -v software.eessi.io
 ```
 
+To verify whether the basic setup is sound, run
+``` { .bash .copy }
+sudo cvmfs_config chksetup
 ```
+which should print something like
+```
+OK
+```
+or a message indicating a problem such as
+```
+Warning: autofs service is not running
+```
+
+Listing mounted repositories with
+``` { .bash .copy }
 cvmfs_config status
 ```
 
+Printing non-empty configuration settings for a repository
+``` { .bash .copy }
+cvmfs_config showconfig -s software.eessi.io
 ```
+
+Check if a CernVM-FS repository can be mounted
+``` { .bash .copy }
 cvmfs_config probe software.eessi.io
 ```
 
+
 ---
-
-## Logs
-
-only client-side, assumption is that CernVM-FS replica servers and proxy servers are working correctly (?)
-
-see also https://github.com/EESSI/filesystem-layer/blob/main/README.md
 
 ## Client to S1 / proxy connection
 
@@ -195,23 +230,28 @@ see also https://github.com/EESSI/filesystem-layer/blob/main/README.md
 
 `curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished`
 
-`Connection` line in `cvmfs_config stat -v software.eessi.io`
 
+## Typical error messages
 
-## Error messages
+Below is a list of typical error messages you may encounter. It may not always be
+immediately clear what the root cause of a specific error is. The recommended
+approach to investigate any issue, is to start from
+[installation issues](#installation-issues), then
+systematically walk through the listed issues/problems until
+[cache problems](#cache-problems). Also, considering the above listed
+[general tools](#general-tools) as well as [(debug) log information](#logs)
+may be helpful.
 
 ```
-$ ls /cvmfs
 ls: cannot access '/cvmfs': No such file or directory
 ```
 
 ```
-$ ls /cvmfs/software.eessi.io
 ls: cannot access '/cvmfs/software.eessi.io': No such file or directory
 ```
 
 ```
-failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
+Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
 ```
 
 ```
@@ -227,48 +267,13 @@ ls: cannot access '/cvmfs/software.eessi.io': Transport endpoint is not connecte
 ```
 
 ```
-$ /cvmfs/config-repo.cern.ch
 ls: cannot open directory '/cvmfs/config-repo.cern.ch': Too many levels of symbolic links
 ```
 
-## Configuration
-
-```
-cvmfs_config showconfig software.eessi.io
-```
-
-```
-sudo cvmfs_talk -i software.eessi.io parameters
-```
-
-`CVMFS_REPOSITORIES` can be used to *limit* access to specific repositories
-
-## Logs
-
-only syslog?
-
-debug log
-- `CVMFS_DEBUGLOG=/tmp/cvmfs.log`
-- https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs
-- via xattrs: `attr -g logbuffer /cvmfs/software.eessi.io` (repo must be mounted, no sudo required)
-
-
-## Stats
-
-## Monitoring
-
-## Mounting in debug mode
-
-### Network issues
-
-#### Firewall
-
-- `telnet` (port 80 for Stratum 1, port 3128 for Squid proxy)
-- `tcptraceroute`
-- `curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished`
 
 #### Bandwidth
 
+_(maybe skip? or something for performance section?)_
 - `iperf`
 
 #### Proxy
@@ -276,6 +281,8 @@ debug log
 `CVMFS_HTTP_PROXY`
 
 https://cvmfs.readthedocs.io/en/stable/cpt-squid.html
+
+_(the examples below didn't work ... squid.vega.pri seems not a known DNS name)_
 
 `http_proxy=http://squid.vega.pri:3128 curl -vs http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished | cat -v`
 
@@ -290,31 +297,15 @@ HTTP/1.1 403 Forbidden
 
 ### Incorrect repository configuration
 
+_(maybe skip?)_
 `/etc/cvmfs/keys`
 
 `/etc/cvmfs/default.local`
 
 `/etc/cvmfs/domain.d`
 
-### Mount problems
-
-manual mount:
-
-- with `mount -t cvmfs`
-- with `sudo /usr/bin/cvmfs2 ...`
-
 ### Cache corruption
 
 ```
 sudo time cvmfs_fsck -j 8 /var/lib/cvmfs/shared
-```
-
-## Monitoring
-
-```
-cvmfs_talk -i software.eessi.io revision
-```
-
-```
-cvmfs_config stat software.eessi.io
 ```
