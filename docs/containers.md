@@ -37,7 +37,7 @@ where recipe.yaml is a 'wishlist' of container images available in external regi
 ```
 version: 1
 user: cvmfsunpacker
-cvmfs_repo: 'unpacked.test.repo'
+cvmfs_repo: 'unpacked.repo.tld'
 input:
     - 'https://registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter'
     ...
