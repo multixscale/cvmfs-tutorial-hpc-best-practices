@@ -108,7 +108,14 @@ which results in
   [1] http://azure-us-east-s1.eessi.science/cvmfs/software.eessi.io (geographically ordered)
 Active host 0: http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io
 ```
-We can now use `curl` to check the connectivity to a Stratum-1.
+
+First, we can use `telnet` or `nc` to verify basic connectivity to a Stratum-1.
+``` { .bash .copy }
+nc -vz aws-eu-central-s1.eessi.science 80
+telnet aws-eu-central-s1.eessi.science 80
+```
+
+Next, we can now use `curl` to check the connectivity to a Stratum-1.
 ``` { .bash .copy }
 curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
 ```
@@ -220,15 +227,6 @@ Check if a CernVM-FS repository can be mounted
 ``` { .bash .copy }
 cvmfs_config probe software.eessi.io
 ```
-
-
----
-
-## Client to S1 / proxy connection
-
-`telnet STRATUM1_IP 80`
-
-`curl --head http://STRATUM1_IP/cvmfs/software.eessi.io/.cvmfspublished`
 
 
 ## Typical error messages
