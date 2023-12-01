@@ -25,16 +25,18 @@ Documentation on using their CernVM-FS repository `/cvmfs/soft.computecanada.ca`
 
 ## Unpacked containers
 
-CernVM-FS repositories can be used to provide a more efficient way to access container images,
-by serving unpacking container images that can be consumed by container runtime like [Apptainer](https://apptainer.org).
+CernVM-FS repositories can be used to provide an efficient way to access container images,
+by serving unpacked container images that can be consumed by container runtimes such as [Apptainer](https://apptainer.org).
 
 Examples include:
 
 * [`/cvmfs/unpacked.cern.ch`](https://cvmfs-monitor-frontend.web.cern.ch/browse/unpacked.cern.ch)
 * `/cvmfs/singularity.opensciencegrid.org`
 
-More information on how to use the `unpacked.cern.ch` repository is available
-[here](https://awesome-workshop.github.io/docker-cms/06-unpacked/index.html).
+More information on `unpacked.cern.ch` is available in the CernVM-FS documentation:
+
+* [Container Images and CernVM-FS](https://cvmfs.readthedocs.io/en/stable/cpt-containers.html)
+* [Working with DUCC and Docker Images](https://cvmfs.readthedocs.io/en/stable/cpt-ducc.html)
 
 ## EESSI
 
@@ -42,6 +44,9 @@ The [*European Environment for Scientific Software Installations (EESSI)*](https
 of scientific software for `x86_64` (Intel + AMD) and `aarch64` (64-bit Arm) systems that work on any Linux
 distribution.
 
-We will use EESSI as an example repository throughout this tutorial.
+We will use EESSI as an example CernVM-FS repository throughout this tutorial.
 
-More detailed information on EESSI is available in the [next part of this tutorial](../eessi.md).
+
+---
+
+*(next: [What is EESSI?](../eessi/what-is-eessi.md))*

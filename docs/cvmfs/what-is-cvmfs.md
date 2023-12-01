@@ -4,7 +4,7 @@
 is a *file distribution service* that is particularly well suited to distribute *software installations*
 across a large number of systems world-wide in an efficient way.
 
-From an end user perspective, files in a CernVM-FS [repository](terminology.md#repository) are available
+From an end user perspective, files in a CernVM-FS [repository](../appendix/terminology.md#repository) are available
 *read-only* via a subdirectory in `/cvmfs`, with a user experience similar to that of an *on-demand streaming service*
 for music or video, but then (mainly) applied to software installations.
 
@@ -20,7 +20,7 @@ support this, including:
 * [compression of data](#features-compression);
 * [verification of data integrity](#features-data-integrity);
 
-CernVM-FS has been proven to scale to *billions* of files and *tens of thousands* of [clients](terminology.md#client).
+CernVM-FS has been proven to scale to *billions* of files and *tens of thousands* of [clients](../appendix/terminology.md#client).
 
 It was originally developed at [CERN](https://home.cern/) to let High Energy Physics (HEP) collaborations
 like the experiments at the [Large Hadron Collider (LHC)](https://home.cern/science/accelerators/large-hadron-collider)
@@ -51,12 +51,21 @@ metadata directly available: those which were most recently accessed.
 ### Automatic updates { #features-updating }
 
 CernVM-FS clients **automatically pull in updates** to the contents of a repository as they are
-[published](terminology.md#publishing) server-side.
+[published](../appendix/terminology.md#publishing) server-side.
 This happens in *transactions*, to ensure that clients observe a consistent state of the repository.
 
-Hence, once a CernVM-FS repository is accessible on a client system, no subsequent actions must be taken
-to keep clients up-to-date other than updating CernVM-FS itself on a regular basis,
-which significantly limits the maintenance burden.
+Once a CernVM-FS repository is accessible on a client system, no subsequent actions must be taken
+to keep clients up-to-date other than updating CernVM-FS itself on a regular basis.
+
+This significantly limits the maintenance burden, since no action is required on client systems
+to update the software stack that is provided through a CernVM-FS repository, since the updates are
+*streamed in* automatically by CernVM-FS.
+
+Only the CernVM-FS client should be updated on a regular basis on client systems.
+
+For more elaborate setups that involve [proxies](../appendix/terminology.md#proxy) or
+[CernVM-FS replica (mirror) servers](../appendix/terminology.md#stratum1), additional maintenance is necessary,
+but again only to update the CernVM-FS components themselves.
 
 
 ### Multi-level caching { #features-caching }
@@ -67,16 +76,19 @@ Caching is an essential part of CernVM-FS, since the contents of a CernVM-FS rep
 
 The caching mechanism employed by CernVM-FS goes way beyond the standard (in-memory) Linux kernel file system cache,
 and consists of a *local client cache*,
-an optional [forward proxy server](terminology.md#proxy) that acts as an intermediary cache level, and a distributed
-network of [mirror servers](terminology.md#stratum1) that support the CernVM-FS repository being accessed.
+an optional [forward proxy server](../appendix/terminology.md#proxy) that acts as an intermediary cache level, and a distributed
+network of [mirror servers](../appendix/terminology.md#stratum1) that support the CernVM-FS repository being accessed.
 
 When a part of the repository is being accessed that is not available yet in the local client cache,
 CernVM-FS will traverse the multi-level cache hierarchy to obtain the necessary data and update the local client
 cache with it, so the files being accessed can be served with low latency.
 
-We will explore the this multi-level caching mechanism in more detail in this tutorial.
+Proxy and mirror servers scale horizontally: the CernVM-FS client makes automatic use of
+multiple deployed service instances for load-balancing and high-availability.
 
-See [here](technical_details.md#caching) more technical details on CernVM-FS caching.
+We will explore this multi-level caching mechanism in more detail in this tutorial.
+
+See [here](technical-details.md#caching) more technical details on CernVM-FS caching.
 
 
 ### De-duplication of files {: #features-deduplication }
@@ -91,7 +103,7 @@ as often happens with particular files like example data files across multiple v
 
 ### Compression of data { #features-compression }
 
-CernVM-FS [**stores file content with compression**](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#compression-and-hash-algorithms)
+CernVM-FS [**stores file content compressed**](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#compression-and-hash-algorithms)
 on the server, which not only further reduces required storage space but also significantly limits the
 network bandwidth that is required to download (and serve) the contents of a repository.
 
@@ -108,4 +120,4 @@ to distribute the contents of a repository.
 
 ---
 
-For more technical details on how CernVM-FS implements these features, see [here](technical_details.md).
+*(next: [Technical details of CernVM-FS](technical-details.md))*

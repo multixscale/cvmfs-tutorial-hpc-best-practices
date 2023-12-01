@@ -1,21 +1,35 @@
 # Best Practices for CernVM-FS in HPC
 
 <p align="center">
-<img src="img/cvmfs_logo.png" alt="CernVM-FS logo" width="100px"/></br>
+<img src="img/cvmfs_hpc.png" alt="CernVM-FS logo" width="40%"/></br>
 </p>
 
 
-## Scope
+!!! warning
 
-This is an introductory tutorial to using [CernVM-FS](https://cernvm.cern.ch/fs/), the CernVM File System.
+    *(Nov'23)* This tutorial is under development, please come back later
+    when the tutorial contents have been completed.
+
+    An online version of this tutorial is planned for **Mon 4 Dec 2023 (13:30-17:00 CET)**,
+    register via <https://event.ugent.be/registration/cvmfshpc202312>.
+
+
+This is an introductory tutorial to [CernVM-FS](https://cernvm.cern.ch/fs/), the CernVM File System,
+with a focus on employing it in the context of High-Performance Computing (HPC).
 
 In this tutorial you will learn what CernVM-FS is, how to get access to existing CernVM-FS repositories,
-and how to configure CernVM-FS on High-Performance Computing (HPC) infrastructure.
+how to configure CernVM-FS, and how to use CernVM-FS [repositories](appendix/terminology.md#repository)
+on HPC infrastructure.
+
+<div markdown="1" style="text-align:center;">
+**[Ready to go? Click here to start the tutorial!](cvmfs/what-is-cvmfs.md)**
+</div>
+
 
 ## Intended audience
 
 This tutorial is intended for people with a background in HPC (system administrators, support team members,
-end users, etc.) who are new to CernVM-FS: no specific prior knowledge or experience with it is required.
+end users, etc.) and who are new to CernVM-FS; no specific prior knowledge or experience with it is required.
 
 We expect it to be most valuable to people who are interested in using or providing access to one or more existing
 CernVM-FS repositories on HPC infrastructure.
@@ -25,45 +39,47 @@ CernVM-FS repositories on HPC infrastructure.
 
 *(more info soon)*
 
+
 ## Practical information
 
-We hope to organise a fully online tutorial using this material some time in Sept-Dec 2023.
+A first virtual edition of this tutorial is planned for Monday 4 December 2023 (13:30-17:00 CET).
 
-*(more info soon)*
+Attendance is free, but **registration is required**: <https://event.ugent.be/registration/cvmfshpc202312>.
 
+*(more practical info soon)*
 
-## Tutorial contents
-
-- [Introduction to CernVM-FS](cvmfs/index.md)
-    - [What is CernVM-FS?](cvmfs/what_is_cvmfs.md)
-    - [Terminology](cvmfs/terminology.md)
-    - [Technical details](cvmfs/technical_details.md)
-    - [Flagship repositories](cvmfs/repositories.md)
-- [European Environment for Scientific Software (EESSI)](eessi.md)
-- [Accessing a CernVM-FS repository](02_access.md)
-- [Configuring CernVM-FS on HPC infrastructure](03_configuration.md)
-- [Troubleshooting and debugging CernVM-FS](04_troubleshooting_debugging.md)
-- [Performance aspects of CernVM-FS](05_performance.md)
-- [Different storage backends for CernVM-FS](06_storage_backends.md)
-- [Containers and CernVM-FS](07_containers.md)
-- [Getting started with CernVM-FS (from scratch)](10_getting_started.md)
-
-*(sections indicated with* ``(*)`` *involve hands-on exercises)*
 
 ## Slides
 
 *(coming soon)*
 
 
+## MultiXscale
+
+<div align="center">
+<a href="https://www.multixscale.eu">
+<img src="img/logos/multixscale_logo.png" alt="MultiXscale logo" width="50%"/>
+</a>
+</div>
+
+This tutorial is being developed and organised in the context of the [MultiXscale EuroHPC
+Centre-of-Excellence](https://www.multixscale.eu).
+
+Funded by the European Union. This work has received funding from the [European High Performance Computing Joint
+Undertaking (JU)](https://eurohpc-ju.europa.eu) and countries participating in the project under grant agreement No 101093169.
+
 ## Contributors
 
 * Jakob Blomer (CERN, Switzerland)
 * Bob Dröge (University of Groningen, The Netherlands)
-* Kenneth Hoste (HPC-UGent, Belgium)
-* Alan O'Cais (University of Barcelona, Spain)
-* Lara Peeters (HPC-UGent, Belgium)
+* Kenneth Hoste (Ghent University, Belgium)
+* Alan O'Cais (University of Barcelona, Spain; CECAM)
+* Lara Peeters (Ghent University, Belgium)
 * Laura Promberger (CERN, Switzerland)
-* Valentin Volkl (CERN, Switzerland)
+* Thomas Röblitz (University of Bergen, Norway)
+* Caspar van Leeuwen (SURF, The Netherlands)
+* Valentin Völkl (CERN, Switzerland)
+
 
 ## Additional resources
 

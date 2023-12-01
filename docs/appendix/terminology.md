@@ -19,11 +19,14 @@ documentation](https://cvmfs.readthedocs.io/en/stable/cpt-details.html#file-cata
 ## CernVM { #cernvm }
 
 **CernVM** is a virtual machine image based on CentOS combined with a custom, virtualization-friendly Linux kernel,
-and which includes the [CernVM-FS](what_is_cvmfs.md) client software.
+and which includes the [CernVM-FS](../cvmfs/what-is-cvmfs.md) client software.
 
 It is used for the CERN [Large Hadron Collider (LHC)](https://home.cern/science/accelerators/large-hadron-collider)
 experiment, and was created to remove a need for the installation of the experiment software and to minimize the
 number of platforms (compiler-OS combinations) on which experiment software needs to be supported and tested.
+
+While originally developed in conjunction, the [CernVM File System](#cvmfs) today is a product
+that is completely independent from the CernVM virtual appliance.
 
 For more information on CernVM, see the [website](https://cernvm.cern.ch/appliance/)
 and [documentation](https://cernvm.readthedocs.io).
@@ -32,7 +35,7 @@ and [documentation](https://cernvm.readthedocs.io).
 
 ## CernVM-FS { #cvmfs }
 
-*(see [What is CernVM-FS?](what_is_cvmfs.md))*
+*(see [What is CernVM-FS?](../cvmfs/what-is-cvmfs.md))*
 
 ---
 
@@ -64,7 +67,7 @@ For more information on proxies, see the
 
 **Publishing** is the process of adding more files to a CernVM-FS [repository](#repository),
 which is done via a *transaction* mechanism, and is on possible on the [Stratum-0 server](#stratum0),
-via a [publisher server](https://cvmfs.readthedocs.io/en/stable/cpt-repository-gateway.html#publisher-configuration),
+via a [publisher](https://cvmfs.readthedocs.io/en/stable/cpt-repository-gateway.html#publisher-configuration),
 or via a [repository gateway](https://cvmfs.readthedocs.io/en/stable/cpt-repository-gateway.html#repository-gateway-configuration).
 
 The workflow of publishing content is covered in detail in the
@@ -110,7 +113,7 @@ in a single *package* to distribute as a whole.
 A **Stratum 0 server**, often simply referred to a *Stratum 0* (Stratum Zero), is the central server
 for one or more CernVM-FS [repositories](#repository).
 
-It is responsible as the single source of (new) data, since it hosts the *master copy* of the repository contents.
+It is the single source of (new) data, since it hosts the *master copy* of the repository contents.
 
 Adding or updating files in a CernVM-FS repository ([publishing](#publishing)) can only be done on the Stratum 0 server,
 either directly via the `cvmfs_server publish` command, or indirectory via a publisher server.
