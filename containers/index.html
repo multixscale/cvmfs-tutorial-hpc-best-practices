@@ -766,18 +766,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-a-cernvm-fs-repository-via-apptainer" class="md-nav__link">
+  <a href="#accessing-via-apptainer" class="md-nav__link">
     <span class="md-ellipsis">
-      Accessing a CernVM-FS repository via Apptainer
+      Accessing via Apptainer
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingesting-container-images-in-a-cernvm-fs-repository" class="md-nav__link">
+  <a href="#ingesting" class="md-nav__link">
     <span class="md-ellipsis">
-      Ingesting container images in a CernVM-FS repository
+      Ingesting container images
     </span>
   </a>
   
@@ -867,18 +867,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-a-cernvm-fs-repository-via-apptainer" class="md-nav__link">
+  <a href="#accessing-via-apptainer" class="md-nav__link">
     <span class="md-ellipsis">
-      Accessing a CernVM-FS repository via Apptainer
+      Accessing via Apptainer
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ingesting-container-images-in-a-cernvm-fs-repository" class="md-nav__link">
+  <a href="#ingesting" class="md-nav__link">
     <span class="md-ellipsis">
-      Ingesting container images in a CernVM-FS repository
+      Ingesting container images
     </span>
   </a>
   
@@ -912,37 +912,39 @@
 
 
 <h1 id="containers-and-cernvm-fs">Containers and CernVM-FS<a class="headerlink" href="#containers-and-cernvm-fs" title="Permanent link">&para;</a></h1>
-<p>CVMFS can also be used to distribute container images, providing many of the same benefits that come with any CVMFS installation. Especially the on-demand download of accessed files means that containers start nearly instantly, and are more efficient for large images when only a fraction of the files are read, which is typically the case.</p>
-<p>Any CVMFS repository can be used to distribute container images (although often, dedicated repositories are used, like <code>/cvmfs/unpacked.cern.ch</code>). In order to provide de-duplication and on-demand download, images must be stored unpacked. This requires some dedicated tools, provided by cvmfs itself - see the section "Ingesting container images in a CernVM-FS repository" below.</p>
-<h2 id="accessing-a-cernvm-fs-repository-via-apptainer">Accessing a CernVM-FS repository via Apptainer<a class="headerlink" href="#accessing-a-cernvm-fs-repository-via-apptainer" title="Permanent link">&para;</a></h2>
-<p><a href="https://apptainer.org/">Apptainer</a> is the recommended way to run containers from cvmfs, as it can start a container directly from an unpacked root file system, which is ideal for CVMFS.
-Docker can be used as well but the setup is more complicated, requiring the cvmfs graphdriver plugin. More details can be found in the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-graphdriver.html">documentation</a>.</p>
-<p>For example, to run the <a href="https://hub.docker.com/layers/tensorflow/tensorflow/2.15.0-jupyter/images/sha256-3bf17d6d5f2ed968543238936cca0725ca664d24729c537778b1333a315036d7?context=explore"><code>https://registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter</code></a> image that has been unpacked on /cvmfs/unpacked.cern.ch, use the command</p>
-<div class="highlight"><pre><span></span><code>apptainer exec /cvmfs/unpacked.cern.ch/registry.hub.docker.com/tensorflow/tensorflow\:2.15.0-jupyter /bin/bash
-...
+<p>CernVM-FS can also be used to distribute container images, providing many of the same benefits that come with any CernVM-FS installation. Especially the on-demand download of accessed files means that containers start nearly instantly, and are more efficient for large images when only a fraction of the files are read, which is typically the case.</p>
+<p>Any CernVM-FS repository can be used to distribute container images (although often, dedicated repositories are used, like <a href="../cvmfs/flagship-repositories/#unpacked-containers"><code>/cvmfs/unpacked.cern.ch</code></a>).</p>
+<p>In order to provide <a href="../cvmfs/what-is-cvmfs/#features-deduplication">de-duplication</a> and <a href="../cvmfs/what-is-cvmfs/#features-ondemand">on-demand download</a>, images must be stored <em>unpacked</em>. This requires some dedicated tools, provided by CernVM-FS itself - see the section "<a href="#ingesting">Ingesting container images</a>" below.</p>
+<h2 id="accessing-via-apptainer">Accessing via Apptainer<a class="headerlink" href="#accessing-via-apptainer" title="Permanent link">&para;</a></h2>
+<p><a href="https://apptainer.org">Apptainer</a> is the recommended way to run containers from CernVM-FS, as it can start a container directly from an unpacked root file system, which is ideal for CernVM-FS.</p>
+<p><a href="https://www.docker.com">Docker</a> can be used as well but the setup is more complicated, requiring the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-graphdriver.html">CernVM-FS graphdriver plugin</a>.</p>
+<p>For example, to run the <a href="https://hub.docker.com/layers/tensorflow/tensorflow/2.15.0-jupyter/images/sha256-3bf17d6d5f2ed968543238936cca0725ca664d24729c537778b1333a315036d7?context=explore"><code>tensorflow/tensorflow:2.15.0-jupyter</code></a> image from <a href="https://hub.docker.com/">Docker Hub</a> that has been unpacked in <code>/cvmfs/unpacked.cern.ch</code>, use the following commands:</p>
+<div class="copy highlight"><pre><span></span><code><span class="nv">container</span><span class="o">=</span><span class="s2">&quot;registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter&quot;</span>
+<span class="nv">python_code</span><span class="o">=</span><span class="s2">&quot;import tensorflow as tf; print(tf.__version__)&quot;</span>
+apptainer<span class="w"> </span>run<span class="w"> </span>/cvmfs/unpacked.cern.ch/<span class="si">${</span><span class="nv">container</span><span class="si">}</span><span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">python_code</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 <p>This directory just contains the root file system of the image:</p>
-<div class="highlight"><pre><span></span><code>ls /cvmfs/unpacked.cern.ch/registry.hub.docker.com/tensorflow/tensorflow\:2.15.0-jupyter
-...
+<div class="copy highlight"><pre><span></span><code>ls<span class="w"> </span>/cvmfs/unpacked.cern.ch/registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter
 </code></pre></div>
-<h2 id="ingesting-container-images-in-a-cernvm-fs-repository">Ingesting container images in a CernVM-FS repository<a class="headerlink" href="#ingesting-container-images-in-a-cernvm-fs-repository" title="Permanent link">&para;</a></h2>
-<p>CVMFS provides a suite of container unpacking tools called <code>cvmfs_ducc</code> (provided by the <code>cvmfs-ducc</code> package). This can be used to unpack and ingest container images by simply running</p>
-<p><div class="highlight"><pre><span></span><code>cvmfs_ducc convert recipe.yaml 
+<h2 id="ingesting">Ingesting container images<a class="headerlink" href="#ingesting" title="Permanent link">&para;</a></h2>
+<p>CernVM-FS provides a suite of container unpacking tools called <code>cvmfs_ducc</code> (provided by the <code>cvmfs-ducc</code> package). This can be used to unpack and ingest container images by simply running</p>
+<p><div class="copy highlight"><pre><span></span><code>cvmfs_ducc<span class="w"> </span>convert<span class="w"> </span>recipe.yaml<span class="w"> </span>
 </code></pre></div>
-where recipe.yaml is a 'wishlist' of container images available in external registries that should be made available:</p>
-<div class="highlight"><pre><span></span><code>version: 1
-user: cvmfsunpacker
-cvmfs_repo: &#39;unpacked.repo.tld&#39;
-input:
-    - &#39;https://registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter&#39;
-    ...
+where <code>recipe.yaml</code> is a 'wishlist' of container images available in external registries that should be made available:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cvmfsunpacker</span>
+<span class="nt">cvmfs_repo</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;unpacked.repo.tld&#39;</span>
+<span class="nt">input</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;https://registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter&#39;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
-<h2 id="using-cvmfs-inside-containers">Using /cvmfs inside containers<a class="headerlink" href="#using-cvmfs-inside-containers" title="Permanent link">&para;</a></h2>
-<p>The easiest way to access cvmfs from a container is to set it up on the host and bind-mount it inside the container:</p>
-<div class="highlight"><pre><span></span><code>docker run -it --volume /cvmfs:/cvmfs:shared ubuntu ls -lna /cvmfs/atlas.cern.ch
+<p>For more information, <a href="https://cvmfs.readthedocs.io/en/stable/cpt-ducc.html">see the CernVM-FS documentation</a>.</p>
+<h2 id="using-cvmfs-inside-containers">Using <code>/cvmfs</code> inside containers<a class="headerlink" href="#using-cvmfs-inside-containers" title="Permanent link">&para;</a></h2>
+<p>The easiest way to access CernVM-FS repositories from a container is to set it up on the host and bind-mount it inside the container:</p>
+<div class="copy highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--volume<span class="w"> </span>/cvmfs:/cvmfs:shared<span class="w"> </span>ubuntu<span class="w"> </span>ls<span class="w"> </span>-lna<span class="w"> </span>/cvmfs/atlas.cern.ch
 </code></pre></div>
-<p>For apptainer, the same can be done by setting the <code>SINGULARITY_BIND</code> environment variable </p>
-<div class="highlight"><pre><span></span><code>export SINGULARITY_BIND=&quot;/cvmfs&quot;
+<p>For Apptainer, the same can be done by setting the <code>$SINGULARITY_BIND</code> (or <code>$APPTAINER_BIND</code>) environment variable: </p>
+<div class="copy highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SINGULARITY_BIND</span><span class="o">=</span><span class="s2">&quot;/cvmfs&quot;</span>
 </code></pre></div>
 
   <hr>
