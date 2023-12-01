@@ -112,7 +112,7 @@ We can also try to connect to that machine via a proxy, for example,
 curl --proxy http://10.0.0.66:3128 --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
 ```
 
-Another command to provide a concise overview of the status of the known
+Another command to provide a concise overview of the status of the mounted
 repositories is
 ``` { .bash .copy }
 cvmfs_config stat
@@ -121,28 +121,51 @@ _(more on 'squid proxy configuration' ?)_
 
 ### Mounting problems
 
-`autofs`
+By default CernVM-FS repositories are mounted via `autofs`. Note, to see which
+repositories are available `ls /cvmfs` is not sufficient. Because of `autofs` the
+repository name has to be added, for example, `ls /cvmfs/software.eessi.io`
 
-try manual mount:
-
-```
+If that does not work, one can try a manual mount:
+``` { .bash .copy }
 mount -t cvmfs software.eessi.io /tmp/eessi
 ```
-
-use cvmfs directly to mount, see https://github.com/cvmfs/cvmfs/blob/devel/doc/developer/60-debugging-and-testing.md#client
+or even use `cvmfs2` directly to mount a repository:
+``` { .bash .copy }
+sudo /usr/bin/cvmfs2 \
+    -d -f \
+    -o rw,system_mount,fsname=cvmfs2,allow_other,grab_mountpoint,uid=$(id -u cvmfs),gid=$(id -g cvmfs),libfuse=3 \
+    software.eessi.io \
+    /tmp/eessi
+```
+which prints lots of information for debugging (option `-d`).
 
 ### Resource problems
-
+_(skip ?)_
 disk full on proxy or Stratum 1 or client cache
 
 ### Cache problems
-
+_(skip ?)_
 ```
 sudo cvmfs_config wipecache
 ```
 
 
 ## Logs
+
+By default CernVM-FS logs to syslog, for example, `/var/log/messages` or
+`/var/log/syslog`. Scanning these logs for `cvmfs` may help to determine the root
+cause of an issue.
+
+For obtaining more detailed information, CernVM-FS provides the setting
+`CVMFS_DEBUGLOG`. If set as follows
+``` { .ini .copy }
+CVMFS_DEBUGLOG=/tmp/cvmfs_debug.log
+```
+CernVM-FS logs more information to `/tmp/cvmfs_debug.log` after the command
+``` { .bash .copy }
+sudo cvmfs_config reload
+```
+has been run.
 
 ## General tools
 
