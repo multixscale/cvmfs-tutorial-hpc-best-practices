@@ -202,6 +202,13 @@ $ find /cvmfs/cvmfs-config.cern.ch/etc/cvmfs -type f -name '*eessi*'
 /cvmfs/cvmfs-config.cern.ch/etc/cvmfs/keys/eessi.io/eessi.io.pub
 ```
 
+That means we now already have access to the EESSI CernVM-FS repository:
+
+```
+$ ls /cvmfs/software.eessi.io
+README.eessi  host_injections  versions
+```
+
 ## Inspecting repository configuration
 
 To check whether a specific CernVM-FS repository is accessible, we can *probe* it:
