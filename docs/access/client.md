@@ -165,7 +165,9 @@ If you prefer not to use `autofs`, you will need to use static mounting, by eith
 
 * Updating `/etc/fstab` to ensure that the CernVM-FS repositories are mounted at boot time.
 
-[Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts, because the latter requires you to configure every repository individually, even if they are part of the same domain. For instance, if you use `autofs` and already have access to `/cvmfs/software.eessi.io`, you will automatically get access to any future repository under the `eessi.io` domain. With static mounts an administrator of the system will have to manually add each and every one of them.
+[Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts,
+because the latter requires you (or your system administrator) to mount every repository individually,
+even if they are already part of your CernVM-FS configuration. With `autofs` you automatically get access to these repositories.
 
 For more information on mounting repositories,
 [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
