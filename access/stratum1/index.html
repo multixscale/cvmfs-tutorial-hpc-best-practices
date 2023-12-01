@@ -994,26 +994,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../storage-backends/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Storage backends
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../containers/" class="md-nav__link">
         
   
@@ -1456,6 +1436,12 @@ the Stratum 1 also needs to run garbage collection in order to prevent the disk 
 <p><a href="https://cvmfs.readthedocs.io/en/stable/cpt-replica.html#maintenance-processes">See the CernVM-FS
 documentation</a> for more details.</p>
 </details>
+<details class="note">
+<summary>Using S3-compatible storage (Amazon S3, Azure Blob, Ceph)</summary>
+<p>CernVM-FS can store data directly to S3-compatible storage systems, such as <a href="https://aws.amazon.com/s3">Amazon S3</a>,
+<a href="https://learn.microsoft.com/en-us/azure/storage/blobs">Azure Blob</a>, or <a href="https://ceph.io">Ceph</a>.</p>
+<p>For more information, <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#sct-s3storagesetup">see the CernVM-FS documentation</a>.</p>
+</details>
 <h2 id="setup-procedure">Setup procedure<a class="headerlink" href="#setup-procedure" title="Permanent link">&para;</a></h2>
 <p>To set up a Stratum 1 replica server and configure it to replicate
 a particular CernVM-FS repository, you should:</p>
@@ -1705,7 +1691,7 @@ different HPC clusters that have significantly different workload mixes.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2023</span>
       
     
   </small>
