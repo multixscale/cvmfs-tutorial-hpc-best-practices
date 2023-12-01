@@ -2,7 +2,7 @@
 
 CVMFS can also be used to distribute container images, providing many of the same benefits that come with any CVMFS installation. Especially the on-demand download of accessed files means that containers start nearly instantly, and are more efficient for large images when only a fraction of the files are read, which is typically the case.
 
-Any CVMFS repository can be used to distribute container images (although often, dedicated repositories are used, like `/cvmfs/unpacked.cern.ch`. In order to provide de-duplication and on-demand download, images must be stored unpacked. This requires some dedicated tools, provided by cvmfs itself - see the section "Ingesting container images in a CernVM-FS repository" below.
+Any CVMFS repository can be used to distribute container images (although often, dedicated repositories are used, like `/cvmfs/unpacked.cern.ch`). In order to provide de-duplication and on-demand download, images must be stored unpacked. This requires some dedicated tools, provided by cvmfs itself - see the section "Ingesting container images in a CernVM-FS repository" below.
 
 ## Accessing a CernVM-FS repository via Apptainer
 
