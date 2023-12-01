@@ -922,16 +922,16 @@ including some that do not require system administrator permissions.</p>
 <h2 id="cvmfsexec"><code>cvmfsexec</code><a class="headerlink" href="#cvmfsexec" title="Permanent link">&para;</a></h2>
 <p>Using <a href="https://github.com/cvmfs/cvmfsexec"><code>cvmfsexec</code></a>, mounting of CernVM-FS repositories as
 an unprivileged user is possible, without having CernVM-FS installed system-wide.</p>
-<p><code>cvmfsexec</code> supports multiple ways of doing this depending on the system configuration,
-where way requires that specific features are enabled in the system, like:</p>
+<p><code>cvmfsexec</code> supports multiple ways of doing this depending on the OS version and system configuration,
+more specifically whether or not particular features are enabled, like:</p>
 <ul>
-<li>like <a href="https://www.kernel.org/doc/html/latest/filesystems/fuse.html">FUSE mounting</a> with <code>fusermount</code>;</li>
+<li><a href="https://www.kernel.org/doc/html/latest/filesystems/fuse.html">FUSE mounting</a> with <code>fusermount</code>;</li>
 <li>unprivileged user namespaces;</li>
 <li>unprivileged namespace fuse mounts;</li>
 <li>a <code>setuid</code> installation of Singularity 3.4+ (via <code>singcvmfs</code> which uses the <code>--fusemount</code> feature),
   or an unprivileged installation of Singularity 3.6+;</li>
 </ul>
-<p>Start by closing the <code>cvmfsexec</code> repository from GitHub, and change to the <code>cvmfsexec</code> directory:</p>
+<p>Start by cloning the <code>cvmfsexec</code> repository from GitHub, and change to the <code>cvmfsexec</code> directory:</p>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/cvmfs/cvmfsexec.git
 cd cvmfsexec
 </code></pre></div>
@@ -1023,7 +1023,7 @@ tutorial.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2023</span>
       
     
   </small>
