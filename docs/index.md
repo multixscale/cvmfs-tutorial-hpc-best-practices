@@ -63,7 +63,7 @@ Attendance is free, but **registration is required**: <https://event.ugent.be/re
 </div>
 
 This tutorial is being developed and organised in the context of the [MultiXscale EuroHPC
-Centre-of-Excellence](https://multixscale.eu).
+Centre-of-Excellence](https://www.multixscale.eu).
 
 Funded by the European Union. This work has received funding from the [European High Performance Computing Joint
 Undertaking (JU)](https://eurohpc-ju.europa.eu) and countries participating in the project under grant agreement No 101093169.
