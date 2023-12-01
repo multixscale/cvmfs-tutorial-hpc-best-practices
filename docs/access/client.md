@@ -19,7 +19,7 @@ specific to those repositories in order to access them.
 
     While these basic steps are enough to *gain access* to CernVM-FS repositories,
     this is not sufficient to obtain a production-ready setup.
-    
+
     This is especially true on HPC infrastructure that typically consists of a
     large number of worker nodes on which software provided by one or more
     CernVM-FS repositories will be used.
@@ -165,7 +165,7 @@ If you prefer not to use `autofs`, you will need to use static mounting, by eith
 
 * Updating `/etc/fstab` to ensure that the CernVM-FS repositories are mounted at boot time.
 
-[Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts.
+[Configuring `autofs`](#autofs) to never unmount due to inactivity is preferable to using static mounts, because the latter requires you to configure every repository individually, even if they are part of the same domain. For instance, if you use `autofs` and already have access to `/cvmvfs/software.eessi.io`, you will automatically get access to any future repository under the `eessi.io` domain. With static mounts an administrator of the system will have to manually add each and every one of them.
 
 For more information on mounting repositories,
 [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting).
