@@ -255,8 +255,6 @@ debug log
 
 ## Stats
 
-## Common problems
-
 ## Monitoring
 
 ## Mounting in debug mode

@@ -1,39 +1,63 @@
-site_name: ""
+site_name: "Best Practices for CernVM-FS in HPC"
 theme:
   name: material
-  logo: img/cvmfs_logo.png
+  logo: img/logos/cvmfs_logo.png
   features:
       - instant
+extra_css:
+  - stylesheets/extra.css
 repo_name: Best Practices for CernVM-FS in HPC
 repo_url: https://github.com/multixscale/cvmfs-tutorial-hpc-best-practices
 edit_uri: edit/master/docs
 nav:
   - "Home": index.md
-  - What is CernVM-FS?: 00_what_is_cvmfs.md
-  - EESSI: 01_eessi.md
-  - Accessing a repository: 02_access.md
-  - Configuration on HPC systems: 03_configuration.md
+  - Introduction to CernVM-FS:
+    - What is CernVM-FS?: cvmfs/what-is-cvmfs.md
+    - Technical details: cvmfs/technical-details.md
+    - Flagship repositories: cvmfs/flagship-repositories.md
+  - EESSI:
+    - "What is EESSI?": eessi/what-is-eessi.md
+    - "Motivation & goals": eessi/motivation-goals.md
+    - "Inspiration": eessi/inspiration.md
+    - "High-level design": eessi/high-level-design.md
+    - "Using EESSI": eessi/using-eessi.md
+    - "Getting support": eessi/support.md
+  - Accessing repositories:
+    - "CernVM-FS client system": access/client.md
+    - "Squid proxy server": access/proxy.md
+    - "Private Stratum 1 replica server": access/stratum1.md
+    - "Alternative access methods": access/alternatives.md
+  - Configuration on HPC systems: configuration_hpc.md
   - Troubleshooting and debugging: troubleshooting.md
-  - Performance aspects: 05_performance.md
-  - Storage backends: 06_storage_backends.md
-  - Containers: 07_containers.md
-  - Creating a CernVM-FS repository: 10_getting_started.md
+  - Performance aspects: performance.md
+  - Storage backends: storage-backends.md
+  - Containers: containers.md
+  - Creating a CernVM-FS repository: getting-started.md
+  - "Appendix: Terminology": appendix/terminology.md
 plugins:
   # show revision date at bottom of each page
   - git-revision-date-localized
   # necessary for search to work
   - search
 markdown_extensions:
+  # enable adding HTML attributes and CSS classes
+  - attr_list
   # notes, warnings, hints, ...
   - admonition
+  # use MarkDown formatting in HTML blocks
+  - md_in_html
   # code blocks with syntax highlighting, graphs
   - pymdownx.superfences
   # clickable details
   - pymdownx.details
   # tabbed contents
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 extra:
   # add links in bottom right
   social:
