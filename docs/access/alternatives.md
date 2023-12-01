@@ -12,8 +12,8 @@ including some that do not require system administrator permissions.
 Using [`cvmfsexec`](https://github.com/cvmfs/cvmfsexec), mounting of CernVM-FS repositories as
 an unprivileged user is possible, without having CernVM-FS installed system-wide.
 
-`cvmfsexec` supports multiple ways of doing this depending on the system configuration,
-depending on which specific features are enabled in the system, like:
+`cvmfsexec` supports multiple ways of doing this depending on the OS version and system configuration,
+more specifically whether or not particular features are enabled, like:
 
 * [FUSE mounting](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) with `fusermount`;
 * unprivileged user namespaces;
