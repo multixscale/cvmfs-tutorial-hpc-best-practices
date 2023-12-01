@@ -1162,7 +1162,10 @@ sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </sp
 <p>Updating <code>/etc/fstab</code> to ensure that the CernVM-FS repositories are mounted at boot time.</p>
 </li>
 </ul>
-<p><a href="#autofs">Configuring <code>autofs</code></a> to never unmount due to inactivity is preferable to using static mounts.</p>
+<p><a href="#autofs">Configuring <code>autofs</code></a> to never unmount due to inactivity is preferable to using static mounts,
+because the latter requires that every repository is mounted individually,
+even if is already known in your CernVM-FS configuration.
+When using <code>autofs</code> you can access all repositories that are known to CernVM-FS through its active configuration.</p>
 <p>For more information on mounting repositories,
 <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#mounting">see the CernVM-FS documentation</a>.</p>
 <h2 id="checking-client-setup">Checking client setup<a class="headerlink" href="#checking-client-setup" title="Permanent link">&para;</a></h2>
@@ -1229,7 +1232,7 @@ that the whole repository is already there.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2023</span>
       
     
   </small>
