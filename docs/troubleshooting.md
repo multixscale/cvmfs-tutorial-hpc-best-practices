@@ -1,37 +1,62 @@
 # Troubleshooting and debugging CernVM-FS
 
-## Common errors
+We focus on client-side issues, that is any issues that may arise on the
+client itself or when it connects to a Squid proxy or a Stratum-1.
 
-## Logs
+## Error overview
 
-## General tools
+Considering the CernVM-FS client, errors could be related to
 
-```
-sudo cvmfs_config chksetup
-```
+- the installation of the client software
+  (see [Installation issues](#installation-issues)),
+- the configuration of the client,
+  (see [Configuration issues](#configuration-issues)),
+- the current status of the client,
+  (see [Mounting problems](#mounting-problems) and [Cache problems](#cache-problems)),
+- the network connection to a Squid proxy and/or Stratum-1.
+  (see [Connectivity issues](#connectivity-issues)),
 
-```
-cvmfs_config status
-```
-
-```
-cvmfs_config probe software.eessi.io
-```
+_(add diagram illustrating a potential setup)_
 
 ## Common problems
 
+### Installation issues
+
+The CernVM-FS client is not installed or not accessible. A basic test could
+be
+``` { .bash .copy }
+cvmfs2 --version
+```
+If the executable cannot be found, please see the section on
+[installing the CernVM-FS client](access/client/#installing-cernvm-fs-client).
+
 ### Configuration issues
 
-```
-cvmfs_config showconfig
+The configuration could be incomplete or wrong. Basic tests could be
+``` { .bash .copy }
+cvmfs_config showconfig software.eessi.io
 ```
 
-vs
+and
 
-```
+``` { .bash .copy }
 ls /cvmfs/software.eessi.io
-sudo cmvfs_talk -i software.eessi.io
+sudo cmvfs_talk -i software.eessi.io version
 ```
+
+Note, `cvmfs_config` uses the configuration files (typically under `/etc/cvmfs`
+or provided through the repository `/cvmfs/cvmfs-config.cern.ch`), while
+`cvmfs_talk` reports on the state of a (mounted) CernVM-FS repository.
+
+If the above `cvmfs_talk` fails, try
+``` { .bash .copy }
+ls /cvmfs/cvmfs-config.cern.ch
+sudo cmvfs_talk -i cvmfs-config.cern.ch version
+```
+
+If the latter succeeds, there rather is an issue with the configuration of or
+the access to the former (`software.eessi.io` in this example).
+
 
 ### Connectivity issues
 
@@ -61,6 +86,23 @@ disk full on proxy or Stratum 1 or client cache
 
 ```
 sudo cvmfs_config wipecache
+```
+
+
+## Logs
+
+## General tools
+
+```
+sudo cvmfs_config chksetup
+```
+
+```
+cvmfs_config status
+```
+
+```
+cvmfs_config probe software.eessi.io
 ```
 
 ---
