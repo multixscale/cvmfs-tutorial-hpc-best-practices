@@ -50,4 +50,10 @@ The easiest way to access cvmfs from a container is to set it up on the host and
 
 ```
 docker run -it --volume /cvmfs:/cvmfs:shared ubuntu ls -lna /cvmfs/atlas.cern.ch
-``
+```
+
+For apptainer, thes same can be done by setting the `SINGULARITY_BIND` environment variable 
+
+```
+export SINGULARITY_BIND="/cvmfs"
+```
