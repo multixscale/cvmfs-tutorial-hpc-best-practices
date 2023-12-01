@@ -1,40 +1,43 @@
 # Containers and CernVM-FS
 
-CVMFS can also be used to distribute container images, providing many of the same benefits that come with any CVMFS installation. Especially the on-demand download of accessed files means that containers start nearly instantly, and are more efficient for large images when only a fraction of the files are read, which is typically the case.
+CernVM-FS can also be used to distribute container images, providing many of the same benefits that come with any CernVM-FS installation. Especially the on-demand download of accessed files means that containers start nearly instantly, and are more efficient for large images when only a fraction of the files are read, which is typically the case.
 
-Any CVMFS repository can be used to distribute container images (although often, dedicated repositories are used, like `/cvmfs/unpacked.cern.ch`). In order to provide de-duplication and on-demand download, images must be stored unpacked. This requires some dedicated tools, provided by cvmfs itself - see the section "Ingesting container images in a CernVM-FS repository" below.
+Any CernVM-FS repository can be used to distribute container images (although often, dedicated repositories are used, like [`/cvmfs/unpacked.cern.ch`](cvmfs/flagship-repositories.md#unpacked-containers)).
 
-## Accessing a CernVM-FS repository via Apptainer
+In order to provide [de-duplication](cvmfs/what-is-cvmfs.md#features-deduplication) and [on-demand download](cvmfs/what-is-cvmfs.md#features-ondemand), images must be stored *unpacked*. This requires some dedicated tools, provided by CernVM-FS itself - see the section "[Ingesting container images](#ingesting)" below.
 
-[Apptainer](https://apptainer.org/) is the recommended way to run containers from cvmfs, as it can start a container directly from an unpacked root file system, which is ideal for CVMFS.
-Docker can be used as well but the setup is more complicated, requiring the cvmfs graphdriver plugin. More details can be found in the [documentation](https://cvmfs.readthedocs.io/en/stable/cpt-graphdriver.html).
+## Accessing via Apptainer
 
-For example, to run the [`https://registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter`](https://hub.docker.com/layers/tensorflow/tensorflow/2.15.0-jupyter/images/sha256-3bf17d6d5f2ed968543238936cca0725ca664d24729c537778b1333a315036d7?context=explore) image that has been unpacked on /cvmfs/unpacked.cern.ch, use the command
+[Apptainer](https://apptainer.org) is the recommended way to run containers from CernVM-FS, as it can start a container directly from an unpacked root file system, which is ideal for CernVM-FS.
 
-```
-apptainer exec /cvmfs/unpacked.cern.ch/registry.hub.docker.com/tensorflow/tensorflow\:2.15.0-jupyter /bin/bash
-...
+[Docker](https://www.docker.com) can be used as well but the setup is more complicated, requiring the [CernVM-FS graphdriver plugin](https://cvmfs.readthedocs.io/en/stable/cpt-graphdriver.html).
+
+For example, to run the [`tensorflow/tensorflow:2.15.0-jupyter`](https://hub.docker.com/layers/tensorflow/tensorflow/2.15.0-jupyter/images/sha256-3bf17d6d5f2ed968543238936cca0725ca664d24729c537778b1333a315036d7?context=explore) image from [Docker Hub](https://hub.docker.com/) that has been unpacked in `/cvmfs/unpacked.cern.ch`, use the following commands:
+
+```{ .bash .copy }
+container="registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter"
+python_code="import tensorflow as tf; print(tf.__version__)"
+apptainer run /cvmfs/unpacked.cern.ch/${container} python -c "${python_code}"
 ```
 
 This directory just contains the root file system of the image:
 
+```{ .bash .copy }
+ls /cvmfs/unpacked.cern.ch/registry.hub.docker.com/tensorflow/tensorflow:2.15.0-jupyter
 ```
-ls /cvmfs/unpacked.cern.ch/registry.hub.docker.com/tensorflow/tensorflow\:2.15.0-jupyter
-...
-```
 
 
 
-## Ingesting container images in a CernVM-FS repository
+## Ingesting container images {: #ingesting }
 
-CVMFS provides a suite of container unpacking tools called `cvmfs_ducc` (provided by the `cvmfs-ducc` package). This can be used to unpack and ingest container images by simply running
+CernVM-FS provides a suite of container unpacking tools called `cvmfs_ducc` (provided by the `cvmfs-ducc` package). This can be used to unpack and ingest container images by simply running
 
-```
+```{ .bash .copy }
 cvmfs_ducc convert recipe.yaml 
 ```
-where recipe.yaml is a 'wishlist' of container images available in external registries that should be made available:
+where `recipe.yaml` is a 'wishlist' of container images available in external registries that should be made available:
 
-```
+```yaml
 version: 1
 user: cvmfsunpacker
 cvmfs_repo: 'unpacked.repo.tld'
@@ -43,17 +46,19 @@ input:
     ...
 ```
 
+For more information, [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-ducc.html).
 
-## Using /cvmfs inside containers
 
-The easiest way to access cvmfs from a container is to set it up on the host and bind-mount it inside the container:
+## Using `/cvmfs` inside containers
 
-```
+The easiest way to access CernVM-FS repositories from a container is to set it up on the host and bind-mount it inside the container:
+
+```{ .bash .copy }
 docker run -it --volume /cvmfs:/cvmfs:shared ubuntu ls -lna /cvmfs/atlas.cern.ch
 ```
 
-For apptainer, the same can be done by setting the `SINGULARITY_BIND` environment variable 
+For Apptainer, the same can be done by setting the `$SINGULARITY_BIND` (or `$APPTAINER_BIND`) environment variable: 
 
-```
+```{ .bash .copy }
 export SINGULARITY_BIND="/cvmfs"
 ```
