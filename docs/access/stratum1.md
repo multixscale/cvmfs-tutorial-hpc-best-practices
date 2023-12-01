@@ -107,6 +107,13 @@ recommendations into account:
     [See the CernVM-FS
     documentation](https://cvmfs.readthedocs.io/en/stable/cpt-replica.html#maintenance-processes) for more details.
 
+??? note "Using S3-compatible storage (Amazon S3, Azure Blob, Ceph)"
+
+    CernVM-FS can store data directly to S3-compatible storage systems, such as [Amazon S3](https://aws.amazon.com/s3),
+    [Azure Blob](https://learn.microsoft.com/en-us/azure/storage/blobs), or [Ceph](https://ceph.io).
+
+    For more information, [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#sct-s3storagesetup).
+
 ## Setup procedure
 
 To set up a Stratum 1 replica server and configure it to replicate
