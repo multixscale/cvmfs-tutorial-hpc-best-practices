@@ -13,15 +13,15 @@ Using [`cvmfsexec`](https://github.com/cvmfs/cvmfsexec), mounting of CernVM-FS r
 an unprivileged user is possible, without having CernVM-FS installed system-wide.
 
 `cvmfsexec` supports multiple ways of doing this depending on the system configuration,
-where way requires that specific features are enabled in the system, like:
+depending on which specific features are enabled in the system, like:
 
-* like [FUSE mounting](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) with `fusermount`;
+* [FUSE mounting](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) with `fusermount`;
 * unprivileged user namespaces;
 * unprivileged namespace fuse mounts;
 * a `setuid` installation of Singularity 3.4+ (via `singcvmfs` which uses the `--fusemount` feature),
   or an unprivileged installation of Singularity 3.6+;
 
-Start by closing the `cvmfsexec` repository from GitHub, and change to the `cvmfsexec` directory:
+Start by cloning the `cvmfsexec` repository from GitHub, and change to the `cvmfsexec` directory:
 
 ```
 git clone https://github.com/cvmfs/cvmfsexec.git
