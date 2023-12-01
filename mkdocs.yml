@@ -30,7 +30,6 @@ nav:
   - Configuration on HPC systems: configuration_hpc.md
   - Troubleshooting and debugging: troubleshooting.md
   - Performance aspects: performance.md
-  - Storage backends: storage-backends.md
   - Containers: containers.md
   - Creating a CernVM-FS repository: getting-started.md
   - "Appendix: Terminology": appendix/terminology.md
