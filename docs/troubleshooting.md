@@ -41,30 +41,83 @@ and
 
 ``` { .bash .copy }
 ls /cvmfs/software.eessi.io
-sudo cmvfs_talk -i software.eessi.io version
+sudo cvmfs_talk -i software.eessi.io version
 ```
 
-Note, `cvmfs_config` uses the configuration files (typically under `/etc/cvmfs`
+Note 1, `cvmfs_config` uses the configuration files (typically under `/etc/cvmfs`
 or provided through the repository `/cvmfs/cvmfs-config.cern.ch`), while
 `cvmfs_talk` reports on the state of a (mounted) CernVM-FS repository.
+
+Note 2, `cvmfs_config` does not check if the repository given as argument
+(`software.eessi.io` in the example above) does exist.
+Try `cvmfs_config showconfig vim.or.emacs.io`
 
 If the above `cvmfs_talk` fails, try
 ``` { .bash .copy }
 ls /cvmfs/cvmfs-config.cern.ch
-sudo cmvfs_talk -i cvmfs-config.cern.ch version
+sudo cvmfs_talk -i cvmfs-config.cern.ch version
 ```
 
 If the latter succeeds, there rather is an issue with the configuration of or
 the access to the former (`software.eessi.io` in this example).
 
-
 ### Connectivity issues
 
-- firewall blocking ports or hosts
+There could be various issues related to connectivity. Because CernVM-FS uses
+plain `HTTP` as data transfer protocol, basic tools may be used to investigate
+connectivity issues.
 
-- squid proxy configuration
+There could be a firewall blocking access to the Squid proxy or to the
+Stratum-1(s). First figure out if any proxy is being used.
+``` { .bash .copy }
+ls /cvmfs/software.eessi.io
+sudo cvmfs_talk -i software.eessi.io proxy info
+```
+could provide a list such as
+```
+Load-balance groups:
+[0] http://10.0.0.66:3128 (10.0.0.66, +6h)
+[1] DIRECT
+Active proxy: [0] http://10.0.0.66:3128
+```
+The last line tells that a proxy is used. With a simple `telnet` or `nc` command
+``` { .bash .copy }
+nc -vz 10.0.0.66 3128
+telnet 10.0.0.66 3128
+```
 
-- tools: `curl`, `telnet`, `tcptraceroute` (*), `cvmfs_config stat`
+We might want to check if the proxy is reachable at all with
+``` { .bash .copy }
+sudo tcptraceroute 10.0.0.66
+```
+
+If connecting to the proxy works or no proxy being used (e.g., `Active proxy: [1]
+DIRECT` is shown from the above `cvmfs_talk` command), we have to figure out
+which Stratum-1(s) is (are) being used. See the output of
+``` { .bash .copy }
+sudo cvmfs_talk -i software.eessi.io host info
+```
+which results in
+```
+  [0] http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io (geographically ordered)
+  [1] http://azure-us-east-s1.eessi.science/cvmfs/software.eessi.io (geographically ordered)
+Active host 0: http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io
+```
+We can now use `curl` to check the connectivity to a Stratum-1.
+``` { .bash .copy }
+curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
+```
+We can also try to connect to that machine via a proxy, for example,
+``` { .bash .copy }
+curl --proxy http://10.0.0.66:3128 --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
+```
+
+Another command to provide a concise overview of the status of the known
+repositories is
+``` { .bash .copy }
+cvmfs_config stat
+```
+_(more on 'squid proxy configuration' ?)_
 
 ### Mounting problems
 
