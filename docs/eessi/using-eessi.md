@@ -13,7 +13,7 @@ Try checking the contents of the `/cvmfs/software.eessi.io` directory with the `
 
 ```bash
 $ ls /cvmfs/software.eessi.io
-host_injections  README  versions
+README.eessi  host_injections  versions
 ```
 
 If you see an error message like "`No such file or directory`", then either the CernVM-FS client
