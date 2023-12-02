@@ -44,7 +44,7 @@ when being accessed under different circumstances, using two small workloads:
 ## Cache status
 
 The status of the Linux kernel file system cache, and the CernVM-FS client cache (when relevant)
-is a key factor in start-up performace.
+is a key factor in start-up performance.
 
 We discriminate between 3 scenarios: [cold cache](#cold_cache), [hot cache](#hot_cache), and [warm cache](#warm_cache).
 
