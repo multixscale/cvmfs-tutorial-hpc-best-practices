@@ -1189,6 +1189,10 @@ $<span class="w"> </span>find<span class="w"> </span>/cvmfs/cvmfs-config.cern.ch
 /cvmfs/cvmfs-config.cern.ch/etc/cvmfs/domain.d/eessi.io.conf
 /cvmfs/cvmfs-config.cern.ch/etc/cvmfs/keys/eessi.io/eessi.io.pub
 </code></pre></div>
+<p>That means we now already have access to the EESSI CernVM-FS repository:</p>
+<div class="highlight"><pre><span></span><code>$ ls /cvmfs/software.eessi.io
+README.eessi  host_injections  versions
+</code></pre></div>
 <h2 id="inspecting-repository-configuration">Inspecting repository configuration<a class="headerlink" href="#inspecting-repository-configuration" title="Permanent link">&para;</a></h2>
 <p>To check whether a specific CernVM-FS repository is accessible, we can <em>probe</em> it:</p>
 <div class="highlight"><pre><span></span><code>$ cvmfs_config probe software.eessi.io
@@ -1232,7 +1236,7 @@ that the whole repository is already there.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2023</span>
       
     
   </small>
