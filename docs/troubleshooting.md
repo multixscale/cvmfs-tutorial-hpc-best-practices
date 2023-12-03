@@ -402,7 +402,7 @@ for example:
 * Lack of sufficient disk space, for the CernVM-FS client cache, for the proxy server,
   or for the private Stratum 1 replica server;
 * Network latency issues, either within the local network (to the proxy server or Stratum 1 replica server),
-  or to the outside world (public Stratum 1 replica servers) &endash; see also the [Connectivity](#connectivity)
+  or to the outside world (public Stratum 1 replica servers) &ndash; see also the [Connectivity](#connectivity)
   section;
 
 
@@ -441,6 +441,10 @@ sudo cvmfs_config reload
 has been run. See
 [CernVM-FS documentation / debug-logs](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs)
 for more information. Note that the debug log will log every operation in CVMFS and generates large files - it should be turned back off after capturing an issue.
+
+!!! warning
+    Make sure that the `cvmfs` user actually has write permission to the location specified with `CVMFS_DEBUGLOG`.
+    Otherwise you will not only get no log file, but it will also lead to client failures.
 
 An interesting command for mounted repositories is
 ``` { .bash .copy }
