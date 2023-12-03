@@ -417,7 +417,7 @@ for example:
 * Lack of sufficient disk space, for the CernVM-FS client cache, for the proxy server,
   or for the private Stratum 1 replica server;
 * Network latency issues, either within the local network (to the proxy server or Stratum 1 replica server),
-  or to the outside world (public Stratum 1 replica servers) &endash; see also the [Connectivity](#connectivity)
+  or to the outside world (public Stratum 1 replica servers) &ndash; see also the [Connectivity](#connectivity)
   section;
 
 
@@ -497,9 +497,16 @@ CernVM-FS will log more information to the specified debug log file after [reloa
 configuration](#reloading).
 
 !!! warning "Debug logging is a bit like a firehose - use with care!"
+
     Note that with debug logging enabled *every* operation performed by CernVM-FS will be logged,
     which quickly generates large files and introduces a signifiant amount of overhead,
     so it **should only be enabled temporarily** when trying to obtain more information on a particular problem.
+
+!!! warning "Make sure that the debug log file is writable!"
+
+    Make sure that the `cvmfs` user has write permission to the path specified in `CVMFS_DEBUGLOG`.
+
+    If not, you will not only get no debug logging information, but it will also lead to *client failures*!
 
 For more information on debug logging, [see the CernVM-FS documentation](
 https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs).
