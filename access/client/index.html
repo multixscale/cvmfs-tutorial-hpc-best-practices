@@ -635,7 +635,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#general-level" class="md-nav__link">
+  <a href="#cfg_general" class="md-nav__link">
     <span class="md-ellipsis">
       General level
     </span>
@@ -644,7 +644,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#domain-specific-level" class="md-nav__link">
+  <a href="#cfg_domain" class="md-nav__link">
     <span class="md-ellipsis">
       Domain-specific level
     </span>
@@ -653,7 +653,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#repository-specific-level" class="md-nav__link">
+  <a href="#cfg_repository" class="md-nav__link">
     <span class="md-ellipsis">
       Repository-specific level
     </span>
@@ -1022,7 +1022,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#general-level" class="md-nav__link">
+  <a href="#cfg_general" class="md-nav__link">
     <span class="md-ellipsis">
       General level
     </span>
@@ -1031,7 +1031,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#domain-specific-level" class="md-nav__link">
+  <a href="#cfg_domain" class="md-nav__link">
     <span class="md-ellipsis">
       Domain-specific level
     </span>
@@ -1040,7 +1040,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#repository-specific-level" class="md-nav__link">
+  <a href="#cfg_repository" class="md-nav__link">
     <span class="md-ellipsis">
       Repository-specific level
     </span>
@@ -1283,7 +1283,7 @@ that were specified in an earlier consider configuration file.</p>
 are overridden by those specified in the domain-specific configuration file
 <code>/cvmfs/cvmfs-config.cern.ch/etc/cvmfs/domain.d/eessi.io.conf</code> (which is located in
 the default CernVM-FS configuration repository <code>cvmfs-config.cern.ch</code>).</p>
-<h4 id="general-level">General level<a class="headerlink" href="#general-level" title="Permanent link">&para;</a></h4>
+<h4 id="cfg_general">General level<a class="headerlink" href="#cfg_general" title="Permanent link">&para;</a></h4>
 <p>At the general level, the following configuration files are considered (in order):</p>
 <ul>
 <li><code>/etc/cvmfs/default.conf</code></li>
@@ -1291,7 +1291,7 @@ the default CernVM-FS configuration repository <code>cvmfs-config.cern.ch</code>
 <li><code>$CVMFS_CONFIG_REPOSITORY/etc/cvmfs/default.conf</code></li>
 <li><code>/etc/cvmfs/default.local</code></li>
 </ul>
-<h4 id="domain-specific-level">Domain-specific level<a class="headerlink" href="#domain-specific-level" title="Permanent link">&para;</a></h4>
+<h4 id="cfg_domain">Domain-specific level<a class="headerlink" href="#cfg_domain" title="Permanent link">&para;</a></h4>
 <p>At the domain-specific level, the following configuration files are considered (in order):</p>
 <ul>
 <li><code>$CVMFS_CONFIG_REPOSITORY/etc/cvmfs/domain.d/DOMAIN.conf</code></li>
@@ -1300,7 +1300,7 @@ the default CernVM-FS configuration repository <code>cvmfs-config.cern.ch</code>
 </ul>
 <p>where "<code>DOMAIN</code>" is replaced by the domain of the CernVM-FS repository being considered,
 like <code>eessi.io</code> for <code>software.eessi.io</code>.</p>
-<h4 id="repository-specific-level">Repository-specific level<a class="headerlink" href="#repository-specific-level" title="Permanent link">&para;</a></h4>
+<h4 id="cfg_repository">Repository-specific level<a class="headerlink" href="#cfg_repository" title="Permanent link">&para;</a></h4>
 <p>At the repository-specific level, the following configuration files are considered (in order):</p>
 <ul>
 <li><code>$CVMFS_CONFIG_REPOSITORY/etc/cvmfs/config.d/&lt;your_repository&gt;.conf</code></li>
