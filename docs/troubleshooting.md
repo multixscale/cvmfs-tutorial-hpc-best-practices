@@ -48,8 +48,6 @@ Here are a couple of examples:
   ```
   Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
   ```
-  ```
-  ```
   We will outline some approaches that should help you to determine what could be wrong exactly.
 
 
@@ -62,13 +60,14 @@ Here are a couple of examples:
   Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
   ```
   ```
-  # indicates that FUSE has crashed
-  Transport endpoint is not connected
-  ```
-  ```
   ls: cannot open directory '/cvmfs/config-repo.cern.ch': Too many levels of symbolic links
   ```
-  Also here we will give some advice on how you might figure out what is wrong.
+  ```
+  Transport endpoint is not connected
+  ```
+  The last error message indicates that [FUSE](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) has failed.
+
+  We will give some advice below on how you might figure out what is wrong when seeing error messages like this.
 
 ### Lag and/or hangs
 
@@ -87,7 +86,7 @@ In general, it is recommended to take a step-by-step approach to troubleshooting
 * Make sure you have sufficient available [resources](#resources) like memory and local disk space;
 * Rule out any [cache](#caching)-related shenanigans;
 
-Always keep in mind to [check the logs](#logs), and employ the [general tools](#general-tools)
+Always keep in mind to [check the logs](#logs), and also consider to employ the [other tools](#other-tools)
 that we put forward.
 
 
@@ -151,6 +150,11 @@ Verify the configuration via `cvmfs_config showconfig`:
 cvmfs_config showconfig software.eessi.io
 ```
 
+Using the `-s` option, you can trim the output to only show non-empty configuration settings:
+``` { .bash .copy }
+cvmfs_config showconfig -s software.eessi.io
+```
+
 We strongly advise combining this command with `grep` to check for specific configuration settings, like:
 
 ```
@@ -206,6 +210,21 @@ If the latter succeeds but accessing the repository does not,
 there may be an issue with the (active) configuration,
 or there may be a [connectivity problem](#connectivity).
 
+#### Repository public key
+
+In order for CernVM-FS to access a repository the corresponding *public key* must be available,
+in a domain-specific subdirectory of `/etc/cvmfs/keys`, like:
+```
+$ ls /etc/cvmfs/keys/cern.ch
+cern-it1.cern.ch.pub  cern-it4.cern.ch.pub  cern-it5.cern.ch.pub
+```
+
+or in the active CernVM-FS config repository, like for EESSI:
+
+```
+$ ls /cvmfs/cvmfs-config.cern.ch/etc/cvmfs/keys/eessi.io
+eessi.io.pub
+```
 
 ### Connectivity issues {: #connectivity }
 
@@ -215,7 +234,8 @@ for example a [*firewall*](https://en.wikipedia.org/wiki/Firewall_(computing)) b
 CernVM-FS uses plain `HTTP` as data transfer protocol, so basic tools can be used to investigate
 connectivity issues.
 
-You should check whether the client system can connect to the Squid proxy and/or Stratum-1 replica server(s).
+You should make sure that the client system can connect to the Squid proxy and/or Stratum-1 replica server(s)
+via the required ports.
 
 #### Determine proxy server {: #determine_proxy }
 
@@ -342,6 +362,12 @@ HTTP/1.1 404 Not Found
 ```
 Maybe you forgot the '`.`' in `.cvmfspublished`?
 
+#### Network latency & bandwidth
+
+To check the network latency and bandwidth, you can use [`iperf3`]() and `tcptraceroute`](),
+see also [*Network details* in *System configurations* of the Performance section](
+performance.md#system_configurations) of this tutorial.
+
 ### Mounting problems {: #mounting }
 
 #### `autofs`
@@ -408,122 +434,140 @@ for example:
 
 ### Caching woes {: #caching }
 
-Clean the cache to exclude any cache corruption as root cause of issues
+CernVM-FS assumes that the local cache directory is trustworthy.
+
+Although unlikely, problems you are observing could be caused by some form
+of corruption in the CernVM-FS client cache, for example due to problems
+outside of the control of CernVM-FS (like a disk partition running full).
+
+Even in the absence of problems it may still be interesting to inspect the contents
+of the client cache, for example when trying to understand performance-related problems.
+
+#### Checking cache usage
+
+To check the current usage of the client cache across all repositories, you can use:
+
+```{ .bash .copy }
+cvmfs_config stat -v
+```
+
+You can get machine-readable output by *not* using the `-v` option (which is for getting human-readable output).
+
+To only get information on cache usage for a particular repository, pass it as an extra argument:
+
+```{ .bash .copy }
+cvmfs_config stat -v software.eessi.io
+```
+
+To check overall cache size, use `du` on the cache directory (determined by `CVMFS_CACHE_BASE`):
+
+```
+$ sudo du -sh /var/lib/cvmfs
+1.1G	/var/lib/cvmfs
+```
+
+#### Inspecting cache contents
+
+To inspect which files are currently included in the client cache, run the following command:
+
+``` { .bash .copy }
+sudo cvmfs_talk -i software.eessi.io cache list
+```
+
+#### Checking cache consistency
+
+To check the consistency of the CernVM-FS cache, use [`cvmfs_fsck`](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#cvmfs-fsck):
+```{ .bash .copy }
+sudo time cvmfs_fsck -j 8 /var/lib/cvmfs/shared
+```
+
+This will take a while, depending on the current size of the cache, and how many cores to use are specified (via the `-j` option).
+
+#### Clearing client cache
+
+To start afresh, you can clear the CernVM-FS client cache:
 ``` { .bash .copy }
 sudo cvmfs_config wipecache
 ```
 
-Cache usage is included in the output of
-``` { .bash .copy }
-cvmfs_config stat -v software.eessi.io
-```
-
-Check consistency of the CernVM-FS cache directory
-```
-sudo time cvmfs_fsck -j 8 /var/lib/cvmfs/shared
-```
-
 ## Logs {: #logs }
 
-By default CernVM-FS logs to syslog, for example, `/var/log/messages` or
-`/var/log/syslog`. Scanning these logs for `cvmfs` may help to determine the root
-cause of an issue.
+By default CernVM-FS logs to [syslog](https://en.wikipedia.org/wiki/Syslog),
+which usually corresponds to either `/var/log/messages` or `/var/log/syslog`.
 
-For obtaining more detailed information, CernVM-FS provides the setting
-`CVMFS_DEBUGLOG`. If set as follows
-``` { .ini .copy }
-CVMFS_DEBUGLOG=/tmp/cvmfs_debug.log
-```
-CernVM-FS logs more information to `/tmp/cvmfs_debug.log` after the command
+Scanning these logs for messages produced by `cvmfs2` may help to determine the root cause of a problem.
+
+### Debug log
+
+For obtaining more detailed information, CernVM-FS provides the `CVMFS_DEBUGLOG` configuration setting:
 ``` { .bash .copy }
-sudo cvmfs_config reload
-```
-has been run. See
-[CernVM-FS documentation / debug-logs](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs)
-for more information. Note that the debug log will log every operation in CVMFS and generates large files - it should be turned back off after capturing an issue.
-
-!!! warning
-    Make sure that the `cvmfs` user actually has write permission to the location specified with `CVMFS_DEBUGLOG`.
-    Otherwise you will not only get no log file, but it will also lead to client failures.
-
-An interesting command for mounted repositories is
-``` { .bash .copy }
-attr -g logbuffer /cvmfs/software.eessi.io
-```
-This will print the last syslog messages from this repositories without needing to access /var/log.
-
-
-## General tools
-
-If the repository `software.eessi.io` is mounted, the following command provides
-useful information and statistics
-``` { .bash .copy }
-cvmfs_config stat -v software.eessi.io
+CVMFS_DEBUGLOG=/tmp/cvmfs-debug.log
 ```
 
-To verify whether the basic setup is sound, run
+CernVM-FS will log more information to the specified debug log file after [reloading the CernVM-FS
+configuration](#reloading).
+
+!!! warning "Debug logging is a bit like a firehose - use with care!"
+
+    Note that with debug logging enabled *every* operation performed by CernVM-FS will be logged,
+    which quickly generates large files and introduces a significant overhead,
+    so it **should only be enabled temporarily** when trying to obtain more information on a particular problem.
+
+!!! warning "Make sure that the debug log file is writable!"
+
+    Make sure that the `cvmfs` user has write permission to the path specified in `CVMFS_DEBUGLOG`.
+
+    If not, you will not only get no debug logging information, but it will also lead to *client failures*!
+
+For more information on debug logging, [see the CernVM-FS documentation](
+https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs).
+
+### Logs via extended attributes
+
+An interesting source of information for mounted CernVM-FS repositories is the
+[extended attributes](https://en.wikipedia.org/wiki/Extended_file_attributes)
+that CernVM-FS uses, which can accessed via the `attr` command (see also [the CernVM-FS
+documentation](https://cvmfs.readthedocs.io/en/stable/cpt-details.html#getxattr)).
+
+In particular the `logbuffer` attribute, which contains the last log messages for that particular
+repository, which *can be accessed without special privileges* that are required to access log messages
+emitted to `/var/log/*`.
+
+For example:
+```
+$ attr -g logbuffer /cvmfs/software.eessi.io
+Attribute "logbuffer" had a 283 byte value for /cvmfs/software.eessi.io:
+[3 Dec 2023 21:01:33 UTC] switching proxy from (none) to http://PROXY_IP:3128 (set proxies)
+[3 Dec 2023 21:01:33 UTC] switching proxy from (none) to http://PROXY_IP:3128 (cloned)
+[3 Dec 2023 21:01:33 UTC] switching proxy from http://PROXY_IP:3128 to DIRECT (set proxies)
+```
+
+
+## Other tools {: #other-tools }
+
+### General check
+
+To verify whether the basic setup is sound, run:
 ``` { .bash .copy }
 sudo cvmfs_config chksetup
 ```
-which should print something like
-```
-OK
-```
-or a message indicating a problem such as
+which should print "`OK`".
+
+If something is wrong, it may report a problem like:
+
 ```
 Warning: autofs service is not running
 ```
 
-Listing mounted repositories with
-``` { .bash .copy }
-cvmfs_config status
-```
-
-Printing non-empty configuration settings for a repository
-``` { .bash .copy }
-cvmfs_config showconfig -s software.eessi.io
-```
-
-Check if a CernVM-FS repository can be mounted
-``` { .bash .copy }
-cvmfs_config probe software.eessi.io
-```
-
-
-#### Bandwidth
-
-_(maybe skip? or something for performance section?)_
-
-- `iperf`
-
-#### Proxy
-
-`CVMFS_HTTP_PROXY`
-
-https://cvmfs.readthedocs.io/en/stable/cpt-squid.html
-
-_(the examples below didn't work ... squid.vega.pri seems not a known DNS name)_
-
-`http_proxy=http://squid.vega.pri:3128 curl -vs http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished | cat -v`
+You can also use `cvmfs_config` to perform a status check, and verify that the
+command has exit code zero:
 
 ```
-http_proxy=http://squid.vega.pri:3128 curl --head http://aws-eu-west1.stratum1.cvmfs.eessi-infra.org/cvmfs/pilot.eessi-hpc.org/.cvmfspublished
-HTTP/1.1 200 OK
-```
-```
-$ http_proxy=http://squid.vega.pri:3128 curl --head http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
-HTTP/1.1 403 Forbidden
+$ sudo cvmfs_config status
+$ echo $?
+0
 ```
 
-### Incorrect repository configuration
-
-_(maybe skip?)_
-
-`/etc/cvmfs/keys`
-
-`/etc/cvmfs/default.local`
-
-`/etc/cvmfs/domain.d`
 
 ---
 
