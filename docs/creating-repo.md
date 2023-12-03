@@ -38,7 +38,7 @@ collection](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#repository-garb
 
 ## Public Stratum 1 replica servers
 
-To distribute your repository, you should set up one or more public [Stratum 1 replicate
+To distribute your repository, you should set up one or more public [Stratum 1 replica
 servers](appendix/terminology.md#stratum1), much like we also did in this tutorial (see the
 [Accessing repositories - Private Stratum 1 replica server](access/stratum1.md) section).
 
