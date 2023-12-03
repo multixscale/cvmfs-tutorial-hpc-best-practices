@@ -146,7 +146,7 @@ are overridden by those specified in the domain-specific configuration file
 `/cvmfs/cvmfs-config.cern.ch/etc/cvmfs/domain.d/eessi.io.conf` (which is located in
 the default CernVM-FS configuration repository `cvmfs-config.cern.ch`).
 
-#### General level
+#### General level {: #cfg_general }
 
 At the general level, the following configuration files are considered (in order):
   
@@ -155,7 +155,7 @@ At the general level, the following configuration files are considered (in order
 * `$CVMFS_CONFIG_REPOSITORY/etc/cvmfs/default.conf`
 * `/etc/cvmfs/default.local`
 
-#### Domain-specific level
+#### Domain-specific level {: #cfg_domain }
 
 At the domain-specific level, the following configuration files are considered (in order):
 
@@ -166,7 +166,7 @@ At the domain-specific level, the following configuration files are considered (
 where "`DOMAIN`" is replaced by the domain of the CernVM-FS repository being considered,
 like `eessi.io` for `software.eessi.io`.
 
-#### Repository-specific level
+#### Repository-specific level {: #cfg_repository }
 
 At the repository-specific level, the following configuration files are considered (in order):
 
