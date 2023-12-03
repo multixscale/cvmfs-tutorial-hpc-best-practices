@@ -116,6 +116,80 @@ More information on the structure of `/etc/cvmfs` and supported configuration se
     For more information on cache-related configuration settings,
     [see the CernVM-FS documentation](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#cache-settings).
 
+### Hierarchy of configuration files {: #configuration_hierarchy }
+
+CernVM-FS can be configured through a *hierarchy* of configuration files (sometimes also referred to as
+parameter files), which can be located under either `/etc/cvmfs`, or the [CernVM-FS configuration repository](
+https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#the-config-repository)
+that is being used (there can be only one), which lives under `/cvmfs` and is determined by the
+`CVMFS_CONFIG_REPOSITORY` configuration setting.
+
+There are 3 levels of configuration files: [general](#cfg_general), [domain-specific](#cfg_domain), and [repository-specific](#cfg_repository).
+
+Each CernVM-FS configuration file has either `.conf` or `.local` as file extension.
+
+#### Order of configuration files
+
+A CernVM-FS configuration file is *sourced* to set the configuration settings (a.k.a. parameters)
+it specifies, in the order outlined below:
+
+* By level: first general, then domain-specific, finally repository-specific;
+* Within each level:
+    * `.conf` before `.local`;
+    * CernVM-FS configuration repository before `/etc/cvmfs` (except for general level);
+
+As a result, a configuration file that is picked up later can override configuration settings
+that were specified in an earlier consider configuration file.
+
+Concrete example: the settings in the general `/etc/cvmfs/default.local` configuration file
+are overridden by those specified in the domain-specific configuration file
+`/cvmfs/cvmfs-config.cern.ch/etc/cvmfs/domain.d/eessi.io.conf` (which is located in
+the default CernVM-FS configuration repository `cvmfs-config.cern.ch`).
+
+#### General level
+
+At the general level, the following configuration files are considered (in order):
+  
+* `/etc/cvmfs/default.conf`
+* `/etc/cvmfs/default.d/*.conf` (in alphabetical order)
+* `$CVMFS_CONFIG_REPOSITORY/etc/cvmfs/default.conf`
+* `/etc/cvmfs/default.local`
+
+#### Domain-specific level
+
+At the domain-specific level, the following configuration files are considered (in order):
+
+* `$CVMFS_CONFIG_REPOSITORY/etc/cvmfs/domain.d/DOMAIN.conf`
+* `/etc/cvmfs/domain.d/DOMAIN.conf`
+* `/etc/cvmfs/domain.d/DOMAIN.local`
+
+where "`DOMAIN`" is replaced by the domain of the CernVM-FS repository being considered,
+like `eessi.io` for `software.eessi.io`.
+
+#### Repository-specific level
+
+At the repository-specific level, the following configuration files are considered (in order):
+
+* `$CVMFS_CONFIG_REPOSITORY/etc/cvmfs/config.d/<your_repository>.conf`
+* `/etc/cvmfs/config.d/<your_repository>.conf`
+* `/etc/cvmfs/config.d/<your_repository>.local`
+
+### Show configuration
+
+To show all configuration settings in alphabetical order, including by which configuration file it got set,
+use `cvmfs_config showconfig`, for example:
+
+```{ .bash .copy }
+cvmfs_config showconfig software.eessi.io
+```
+
+For `CVMFS_QUOTA_LIMIT`, you should see this in the output:
+
+```
+CVMFS_QUOTA_LIMIT=10000    # from /etc/cvmfs/default.local
+```
+
+See also [Inspecting repository configuration](#inspecting_configuration).
 
 ## Completing the client setup
 
@@ -220,7 +294,7 @@ $ ls /cvmfs/software.eessi.io
 README.eessi  host_injections  versions
 ```
 
-## Inspecting repository configuration
+## Inspecting repository configuration {: #inspecting_configuration }
 
 To check whether a specific CernVM-FS repository is accessible, we can *probe* it:
 
