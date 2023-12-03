@@ -512,7 +512,7 @@ CVMFS_DEBUGLOG=/tmp/cvmfs-debug.log
 ```
 
 CernVM-FS will log more information to the specified debug log file after [reloading the CernVM-FS
-configuration](#reloading).
+configuration](#reloading) (supported since CernVM-FS 2.11.0).
 
 !!! warning "Debug logging is a bit like a firehose - use with care!"
 
@@ -537,7 +537,7 @@ that CernVM-FS uses, which can accessed via the `attr` command (see also [the Ce
 documentation](https://cvmfs.readthedocs.io/en/stable/cpt-details.html#getxattr)).
 
 In particular the `logbuffer` attribute, which contains the last log messages for that particular
-repository, which *can be accessed without special privileges* that are required to access log messages
+repository, which **can be accessed without special privileges** that are required to access log messages
 emitted to `/var/log/*`.
 
 For example:
