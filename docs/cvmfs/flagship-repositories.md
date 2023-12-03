@@ -1,5 +1,7 @@
 # Flagship CernVM-FS repositories
 
+Here we list a couple of flagship CernVM-FS repositories, all of which are **publicly available**.
+
 ## LHC experiments
 
 CernVM-FS repositories are used to distribute the software required to analyse the data produced by the
