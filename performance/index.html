@@ -1395,7 +1395,7 @@ is somehow available on the system (on disk, in memory, etc.), but also that all
 <a href="https://www.lustre.org">Lustre</a>, which are ubiquitous on HPC systems,
 are notorious for not performing well in this respect, which is not surprising since they mainly target a very
 different use case: large-scale high-performance I/O on large datasets.</p>
-<p>This has led to to all sorts of creative workarounds for "the startup problem",
+<p>This has led to all sorts of creative workarounds for "the startup problem",
 including for example tools like <a href="https://github.com/hpc/Spindle">Spindle</a>, and recommendations to not install
 (in particular Python) software directly on the parallel filesystem but to use a container image instead
 (<a href="https://docs.lumi-supercomputer.eu/software/installing/python/">see the documentation of the current flagship EuroHPC system LUMI</a>).</p>
@@ -1434,7 +1434,7 @@ for software provided via CernVM-FS. In this situation, all necessary files are 
 CernVM-FS client cache (which is typically on the local disk of the client),
 but not yet in the in-memory kernel file system cache. As a result, there will be an impact on
 start-up performance, since the files have to be loaded from (local) disk first.</p>
-<p>This is a fairly likely scenario, especially if the CernVM-FS client cache if sufficiently large
+<p>This is a fairly likely scenario, especially if the CernVM-FS client cache is sufficiently large
 to cover typical workloads being run &ndash; whether that's feasible or not depends a lot on the workload mix.</p>
 <p>To evaluate start-up performance in this scenario, we:</p>
 <ol>
@@ -1484,7 +1484,7 @@ who provide an overview of their central software stack <a href="https://tacc.ut
 directly from RAM disk, and ~2.1 seconds from the kernel file system cache (<a href="#hot_cache">hot cache</a>).</p>
 <p>With a <a href="#cold_cache">cold cache</a> and using software installations located on a local SSD disk,
 the start-up time of TensorFlow roughly doubles to ~4.3 seconds.</p>
-<p>These timings will be our reference point going forward.</p>
+<p>These times will be our reference points going forward.</p>
 <h3 id="parallel-file-systems">Parallel file systems<a class="headerlink" href="#parallel-file-systems" title="Permanent link">&para;</a></h3>
 <p>Central software stacks on HPC systems are typically provided via some kind of <em>distributed</em> parallel file system,
 since that significantly reduces the maintenance burden (automatic synchronisation across client systems),
@@ -1501,13 +1501,13 @@ In this particular case we evaluated TensorFlow start-up time on a worker node o
 
 <p>Here we already observe a significant, yet still somewhat limited, increase in start-up time.</p>
 <p>With a <a href="#cold_cache">cold cache</a>, ~6.4 seconds are required to start TensorFlow, and there is notably
-larger variation in the timings; neither of these observations is a surprise with NFS.</p>
-<p>The start-up time with a <a href="#hot_cache">hot cache</a> is also significantly higher compared to using a local
+larger variation in the start-up times; neither of these observations is a surprise with NFS.</p>
+<p>The start-up time with a <a href="#hot_cache">hot cache</a> is also significantly higher compared to using local
 filesystems at ~3.8 seconds, but since this is an older
-generation system we can not directly compare these timings to the ones observed for local disk and RAM disk
+generation system we can not directly compare these times to the ones observed for local disk and RAM disk
 earlier. There is a significant penalty involved though when using NFS, since on the same system we observed start-up times
 of ~2.5 seconds when using RAM disk, as well as with a hot kernel file system cache.</p>
-<p>While these timings are still quite OK, it worth noting that NFS is notorious for not scaling well when it needs
+<p>While these start-up times are still quite OK, it is worth noting that NFS is notorious for not scaling well when it needs
 to serve many different client systems, which is not apparent in these results since only a single client system
 was used.</p>
 <h4 id="lustre">Lustre<a class="headerlink" href="#lustre" title="Permanent link">&para;</a></h4>
@@ -1520,14 +1520,14 @@ and hence is the most obvious choice to make software installations available to
 </p>
 
 <p>We considered two different ways of accessing the Lustre file system of VSC Tier-1 Hortense
-(<a href="#system_configurations">see below</a> for more setails) on which TensorFlow was installed:</p>
+(<a href="#system_configurations">see below</a> for more details) on which TensorFlow was installed:</p>
 <ul>
 <li>directly, via a read-write mount point;</li>
 <li>indirectly, via a read-only mount point (<a href="https://docs.vscentrum.be/gent/tier1_hortense.html#accessing-software-via-readonly-mount-point">which is recommended on Hortense</a>);</li>
 </ul>
-<p>In both cases, the start-up timings were quite similar, with a dramatic increase to ~75 seconds
+<p>In both cases, the start-up times were quite similar, with a dramatic increase to ~75 seconds
 in the <a href="#cold_cache">cold cache</a> situation, and a very reasonable ~2.8-2.9 seconds with a <a href="#hot_cache">hot cache</a>.</p>
-<p>The startup-time of well over 1 minute for TensorFlow with a cold cache is a clear sign that (this particular version and configuration of)
+<p>The start-up time of well over 1 minute for TensorFlow with a cold cache is a clear sign that (this particular version and configuration of)
 Lustre is not well suited for serving software installations.
 This is a well-known problem, see for example the "<em>Avoid Accessing Executables on Lustre Filesystems</em>" recommendation that is included in the <a href="https://www.nas.nasa.gov/hecc/support/kb/lustre-best-practices_226.html"><em>Lustre Best Practices</em> documentation</a> published by the HECC group at NASA for their <em>Pleiades</em> system, and the <a href="https://docs.lumi-supercomputer.eu/software/installing/python/">recommendation for LUMI to not install Python
 software directly on the Lustre file system</a>.</p>
@@ -1559,7 +1559,7 @@ in the HPC-UGent Tier-2 setup (which is the default for the <code>maxStatCache</
 tuned to improve start-up performance of software, this should not be done on a hunch since it may adversely
 affect the overall stability of the GPFS storage servers.</p>
 <h4 id="cernvm-fs">CernVM-FS<a class="headerlink" href="#cernvm-fs" title="Permanent link">&para;</a></h4>
-<p>Now that we have an extensive set of reference timings, we can evaluate the start-up performance
+<p>Now that we have an extensive set of reference start-up times, we can evaluate the start-up performance
 when using a TensorFlow installation that is provided via CernVM-FS.</p>
 <p>Along with a worker node in the HPC-UGent Tier-2 cluster <em>doduo</em> (located in Ghent, Belgium) as client system,
 we consider the following configurations:</p>
@@ -1571,7 +1571,7 @@ we consider the following configurations:</p>
 <li>the public Stratum 1 server for <a href="../eessi/">EESSI</a> in <a href="https://azure.microsoft.com/en-us">Azure</a> location <code>East US (Zone 1)</code>;</li>
 </ul>
 <p>More technical details on network connectivity to these servers are available <a href="#system_configurations">below</a>.</p>
-<p>CernVM-FS was explicitly configured to only use on of these servers, via the <code>CVMFS_SERVER_URL</code> and/or
+<p>CernVM-FS was explicitly configured to only use one of these servers, via the <code>CVMFS_SERVER_URL</code> and/or
 <code>CVMFS_HTTP_PROXY</code> <a href="https://cvmfs.readthedocs.io/en/stable/apx-parameters.html#client-parameters">client configuration
 settings</a>.</p>
 <h5 id="cold-cache">Cold cache<a class="headerlink" href="#cold-cache" title="Permanent link">&para;</a></h5>
@@ -1637,7 +1637,7 @@ of the <a href="#test_workload_details">test workloads</a>.</p>
 <li>a GPFS filesystem, directly attached to the cluster via a high-speed network;</li>
 <li>a Lustre filesystem, directly attached to the cluster via a high-speed network;</li>
 <li>an NFS mount of a GPFS filesystem, via a 10Gbit Ethernet connection;</li>
-<li>CernVM-FS, with:<ul>
+<li>individual CernVM-FS setups:<ul>
 <li>with a client cache on local disk (SSD, <code>ext4</code>), or in RAM disk (<code>/dev/shm</code>);</li>
 <li>without and with (only) a (private) proxy server in the local network;</li>
 <li>without and with (only) a private Stratum 1 replica server in the network;</li>
@@ -1665,7 +1665,7 @@ that TensorFlow is available:</p>
 <div class="copy highlight"><pre><span></span><code>/usr/bin/time<span class="w"> </span>--format<span class="w"> </span><span class="s1">&#39;%e&#39;</span><span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import tensorflow&#39;</span>
 </code></pre></div>
 <h4 id="required-files">Required files<a class="headerlink" href="#required-files" title="Permanent link">&para;</a></h4>
-<p>Based on the statistics for and contents of the CernVM-FS client cache after running the specified command
+<p>Based on the statistics for and the contents of the CernVM-FS client cache after running the specified command
 on an <code>x86_64</code> client system (see the details on the HPC-UGent Tier-2 cluster <em>doduo</em> <a href="#system_configurations">below</a>),
 starting from a cold CernVM-FS client cache, we know that importing the <code>tensorflow</code> Python package:</p>
 <ul>
@@ -1783,7 +1783,7 @@ as measured with <a href="https://linux.die.net/man/1/tcptraceroute"><code>tcptr
 <p>To check CernVM-FS client cache usage for a particular repository:</p>
 <div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>stat<span class="w"> </span>-v<span class="w"> </span>software.eessi.io
 </code></pre></div>
-<p>To check which files are included in the CernVM client cache, use:</p>
+<p>To check which files are included in the CernVM-FS client cache, use:</p>
 <div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>cache<span class="w"> </span>list
 </code></pre></div>
 </details>
