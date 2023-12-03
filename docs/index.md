@@ -86,5 +86,6 @@ Undertaking (JU)](https://eurohpc-ju.europa.eu) and countries participating in t
 * [CernVM-FS website](https://cernvm.cern.ch/fs)
 * [CernVM-FS documentation](https://cvmfs.readthedocs.io)
 * [CernVM-FS @ GitHub](https://github.com/cvmfs)
+* [CernVM-FS forum](https://cernvm-forum.cern.ch)
 * [Introduction to CernVM-FS by *Jakob Blomer (CERN)* (2021)](https://easybuild.io/eum21/#cvmfs-talk)
 * [Introductory tutorial on CernVM-FS (2021)](https://cvmfs-contrib.github.io/cvmfs-tutorial-2021)
