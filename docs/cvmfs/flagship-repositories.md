@@ -14,6 +14,20 @@ Examples include *(click to browse repository contents)*:
 * [`/cvmfs/lhcb.cern.ch`](https://cvmfs-monitor-frontend.web.cern.ch/browse/lhcb.cern.ch): software for [LHCb](https://home.cern/science/experiments/lhcb) experiment
 * [`/cvmfs/sft.cern.ch`](https://cvmfs-monitor-frontend.web.cern.ch/browse/sft.cern.ch): LCG Software Stacks
 
+## LCG Releases
+
+The LCG Software Stack which is distributed via the CernVM-FS repository `/cvmfs/sft.cern.ch`
+contains over 450 external packages as well as HEP specific tools and generators.
+
+There are usually two releases per year as well as development builds every night.
+
+Software installations included often come with a script that updates your shell environment
+for using them by sourcing it. In addition, through so-called *views* a complete software stack
+can be made available in your shell environment.
+
+For more information, see <https://ep-dep-sft.web.cern.ch/document/lcg-releases> and
+<https://lcgdocs.web.cern.ch/lcgdocs/lcgreleases/introduction>.
+
 ## The Alliance
 
 The [Digital Research Alliance of Canada](https://alliancecan.ca/en/about/alliance), a.k.a. *The Alliance* and formerly
