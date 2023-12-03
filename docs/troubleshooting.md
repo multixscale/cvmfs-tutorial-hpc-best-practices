@@ -48,8 +48,6 @@ Here are a couple of examples:
   ```
   Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
   ```
-  ```
-  ```
   We will outline some approaches that should help you to determine what could be wrong exactly.
 
 
@@ -62,13 +60,14 @@ Here are a couple of examples:
   Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
   ```
   ```
-  # indicates that FUSE has crashed
-  Transport endpoint is not connected
-  ```
-  ```
   ls: cannot open directory '/cvmfs/config-repo.cern.ch': Too many levels of symbolic links
   ```
-  Also here we will give some advice on how you might figure out what is wrong.
+  ```
+  Transport endpoint is not connected
+  ```
+  The last error message indicates that [FUSE](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) has failed.
+
+  We will give some advice below on how you might figure out what is wrong when seeing error messages like this.
 
 ### Lag and/or hangs
 
