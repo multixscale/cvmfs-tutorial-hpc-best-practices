@@ -20,7 +20,7 @@
     
     
       
-        <title>Troubleshooting and debugging - Best Practices for CernVM-FS in HPC</title>
+        <title>Troubleshooting - Best Practices for CernVM-FS in HPC</title>
       
     
     
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting-and-debugging-cernvm-fs" class="md-skip">
+        <a href="#troubleshooting-for-cernvm-fs" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting and debugging
+              Troubleshooting
             
           </span>
         </div>
@@ -673,7 +673,7 @@
           
   
   <span class="md-ellipsis">
-    Troubleshooting and debugging
+    Troubleshooting
   </span>
   
 
@@ -684,7 +684,7 @@
         
   
   <span class="md-ellipsis">
-    Troubleshooting and debugging
+    Troubleshooting
   </span>
   
 
@@ -706,9 +706,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#error-overview" class="md-nav__link">
+  <a href="#typical-problems" class="md-nav__link">
     <span class="md-ellipsis">
-      Error overview
+      Typical problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typical problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lag-andor-hangs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lag and/or hangs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      General approach
     </span>
   </a>
   
@@ -725,54 +758,198 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installation-issues" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation issues
+      CernVM-FS installation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuration-issues" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration issues
+      CernVM-FS configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CernVM-FS configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reloading
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#connectivity-issues" class="md-nav__link">
+  <a href="#show-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-existing-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-existing repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect active configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-mounted-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-mounted repositories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectivity" class="md-nav__link">
     <span class="md-ellipsis">
       Connectivity issues
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Connectivity issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#determine_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine proxy server
+    </span>
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#mounting-problems" class="md-nav__link">
+  <a href="#access-to-proxy-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access to proxy server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determine-stratum-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine Stratum 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-to-stratum-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access to Stratum 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-from-stratum-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download from Stratum 1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting" class="md-nav__link">
     <span class="md-ellipsis">
       Mounting problems
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Mounting problems">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#resource-problems" class="md-nav__link">
+  <a href="#autofs" class="md-nav__link">
     <span class="md-ellipsis">
-      Resource problems
+      autofs
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cache-problems" class="md-nav__link">
+  <a href="#currently-mounted-repositories" class="md-nav__link">
     <span class="md-ellipsis">
-      Cache problems
+      Currently mounted repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual mounting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insufficient resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching woes
     </span>
   </a>
   
@@ -799,16 +976,7 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-error-messages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Typical error messages
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Typical error messages">
+    <nav class="md-nav" aria-label="General tools">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -958,9 +1126,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#error-overview" class="md-nav__link">
+  <a href="#typical-problems" class="md-nav__link">
     <span class="md-ellipsis">
-      Error overview
+      Typical problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typical problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lag-andor-hangs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lag and/or hangs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      General approach
     </span>
   </a>
   
@@ -977,54 +1178,198 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#installation-issues" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation issues
+      CernVM-FS installation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#configuration-issues" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration issues
+      CernVM-FS configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CernVM-FS configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reloading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reloading
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#connectivity-issues" class="md-nav__link">
+  <a href="#show-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-existing-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-existing repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active_configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspect active configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-mounted-repositories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non-mounted repositories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectivity" class="md-nav__link">
     <span class="md-ellipsis">
       Connectivity issues
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Connectivity issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#determine_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine proxy server
+    </span>
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#mounting-problems" class="md-nav__link">
+  <a href="#access-to-proxy-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access to proxy server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determine-stratum-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine Stratum 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-to-stratum-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Access to Stratum 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-from-stratum-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download from Stratum 1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mounting" class="md-nav__link">
     <span class="md-ellipsis">
       Mounting problems
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Mounting problems">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#resource-problems" class="md-nav__link">
+  <a href="#autofs" class="md-nav__link">
     <span class="md-ellipsis">
-      Resource problems
+      autofs
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#cache-problems" class="md-nav__link">
+  <a href="#currently-mounted-repositories" class="md-nav__link">
     <span class="md-ellipsis">
-      Cache problems
+      Currently mounted repositories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual mounting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insufficient resources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching woes
     </span>
   </a>
   
@@ -1051,16 +1396,7 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-error-messages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Typical error messages
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Typical error messages">
+    <nav class="md-nav" aria-label="General tools">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1113,119 +1449,277 @@
   
 
 
-<h1 id="troubleshooting-and-debugging-cernvm-fs">Troubleshooting and debugging CernVM-FS<a class="headerlink" href="#troubleshooting-and-debugging-cernvm-fs" title="Permanent link">&para;</a></h1>
-<p>We focus on client-side issues, that is any issues that may arise on the
-client itself or when it connects to a Squid proxy or a Stratum-1.</p>
-<h2 id="error-overview">Error overview<a class="headerlink" href="#error-overview" title="Permanent link">&para;</a></h2>
-<p>Considering the CernVM-FS client, errors could be related to</p>
+<h1 id="troubleshooting-for-cernvm-fs">Troubleshooting for CernVM-FS<a class="headerlink" href="#troubleshooting-for-cernvm-fs" title="Permanent link">&para;</a></h1>
+<p>When you experience problems with getting access to a CernVM-FS repository,
+it can be tricky to figure out what the actual underlying cause is,
+giving the complexity of a typical CernVM-FS setup.</p>
+<p>In this section we provide some guidelines on how to troubleshoot some potential problems
+you may run into with CernVM-FS.
+We focus on client-side issues: problems that may arise on a CernVM-FS client system itself,
+or with the connection to external servers like a <a href="../appendix/terminology/#proxy">Squid proxy</a>
+or a <a href="../appendix/terminology/#stratum1">Stratum 1 replica server</a>.</p>
+<p>While some commands suggested below that can help to determine the actual problem at hand
+require system administrator privileges (indicated with the use of <code>sudo</code>),
+several can also be run as an unprivileged user.</p>
+<p align="center">
+<img src="../img/off_and_on.png" alt="Have you tried turning it off and on again?" width="60%"/></br>
+</p>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this section, we will continue to use the <a href="../eessi/high-level-design/#filesystem_layer">EESSI CernVM-FS repository <code>software.eessi.io</code></a> as a running example, but the troubleshooting guidelines
+or by no means specific to EESSI.</p>
+<p>Make sure you adjust the example commands to the CernVM-FS repository you are using, if needed.</p>
+</div>
+<h2 id="typical-problems">Typical problems<a class="headerlink" href="#typical-problems" title="Permanent link">&para;</a></h2>
+<h3 id="error-messages">Error messages<a class="headerlink" href="#error-messages" title="Permanent link">&para;</a></h3>
+<p>The error messages that you may encounter when accessing a CernVM-FS repository
+are often quite cryptic, especially if you are not very familiar with CernVM-FS, or with
+file systems and networking on Linux systems in general.</p>
+<p>Here are a couple of examples:</p>
 <ul>
-<li>the installation of the client software
-  (see <a href="#installation-issues">Installation issues</a>),</li>
-<li>the configuration of the client,
-  (see <a href="#configuration-issues">Configuration issues</a>),</li>
-<li>the current status of the client,
-  (see <a href="#mounting-problems">Mounting problems</a> and <a href="#cache-problems">Cache problems</a>),</li>
-<li>the network connection to a Squid proxy and/or Stratum-1
-  (see <a href="#connectivity-issues">Connectivity issues</a>)</li>
+<li>
+<p>The CernVM-FS repository may not be known (yet) on your system, which will result
+  in a (clear) error message like this when you try to access it:
+  <div class="highlight"><pre><span></span><code>$ ls /cvmfs/software.eessi.io
+ls: cannot access &#39;/cvmfs/software.eessi.io&#39;: No such file or directory
+</code></pre></div></p>
+</li>
+<li>
+<p>You may see errors messages that suggest network connectivity problems, like:
+  <div class="highlight"><pre><span></span><code>Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code>Transport endpoint is not connected
+</code></pre></div>
+  We will outline some approaches that should help you to determine what could be wrong exactly.</p>
+</li>
+<li>
+<p>Other problems may be quite specific to the internals of CernVM-FS,
+  rather than being configuration or networking issues. Examples include:
+  <div class="highlight"><pre><span></span><code>Failed to initialize root file catalog (16 - file catalog failure)
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code>Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code>ls: cannot open directory &#39;/cvmfs/config-repo.cern.ch&#39;: Too many levels of symbolic links
+</code></pre></div>
+  Also here we will give some advice on how you might figure out what is wrong.</p>
+</li>
 </ul>
-<p><em>(add diagram illustrating a potential setup?)</em></p>
+<h3 id="lag-andor-hangs">Lag and/or hangs<a class="headerlink" href="#lag-andor-hangs" title="Permanent link">&para;</a></h3>
+<p>When you notice lag of even (perceived) hanging when accessing a CernVM-FS repository,
+you should consider revising the <a href="#connectivity">connectivity</a>- and <a href="#cache">cache</a>-related configuration settings.</p>
+<h2 id="general-approach">General approach<a class="headerlink" href="#general-approach" title="Permanent link">&para;</a></h2>
+<p>In general, it is recommended to take a step-by-step approach to troubleshooting:</p>
+<ul>
+<li>Start with verifying the CernVM-FS (client) <a href="#installation">installation</a>;</li>
+<li>Review the CernVM-FS <a href="#configuration">configuration</a>;</li>
+<li>Consider potential <a href="#connectivity">network connectivity</a> issues;</li>
+<li>Keep an eye out for <a href="#mounting">mounting</a> problems;</li>
+<li>Make sure you have sufficient available <a href="#resources">resources</a> like memory and local disk space;</li>
+<li>Rule out any <a href="#caching">cache</a>-related shenanigans;</li>
+</ul>
+<p>Always keep in mind to <a href="#logs">check the logs</a>, and employ the <a href="#general-tools">general tools</a>
+that we put forward.</p>
 <h2 id="common-problems">Common problems<a class="headerlink" href="#common-problems" title="Permanent link">&para;</a></h2>
-<h3 id="installation-issues">Installation issues<a class="headerlink" href="#installation-issues" title="Permanent link">&para;</a></h3>
-<p>The CernVM-FS client is not installed or not accessible. A basic test could
-be
-<div class="copy highlight"><pre><span></span><code>cvmfs2<span class="w"> </span>--version
+<h3 id="installation">CernVM-FS installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h3>
+<p>Make sure that CernVM-FS is actually installed (correctly).</p>
+<p>Check whether both the <code>/cvmfs</code> directory and the <code>cvmfs</code> service account exists on the system:
+<div class="copy highlight"><pre><span></span><code>ls<span class="w"> </span>/cvmfs
+id<span class="w"> </span>cvmfs
+</code></pre></div></p>
+<p>Either of these errors would be a clear indication that CernVM-FS is not installed,
+or that the <a href="../access/client/#completing-the-client-setup">installation was not completed</a>:
+<div class="highlight"><pre><span></span><code>ls: cannot access &#39;/cvmfs&#39;: No such file or directory
 </code></pre></div>
-If the executable cannot be found, please see the section on
-<a href="access/client/#installing-cernvm-fs-client">installing the CernVM-FS client</a>.</p>
-<h3 id="configuration-issues">Configuration issues<a class="headerlink" href="#configuration-issues" title="Permanent link">&para;</a></h3>
-<p>The configuration could be incomplete or wrong. Basic tests could be
+<div class="highlight"><pre><span></span><code>id: ‘cvmfs’: no such user
+</code></pre></div></p>
+<p>You can also check whether the <code>cvmfs2</code> command is available, and working:</p>
+<div class="copy highlight"><pre><span></span><code>cvmfs2<span class="w"> </span>--help
+</code></pre></div>
+<p>which should produce output that starts with:</p>
+<div class="highlight"><pre><span></span><code>The CernVM File System
+Version 2.11.2
+</code></pre></div>
+<p>In case of problems, revise the section on
+<a href="../access/client/#installing-cernvm-fs-client">installing the CernVM-FS client</a>.</p>
+<h3 id="configuration">CernVM-FS configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<p>A common issue is incorrectly configuring CernVM-FS, either by making a silly mistake in a configuration file,
+or by not taking into account the <a href="../access/client/#configuration_hierarchy">hierarchy of configuration files</a>
+that CernVM-FS considers.</p>
+<h4 id="reloading">Reloading<a class="headerlink" href="#reloading" title="Permanent link">&para;</a></h4>
+<p>Don't forget to reload the CernVM-FS configuration after you've made changes to it:</p>
+<div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_config<span class="w"> </span>reload
+</code></pre></div>
+<h4 id="show-configuration">Show configuration<a class="headerlink" href="#show-configuration" title="Permanent link">&para;</a></h4>
+<p>Verify the configuration via <code>cvmfs_config showconfig</code>:</p>
 <div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>showconfig<span class="w"> </span>software.eessi.io
-</code></pre></div></p>
-<p>and</p>
-<div class="copy highlight"><pre><span></span><code>ls<span class="w"> </span>/cvmfs/software.eessi.io
-sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>version
 </code></pre></div>
-<p>Note 1, <code>cvmfs_config</code> uses the configuration files (typically under <code>/etc/cvmfs</code>
-or provided through the repository <code>/cvmfs/cvmfs-config.cern.ch</code>), while
-<code>cvmfs_talk</code> reports on the state of a (mounted) CernVM-FS repository.</p>
-<p>Note 2, <code>cvmfs_config</code> does not check if the repository given as argument
-(<code>software.eessi.io</code> in the example above) does exist.
-Try <code>cvmfs_config showconfig vim.or.emacs.io</code></p>
-<p>If the above <code>cvmfs_talk</code> fails, try
-<div class="copy highlight"><pre><span></span><code>ls<span class="w"> </span>/cvmfs/cvmfs-config.cern.ch
-sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>cvmfs-config.cern.ch<span class="w"> </span>version
-</code></pre></div></p>
-<p>If the latter succeeds, there rather is an issue with the configuration of or
-the access to the former (<code>software.eessi.io</code> in this example).</p>
-<p>An alternative means to show configuration settings for a mounted repository is
-<div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>parameters
-</code></pre></div></p>
-<h3 id="connectivity-issues">Connectivity issues<a class="headerlink" href="#connectivity-issues" title="Permanent link">&para;</a></h3>
-<p>There could be various issues related to connectivity. Because CernVM-FS uses
-plain <code>HTTP</code> as data transfer protocol, basic tools may be used to investigate
+<p>We strongly advise combining this command with <code>grep</code> to check for specific configuration settings, like:</p>
+<div class="highlight"><pre><span></span><code>$ cvmfs_config showconfig software.eessi.io | grep CVMFS_SERVER_URL
+CVMFS_SERVER_URL=&#39;http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io;http://azure-us-east-s1.eessi.science/cvmfs/software.eessi.io&#39;    # from /cvmfs/cvmfs-config.cern.ch/etc/cvmfs/domain.d/eessi.io.conf
+</code></pre></div>
+<p>Be aware that <code>cvmfs_config showconfig</code> will read the configuration files as they are currently,
+but that does not necessarily mean that those configuration settings are currently active;
+see also <a href="#reloading">reloading</a>.</p>
+<h4 id="non-existing-repositories">Non-existing repositories<a class="headerlink" href="#non-existing-repositories" title="Permanent link">&para;</a></h4>
+<p>Keep in mind that <code>cvmfs_config</code> does <em>not</em> check whether the specified
+repository is actually known at all. Try for example querying the configuration
+for the fictional <code>vim.or.emacs.io</code> repository:</p>
+<div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>showconfig<span class="w"> </span>vim.or.emacs.io
+</code></pre></div>
+<h4 id="active_configuration">Inspect <em>active</em> configuration<a class="headerlink" href="#active_configuration" title="Permanent link">&para;</a></h4>
+<p>Inspect the <em>active</em> configuration that is currently used by <em>talking</em> to the running CernVM-FS service
+via <code>cvmfs_talk</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This requires that the specified CernVM-FS repository is currently mounted.</p>
+</div>
+<div class="copy highlight"><pre><span></span><code>ls<span class="w"> </span>/cvmfs/software.eessi.io<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w">  </span><span class="c1"># to trigger mount if not mounted yet</span>
+sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>parameters
+</code></pre></div>
+<p><code>cvmfs_talk</code> can also be used to query other live aspects of a particular repository,
+see the output of <code>cvmfs_talk --help</code>. For example:</p>
+<ul>
+<li>The current revision of repository contents (via <code>revision</code>);</li>
+<li>Information on the Stratum 1 replica server being used (via <code>host ...</code>);</li>
+<li>Information on the proxy server being used (via <code>proxy ...</code>);</li>
+<li>Information on the CernVM-FS client cache (via <code>cache ...</code>);</li>
+</ul>
+<h4 id="non-mounted-repositories">Non-mounted repositories<a class="headerlink" href="#non-mounted-repositories" title="Permanent link">&para;</a></h4>
+<p>If running <code>cvmfs_talk</code> fails with an error like "<code>Seems like CernVM-FS is not running</code>",
+try triggering a mount of the repository first by accessing it (with <code>ls</code>), or by running:</p>
+<div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>probe<span class="w"> </span>software.eessi.io
+</code></pre></div>
+<p>If the latter succeeds but accessing the repository does not,
+there may be an issue with the (active) configuration,
+or there may be a <a href="#connectivity">connectivity problem</a>.</p>
+<h3 id="connectivity">Connectivity issues<a class="headerlink" href="#connectivity" title="Permanent link">&para;</a></h3>
+<p>There could be various issues related to network connectivity,
+for example a <a href="https://en.wikipedia.org/wiki/Firewall_(computing)"><em>firewall</em></a> blocking connections.</p>
+<p>CernVM-FS uses plain <code>HTTP</code> as data transfer protocol, so basic tools can be used to investigate
 connectivity issues.</p>
-<p>There could be a firewall blocking access to the Squid proxy or to the
-Stratum-1(s). First figure out if any proxy is being used.
-<div class="copy highlight"><pre><span></span><code>ls<span class="w"> </span>/cvmfs/software.eessi.io
-sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>proxy<span class="w"> </span>info
-</code></pre></div>
-could provide a list such as
+<h4 id="determine_proxy">Determine proxy server<a class="headerlink" href="#determine_proxy" title="Permanent link">&para;</a></h4>
+<p>You should check whether the client system can the Squid proxy and/or Stratum-1 replica server(s).</p>
+<p>First figure out if a <a href="../appendix/terminology/#proxy">proxy server</a> is being used via:
+<div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>proxy<span class="w"> </span>info
+</code></pre></div></p>
+<p>This should produce output that looks like:</p>
 <div class="highlight"><pre><span></span><code>Load-balance groups:
-[0] http://10.0.0.66:3128 (10.0.0.66, +6h)
+[0] http://PROXY_IP:3128 (PROXY_IP, +6h)
 [1] DIRECT
-Active proxy: [0] http://10.0.0.66:3128
+Active proxy: [0] http://PROXY_IP:3128
 </code></pre></div>
-The last line tells that a proxy is used. With a simple <code>telnet</code> or <code>nc</code> command
-<div class="copy highlight"><pre><span></span><code>nc<span class="w"> </span>-vz<span class="w"> </span><span class="m">10</span>.0.0.66<span class="w"> </span><span class="m">3128</span>
-telnet<span class="w"> </span><span class="m">10</span>.0.0.66<span class="w"> </span><span class="m">3128</span>
-</code></pre></div></p>
-<p>We might want to check if the proxy is reachable at all with
-<div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>tcptraceroute<span class="w"> </span><span class="m">10</span>.0.0.66
-</code></pre></div></p>
-<p>If connecting to the proxy works or no proxy being used (e.g., <code>Active proxy: [1]
-DIRECT</code> is shown from the above <code>cvmfs_talk</code> command), we have to figure out
-which Stratum-1(s) is (are) being used. See the output of
-<div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>host<span class="w"> </span>info
+<p>(to protect the innocent, the actual proxy IP was replaced with "<code>PROXY_IP</code>" in the output above)</p>
+<p>The last line indicates that a proxy server is indeed being used currently.</p>
+<p><code>DIRECT</code> would mean that <em>no</em> proxy server is being used.</p>
+<h4 id="access-to-proxy-server">Access to proxy server<a class="headerlink" href="#access-to-proxy-server" title="Permanent link">&para;</a></h4>
+<p>If a proxy server is used, you should check whether it can be accessed at port <code>3128</code> (default Squid port).</p>
+<p>For this, you can use standard networking tools (if available):</p>
+<ul>
+<li><code>nc</code>, <a href="https://nmap.org/ncat">ncat</a>, a reimplementation of <a href="https://sectools.org/tool/netcat">netcat</a>:
+  <div class="copy highlight"><pre><span></span><code>nc<span class="w"> </span>-vz<span class="w"> </span>PROXY_IP<span class="w"> </span><span class="m">3128</span>
+</code></pre></div></li>
+<li><code>telnet</code>:
+  <div class="copy highlight"><pre><span></span><code>telnet<span class="w"> </span>PROXY_IP<span class="w"> </span><span class="m">3128</span>
+</code></pre></div></li>
+<li><a href="https://linux.die.net/man/1/tcptraceroute"><code>tcptraceroute</code></a>:
+  <div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>tcptraceroute<span class="w"> </span>PROXY_IP<span class="w"> </span><span class="m">3128</span>
+</code></pre></div></li>
+</ul>
+<p>You will need to replace "<code>PROXY_IP</code>" in the commands above with the actual IP (or hostname) of the proxy
+server being used.</p>
+<h4 id="determine-stratum-1">Determine Stratum 1<a class="headerlink" href="#determine-stratum-1" title="Permanent link">&para;</a></h4>
+<p>Check which Stratum 1 servers are currently configured:</p>
+<div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>showconfig<span class="w"> </span>software.eessi.io<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>CVMFS_SERVER_URL
 </code></pre></div>
-which results in
-<div class="highlight"><pre><span></span><code>  [0] http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io (geographically ordered)
-  [1] http://azure-us-east-s1.eessi.science/cvmfs/software.eessi.io (geographically ordered)
+<p>Determine which Stratum 1 is currently being <em>used</em> by CernVM-FS:</p>
+<div class="highlight"><pre><span></span><code>$ sudo cvmfs_talk -i software.eessi.io host info
+  [0] http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io (unprobed)
+  [1] http://azure-us-east-s1.eessi.science/cvmfs/software.eessi.io (unprobed)
 Active host 0: http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io
-</code></pre></div></p>
-<p>First, we can use <code>telnet</code> or <code>nc</code> to verify basic connectivity to a Stratum-1.
-<div class="copy highlight"><pre><span></span><code>nc<span class="w"> </span>-vz<span class="w"> </span>aws-eu-central-s1.eessi.science<span class="w"> </span><span class="m">80</span>
-telnet<span class="w"> </span>aws-eu-central-s1.eessi.science<span class="w"> </span><span class="m">80</span>
-</code></pre></div></p>
-<p>Next, we can now use <code>curl</code> to check the connectivity to a Stratum-1.
-<div class="copy highlight"><pre><span></span><code>curl<span class="w"> </span>--head<span class="w"> </span>http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
 </code></pre></div>
-We can also try to connect to that machine via a proxy, for example,
-<div class="copy highlight"><pre><span></span><code>curl<span class="w"> </span>--proxy<span class="w"> </span>http://10.0.0.66:3128<span class="w"> </span>--head<span class="w"> </span>http://aws-eu-central-s1.eessi.science/cvmfs/software.eessi.io/.cvmfspublished
+<p>In this case, the public Stratum 1 for EESSI in AWS <code>eu-central</code> is being used: <code>aws-eu-central-s1.eessi.science</code>.</p>
+<h4 id="access-to-stratum-1">Access to Stratum 1<a class="headerlink" href="#access-to-stratum-1" title="Permanent link">&para;</a></h4>
+<p>If no proxy is being used (<code>CVMFS_HTTP_PROXY</code> is set to <code>DIRECT</code>, see also <a href="#determine_proxy">above</a>),
+you should check whether the active Stratum 1 is directly accessible at port <code>80</code>.</p>
+<p>Again, you can use standard networking tools for this:</p>
+<p><div class="copy highlight"><pre><span></span><code>nc<span class="w"> </span>-vz<span class="w"> </span>aws-eu-central-s1.eessi.science<span class="w"> </span><span class="m">80</span>
+</code></pre></div>
+<div class="copy highlight"><pre><span></span><code>telnet<span class="w"> </span>aws-eu-central-s1.eessi.science<span class="w"> </span><span class="m">80</span>
+</code></pre></div>
+<div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>tcptraceroute<span class="w"> </span>aws-eu-central-s1.eessi.science<span class="w"> </span><span class="m">80</span>
 </code></pre></div></p>
-<p>Another command to provide a concise overview of the status of the mounted
-repositories is
+<h4 id="download-from-stratum-1">Download from Stratum 1<a class="headerlink" href="#download-from-stratum-1" title="Permanent link">&para;</a></h4>
+<p>To see whether a Stratum 1 replica server can be used to download repository contents from,
+you can use <code>curl</code> to check whether the <code>.cvmfspublished</code> file is accessible:</p>
+<div class="copy highlight"><pre><span></span><code><span class="nv">S1_URL</span><span class="o">=</span><span class="s2">&quot;http://aws-eu-central-s1.eessi.science&quot;</span>
+curl<span class="w"> </span>--head<span class="w"> </span><span class="si">${</span><span class="nv">S1_URL</span><span class="si">}</span>/cvmfs/software.eessi.io/.cvmfspublished
+</code></pre></div>
+<p>If CernVM-FS is configured to use a proxy server, you should let <code>curl</code> use it too:
+<div class="copy highlight"><pre><span></span><code><span class="nv">P_URL</span><span class="o">=</span><span class="s2">&quot;http://PROXY_IP:3128&quot;</span>
+<span class="nv">S1_URL</span><span class="o">=</span><span class="s2">&quot;http://aws-eu-central-s1.eessi.science&quot;</span>
+curl<span class="w"> </span>--proxy<span class="w"> </span><span class="si">${</span><span class="nv">P_URL</span><span class="si">}</span><span class="w"> </span>--head<span class="w"> </span><span class="si">${</span><span class="nv">S1_URL</span><span class="si">}</span>/cvmfs/software.eessi.io/.cvmfspublished
+</code></pre></div>
+or equivalently via the standard <code>http_proxy</code> environment variable that <code>curl</code> picks up on:
+<div class="copy highlight"><pre><span></span><code><span class="nv">S1_URL</span><span class="o">=</span><span class="s2">&quot;http://aws-eu-central-s1.eessi.science&quot;</span>
+<span class="nv">http_proxy</span><span class="o">=</span><span class="s2">&quot;PROXY_IP:3128&quot;</span><span class="w"> </span>curl<span class="w"> </span>--head<span class="w"> </span><span class="si">${</span><span class="nv">S1_URL</span><span class="si">}</span>/cvmfs/software.eessi.io/.cvmfspublished
+</code></pre></div></p>
+<p>Make sure you replace "<code>PROXY_IP</code>" in the commands above with the actual IP (or hostname) of the proxy server.</p>
+<p>If you see a <code>200</code> HTTP return code in the first line of output produced by <code>curl</code>, access is working as it should:</p>
+<div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK
+</code></pre></div>
+<p>If you see <code>403</code> as return code, then something is blocking the connection:</p>
+<div class="highlight"><pre><span></span><code>HTTP/1.1 403 Forbidden
+</code></pre></div>
+<p>In this case, you should check whether a firewall is being used,
+or whether an ACL in the <a href="../access/proxy/#configuration">Squid proxy configuration</a> is the culprit.</p>
+<p>If you see <code>404</code> as return code, you made a typo in the <code>curl</code> command <img alt="😉" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f609.svg" title=":wink:" />:
+<div class="highlight"><pre><span></span><code>HTTP/1.1 404 Not Found
+</code></pre></div>
+Maybe you forgot the '<code>.</code>' in <code>.cvmfspublished</code>?</p>
+<h3 id="mounting">Mounting problems<a class="headerlink" href="#mounting" title="Permanent link">&para;</a></h3>
+<h4 id="autofs"><code>autofs</code><a class="headerlink" href="#autofs" title="Permanent link">&para;</a></h4>
+<p>Keep in mind that (by default) CernVM-FS repositories are mounted <a href="../access/client/#autofs">via <code>autofs</code></a>.</p>
+<p>Hence, you should not rely on the output of <code>ls /cvmfs</code> to determine which repositories
+can be accessed with your current configuration, since they may not be mounted currently.</p>
+<p>You can check whether a specific repository is available by trying to access it directly:</p>
+<div class="copy highlight"><pre><span></span><code>ls<span class="w"> </span>/cvmfs/software.eessi.io
+</code></pre></div>
+<h4 id="currently-mounted-repositories">Currently mounted repositories<a class="headerlink" href="#currently-mounted-repositories" title="Permanent link">&para;</a></h4>
+<p>To check which CernVM-FS repositories are currently mounted, run:
 <div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>stat
+</code></pre></div></p>
+<h4 id="probing">Probing<a class="headerlink" href="#probing" title="Permanent link">&para;</a></h4>
+<p>To check whether a repository can be mounted, you can try to probe it:</p>
+<div class="highlight"><pre><span></span><code>$ cvmfs_config probe software.eessi.io
+Probing /cvmfs/software.eessi.io... OK
 </code></pre></div>
-<em>(more on 'squid proxy configuration' ?)</em></p>
-<h3 id="mounting-problems">Mounting problems<a class="headerlink" href="#mounting-problems" title="Permanent link">&para;</a></h3>
-<p>By default CernVM-FS repositories are mounted via <code>autofs</code>. Note, to see which
-repositories are available <code>ls /cvmfs</code> is not sufficient. Because of <code>autofs</code> the
-repository name has to be added, for example, <code>ls /cvmfs/software.eessi.io</code></p>
-<p>If that does not work, one can try a manual mount:
-<div class="copy highlight"><pre><span></span><code>mount<span class="w"> </span>-t<span class="w"> </span>cvmfs<span class="w"> </span>software.eessi.io<span class="w"> </span>/tmp/eessi
+<h4 id="manual-mounting">Manual mounting<a class="headerlink" href="#manual-mounting" title="Permanent link">&para;</a></h4>
+<p>If you can not get access to a repository via auto-mounting by <code>autofs</code>,
+you can try to manually mount it, since that may reveal specific error messages:</p>
+<div class="copy highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/tmp/cvmfs/eessi
+sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>cvmfs<span class="w"> </span>software.eessi.io<span class="w"> </span>/tmp/cvmfs/eessi
 </code></pre></div>
-or even use <code>cvmfs2</code> directly to mount a repository:
-<div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>/usr/bin/cvmfs2<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-d<span class="w"> </span>-f<span class="w"> </span><span class="se">\</span>
+<p>You can even try using the <code>cvmfs2</code> command directly to mount a repository:
+<div class="copy highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/tmp/cvmfs/eessi
+sudo<span class="w"> </span>/usr/bin/cvmfs2<span class="w"> </span>-d<span class="w"> </span>-f<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-o<span class="w"> </span>rw,system_mount,fsname<span class="o">=</span>cvmfs2,allow_other,grab_mountpoint,uid<span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="w"> </span>cvmfs<span class="k">)</span>,gid<span class="o">=</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="w"> </span>cvmfs<span class="k">)</span>,libfuse<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>software.eessi.io<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>/tmp/eessi
+<span class="w">    </span>software.eessi.io<span class="w"> </span>/tmp/cvmfs/eessi
 </code></pre></div>
 which prints lots of information for debugging (option <code>-d</code>).</p>
-<h3 id="resource-problems">Resource problems<a class="headerlink" href="#resource-problems" title="Permanent link">&para;</a></h3>
-<p><em>(skip ?)</em></p>
-<p>disk full on proxy or Stratum 1 or client cache</p>
-<h3 id="cache-problems">Cache problems<a class="headerlink" href="#cache-problems" title="Permanent link">&para;</a></h3>
+<h3 id="resources">Insufficient resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
+<p>Keep in mind that the problems you observe may be the result of a shortage in resources,
+for example:</p>
+<ul>
+<li>Lack of sufficient memory, for example for the kernel file system cache, which will typically
+  lead to degrated (start-up) performance;</li>
+<li>Lack of sufficient disk space, for the CernVM-FS client cache, for the proxy server,
+  or for the private Stratum 1 replica server;</li>
+<li>Network latency issues, either within the local network (to the proxy server or Stratum 1 replica server),
+  or to the outside world (public Stratum 1 replica servers) &endash; see also the <a href="#connectivity">Connectivity</a>
+  section;</li>
+</ul>
+<h3 id="caching">Caching woes<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
 <p>Clean the cache to exclude any cache corruption as root cause of issues
 <div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_config<span class="w"> </span>wipecache
 </code></pre></div></p>
@@ -1275,29 +1769,6 @@ or a message indicating a problem such as
 <p>Check if a CernVM-FS repository can be mounted
 <div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>probe<span class="w"> </span>software.eessi.io
 </code></pre></div></p>
-<h2 id="typical-error-messages">Typical error messages<a class="headerlink" href="#typical-error-messages" title="Permanent link">&para;</a></h2>
-<p>Below is a list of typical error messages you may encounter. It may not always be
-immediately clear what the root cause of a specific error is. The recommended
-approach to investigate any issue, is to start from
-<a href="#installation-issues">installation issues</a>, then
-systematically walk through the listed issues/problems until
-<a href="#cache-problems">cache problems</a>. Also, considering the above listed
-<a href="#general-tools">general tools</a> as well as <a href="#logs">(debug) log information</a>
-may be helpful.</p>
-<div class="highlight"><pre><span></span><code>ls: cannot access &#39;/cvmfs&#39;: No such file or directory
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>ls: cannot access &#39;/cvmfs/software.eessi.io&#39;: No such file or directory
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Failed to initialize root file catalog (16 - file catalog failure)
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>ls: cannot access &#39;/cvmfs/software.eessi.io&#39;: Transport endpoint is not connected
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>ls: cannot open directory &#39;/cvmfs/config-repo.cern.ch&#39;: Too many levels of symbolic links
-</code></pre></div>
 <h4 id="bandwidth">Bandwidth<a class="headerlink" href="#bandwidth" title="Permanent link">&para;</a></h4>
 <p><em>(maybe skip? or something for performance section?)</em></p>
 <ul>
@@ -1319,13 +1790,15 @@ HTTP/1.1 403 Forbidden
 <p><code>/etc/cvmfs/keys</code></p>
 <p><code>/etc/cvmfs/default.local</code></p>
 <p><code>/etc/cvmfs/domain.d</code></p>
+<hr />
+<p><em>(next: <a href="../performance/">Performance aspects of CernVM-FS</a>)</em></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 3, 2023</span>
       
     
   </small>
