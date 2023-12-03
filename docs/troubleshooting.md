@@ -212,7 +212,19 @@ or there may be a [connectivity problem](#connectivity).
 
 #### Repository public key
 
-FIXME `/etc/cvmfs/keys`
+In order for CernVM-FS to access a repository the corresponding *public key* must be available,
+in a domain-specific subdirectory of `/etc/cvmfs/keys`, like:
+```
+$ ls /etc/cvmfs/keys/cern.ch
+cern-it1.cern.ch.pub  cern-it4.cern.ch.pub  cern-it5.cern.ch.pub
+```
+
+or in the active CernVM-FS config repository, like for EESSI:
+
+```
+$ ls /cvmfs/cvmfs-config.cern.ch/etc/cvmfs/keys/eessi.io
+eessi.io.pub
+```
 
 ### Connectivity issues {: #connectivity }
 
