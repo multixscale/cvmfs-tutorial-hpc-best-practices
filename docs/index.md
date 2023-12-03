@@ -5,15 +5,6 @@
 </p>
 
 
-!!! warning
-
-    *(Nov'23)* This tutorial is under development, please come back later
-    when the tutorial contents have been completed.
-
-    An online version of this tutorial is planned for **Mon 4 Dec 2023 (13:30-17:00 CET)**,
-    register via <https://event.ugent.be/registration/cvmfshpc202312>.
-
-
 This is an introductory tutorial to [CernVM-FS](https://cernvm.cern.ch/fs/), the CernVM File System,
 with a focus on employing it in the context of High-Performance Computing (HPC).
 
@@ -37,22 +28,40 @@ CernVM-FS repositories on HPC infrastructure.
 
 ## Prerequisites
 
-*(more info soon)*
+- Basic knowledge of Linux shell environment
+- Basic knowledge of networking (IP address, port, latency)
+- Basic knowledge of Linux file systems
+- Familiarity with High-Performance Computing environments is a plus
+- Hands-on experience with running scientific software workloads is a plus
 
 
 ## Practical information
 
+### Online
+
 A first virtual edition of this tutorial is planned for Monday 4 December 2023 (13:30-17:00 CET).
+
+*(Zoom link to join the session will only be shared with registered attendes)*
+
+### Registration
 
 Attendance is free, but **registration is required**: <https://event.ugent.be/registration/cvmfshpc202312>.
 
-*(more practical info soon)*
+Registration for online tutorial on Mon 4 Dec 2023 is **closed** *(since Sun 3 Dec 2023)*
 
-
-## Slides
+### Slides
 
 *(coming soon)*
 
+### Slack channel
+
+Dedicated channel in EESSI Slack: [`#cvmfs-best-practices-hpc`](https://eessi-hpc.slack.com/archives/C068DV7GY3V)
+
+[Click here to join the EESSI Slack](https://join.slack.com/t/eessi-hpc/shared_invite/zt-1wqy0t8g6-PZJTg3Hjjm5Fm3XEOkzECg)
+
+### YouTube stream
+
+via [youtube.com/live/YrpPid2BUKM](https://youtube.com/live/YrpPid2BUKM)
 
 ## MultiXscale
 
