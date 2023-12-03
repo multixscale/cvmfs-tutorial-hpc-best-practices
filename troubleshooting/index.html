@@ -1719,7 +1719,7 @@ for example:</p>
 <li>Lack of sufficient disk space, for the CernVM-FS client cache, for the proxy server,
   or for the private Stratum 1 replica server;</li>
 <li>Network latency issues, either within the local network (to the proxy server or Stratum 1 replica server),
-  or to the outside world (public Stratum 1 replica servers) &endash; see also the <a href="#connectivity">Connectivity</a>
+  or to the outside world (public Stratum 1 replica servers) &ndash; see also the <a href="#connectivity">Connectivity</a>
   section;</li>
 </ul>
 <h3 id="caching">Caching woes<a class="headerlink" href="#caching" title="Permanent link">&para;</a></h3>
@@ -1746,6 +1746,11 @@ CernVM-FS logs more information to <code>/tmp/cvmfs_debug.log</code> after the c
 has been run. See
 <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs">CernVM-FS documentation / debug-logs</a>
 for more information. Note that the debug log will log every operation in CVMFS and generates large files - it should be turned back off after capturing an issue.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure that the <code>cvmfs</code> user actually has write permission to the location specified with <code>CVMFS_DEBUGLOG</code>.
+Otherwise you will not only get no log file, but it will also lead to client failures.</p>
+</div>
 <p>An interesting command for mounted repositories is
 <div class="copy highlight"><pre><span></span><code>attr<span class="w"> </span>-g<span class="w"> </span>logbuffer<span class="w"> </span>/cvmfs/software.eessi.io
 </code></pre></div>
