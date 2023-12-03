@@ -316,7 +316,7 @@ S1_URL="http://aws-eu-central-s1.eessi.science"
 http_proxy="PROXY_IP:3128" curl --head ${S1_URL}/cvmfs/software.eessi.io/.cvmfspublished
 ```
 
-Make usre you replace "`PROXY_IP`" in the commands above with the actual IP (or hostname) of the proxy server.
+Make sure you replace "`PROXY_IP`" in the commands above with the actual IP (or hostname) of the proxy server.
 
 If you see a `200` HTTP return code in the first line of output produced by `curl`, access is working as it should:
 
