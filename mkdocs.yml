@@ -31,7 +31,7 @@ nav:
   - Troubleshooting: troubleshooting.md
   - Performance aspects: performance.md
   - Containers: containers.md
-  - Creating a CernVM-FS repository: getting-started.md
+  - Creating a CernVM-FS repository: creating-repo.md
   - "Appendix: Terminology": appendix/terminology.md
 plugins:
   # show revision date at bottom of each page
