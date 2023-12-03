@@ -153,6 +153,14 @@ OPTIONS="--timeout 0"
 
 The default `autofs` timeout is typically 5 minutes (300 seconds), which is usually specified in `/etc/autofs.conf`.
 
+??? warning "Warning when using Slurm's `job_container/tmpfs` plugin with `autofs` *(click to expand)*"
+
+    Slurm versions up to 23.02 had issues when the [`job_container/tmpfs` plugin](https://slurm.schedmd.com/job_container_tmpfs.html) was being used in combination with `autofs`.
+    More information can be found at the [Slurm bug tracker](https://bugs.schedmd.com/show_bug.cgi?id=12567) and the [CernVM-FS forum](https://cernvm-forum.cern.ch/t/intermittent-client-failures-too-many-levels-of-symbolic-links/156).
+
+    Slurm version 23.02 includes a fix by providing a `Shared` option for the `job_container/tmpfs` plugin, which allows it to work with `autofs`.
+
+
 ### Using static mounts
 
 If you prefer not to use `autofs`, you will need to use static mounting, by either:
