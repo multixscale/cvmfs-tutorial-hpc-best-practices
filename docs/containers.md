@@ -62,3 +62,7 @@ For Apptainer, the same can be done by setting the `$SINGULARITY_BIND` (or `$APP
 ```{ .bash .copy }
 export SINGULARITY_BIND="/cvmfs"
 ```
+
+---
+
+*(next: [Creating a CernVM-FS repository](creating-repo.md))*
