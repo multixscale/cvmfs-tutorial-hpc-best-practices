@@ -144,10 +144,10 @@ These timings will be our reference point going forward.
 
 ### Parallel file systems
 
-Central software stacks on HPC system are typically provided via some kind of *distributed* parallel file system,
+Central software stacks on HPC systems are typically provided via some kind of *distributed* parallel file system,
 since that significantly reduces the maintenance burden (automatic synchronisation across client systems),
-and effectively removes the size limitation aspect since these parallel file systems are typically provide
-tens to thousands (or more) of TBs of disk space.
+and effectively removes the size limitation aspect since these parallel file systems typically have
+tens to thousands (or more) of TBs of available disk space.
 
 #### NFS
 
@@ -167,7 +167,7 @@ larger variation in the timings; neither of these observations is a surprise wit
 
 The start-up time with a [hot cache](#hot_cache) is also significantly higher compared to using a local
 filesystems at ~3.8 seconds, but since this is an older
-generation system we can not directly compared these timings to the ones observed for local disk and RAM disk
+generation system we can not directly compare these timings to the ones observed for local disk and RAM disk
 earlier. There is a significant penalty involved though when using NFS, since on the same system we observed start-up times
 of ~2.5 seconds when using RAM disk, as well as with a hot kernel file system cache.
 
