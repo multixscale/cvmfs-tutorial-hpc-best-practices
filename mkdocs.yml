@@ -28,7 +28,7 @@ nav:
     - "Private Stratum 1 replica server": access/stratum1.md
     - "Alternative access methods": access/alternatives.md
   - Configuration on HPC systems: configuration_hpc.md
-  - Troubleshooting and debugging: troubleshooting.md
+  - Troubleshooting: troubleshooting.md
   - Performance aspects: performance.md
   - Containers: containers.md
   - Creating a CernVM-FS repository: getting-started.md
