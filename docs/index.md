@@ -41,7 +41,7 @@ CernVM-FS repositories on HPC infrastructure.
 
 A first virtual edition of this tutorial is planned for Monday 4 December 2023 (13:30-17:00 CET).
 
-*(Zoom link to join the session will only be shared with registered attendes)*
+*(Zoom link to join the session will only be shared with registered attendees)*
 
 ### Registration
 
