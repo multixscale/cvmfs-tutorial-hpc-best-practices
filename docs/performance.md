@@ -15,7 +15,7 @@ Parallel filesystems like [GPFS (now IBM Storage Scale)](https://en.wikipedia.or
 are notorious for not performing well in this respect, which is not surprising since they mainly target a very
 different use case: large-scale high-performance I/O on large datasets.
 
-This has led to to all sorts of creative workarounds for "the startup problem",
+This has led to all sorts of creative workarounds for "the startup problem",
 including for example tools like [Spindle](https://github.com/hpc/Spindle), and recommendations to not install
 (in particular Python) software directly on the parallel filesystem but to use a container image instead
 ([see the documentation of the current flagship EuroHPC system LUMI](https://docs.lumi-supercomputer.eu/software/installing/python/)).
@@ -72,7 +72,7 @@ CernVM-FS client cache (which is typically on the local disk of the client),
 but not yet in the in-memory kernel file system cache. As a result, there will be an impact on
 start-up performance, since the files have to be loaded from (local) disk first.
 
-This is a fairly likely scenario, especially if the CernVM-FS client cache if sufficiently large
+This is a fairly likely scenario, especially if the CernVM-FS client cache is sufficiently large
 to cover typical workloads being run &ndash; whether that's feasible or not depends a lot on the workload mix.
 
 To evaluate start-up performance in this scenario, we:
@@ -140,7 +140,7 @@ directly from RAM disk, and ~2.1 seconds from the kernel file system cache ([hot
 With a [cold cache](#cold_cache) and using software installations located on a local SSD disk,
 the start-up time of TensorFlow roughly doubles to ~4.3 seconds.
 
-These timings will be our reference point going forward.
+These times will be our reference points going forward.
 
 ### Parallel file systems
 
@@ -163,15 +163,15 @@ In this particular case we evaluated TensorFlow start-up time on a worker node o
 Here we already observe a significant, yet still somewhat limited, increase in start-up time.
 
 With a [cold cache](#cold_cache), ~6.4 seconds are required to start TensorFlow, and there is notably
-larger variation in the timings; neither of these observations is a surprise with NFS.
+larger variation in the start-up times; neither of these observations is a surprise with NFS.
 
-The start-up time with a [hot cache](#hot_cache) is also significantly higher compared to using a local
+The start-up time with a [hot cache](#hot_cache) is also significantly higher compared to using local
 filesystems at ~3.8 seconds, but since this is an older
-generation system we can not directly compare these timings to the ones observed for local disk and RAM disk
+generation system we can not directly compare these times to the ones observed for local disk and RAM disk
 earlier. There is a significant penalty involved though when using NFS, since on the same system we observed start-up times
 of ~2.5 seconds when using RAM disk, as well as with a hot kernel file system cache.
 
-While these timings are still quite OK, it worth noting that NFS is notorious for not scaling well when it needs
+While these start-up times are still quite OK, it is worth noting that NFS is notorious for not scaling well when it needs
 to serve many different client systems, which is not apparent in these results since only a single client system
 was used.
 
@@ -188,15 +188,15 @@ and hence is the most obvious choice to make software installations available to
 </p>
 
 We considered two different ways of accessing the Lustre file system of VSC Tier-1 Hortense
-([see below](#system_configurations) for more setails) on which TensorFlow was installed:
+([see below](#system_configurations) for more details) on which TensorFlow was installed:
 
 * directly, via a read-write mount point;
 * indirectly, via a read-only mount point ([which is recommended on Hortense](https://docs.vscentrum.be/gent/tier1_hortense.html#accessing-software-via-readonly-mount-point));
 
-In both cases, the start-up timings were quite similar, with a dramatic increase to ~75 seconds
+In both cases, the start-up times were quite similar, with a dramatic increase to ~75 seconds
 in the [cold cache](#cold_cache) situation, and a very reasonable ~2.8-2.9 seconds with a [hot cache](#hot_cache).
 
-The startup-time of well over 1 minute for TensorFlow with a cold cache is a clear sign that (this particular version and configuration of)
+The start-up time of well over 1 minute for TensorFlow with a cold cache is a clear sign that (this particular version and configuration of)
 Lustre is not well suited for serving software installations.
 This is a well-known problem, see for example the "*Avoid Accessing Executables on Lustre Filesystems*" recommendation that is included in the [*Lustre Best Practices* documentation](https://www.nas.nasa.gov/hecc/support/kb/lustre-best-practices_226.html) published by the HECC group at NASA for their *Pleiades* system, and the [recommendation for LUMI to not install Python
 software directly on the Lustre file system](https://docs.lumi-supercomputer.eu/software/installing/python/).
@@ -237,7 +237,7 @@ affect the overall stability of the GPFS storage servers.
 
 #### CernVM-FS
 
-Now that we have an extensive set of reference timings, we can evaluate the start-up performance
+Now that we have an extensive set of reference start-up times, we can evaluate the start-up performance
 when using a TensorFlow installation that is provided via CernVM-FS.
 
 Along with a worker node in the HPC-UGent Tier-2 cluster *doduo* (located in Ghent, Belgium) as client system,
@@ -251,7 +251,7 @@ we consider the following configurations:
 
 More technical details on network connectivity to these servers are available [below](#system_configurations).
 
-CernVM-FS was explicitly configured to only use on of these servers, via the `CVMFS_SERVER_URL` and/or
+CernVM-FS was explicitly configured to only use one of these servers, via the `CVMFS_SERVER_URL` and/or
 `CVMFS_HTTP_PROXY` [client configuration
 settings](https://cvmfs.readthedocs.io/en/stable/apx-parameters.html#client-parameters).
 
@@ -336,7 +336,7 @@ Software installations being used are available via either:
 * a GPFS filesystem, directly attached to the cluster via a high-speed network;
 * a Lustre filesystem, directly attached to the cluster via a high-speed network;
 * an NFS mount of a GPFS filesystem, via a 10Gbit Ethernet connection;
-* CernVM-FS, with:
+* individual CernVM-FS setups:
     - with a client cache on local disk (SSD, `ext4`), or in RAM disk (`/dev/shm`);
     - without and with (only) a (private) proxy server in the local network;
     - without and with (only) a private Stratum 1 replica server in the network;
@@ -377,7 +377,7 @@ Timing information is collected using the GNU `time` command, as follows:
 
 #### Required files
 
-Based on the statistics for and contents of the CernVM-FS client cache after running the specified command
+Based on the statistics for and the contents of the CernVM-FS client cache after running the specified command
 on an `x86_64` client system (see the details on the HPC-UGent Tier-2 cluster *doduo* [below](#system_configurations)),
 starting from a cold CernVM-FS client cache, we know that importing the `tensorflow` Python package:
 
@@ -519,7 +519,7 @@ As such, this is a challenge for parallel filesystems like GPFS and Lustre, as t
     cvmfs_config stat -v software.eessi.io
     ```
 
-    To check which files are included in the CernVM client cache, use:
+    To check which files are included in the CernVM-FS client cache, use:
 
     ```{ .bash .copy }
     sudo cvmfs_talk -i software.eessi.io cache list
