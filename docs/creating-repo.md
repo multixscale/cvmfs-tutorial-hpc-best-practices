@@ -33,7 +33,7 @@ which involves starting a *transaction*, making changes, and then *publishing* t
 To optimize metadata access for client systems, you may need to look into creating [nested catalogs](
 https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#managing-nested-catalogs).
 
-If files are frequent removed from the repository, you should consider enabling [garbage
+If files are frequently removed from the repository, you should consider enabling [garbage
 collection](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#repository-garbage-collection).
 
 ## Public Stratum 1 replica servers
