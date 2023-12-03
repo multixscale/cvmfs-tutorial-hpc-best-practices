@@ -140,6 +140,9 @@ Don't forget to reload the CernVM-FS configuration after you've made changes to 
 sudo cvmfs_config reload
 ```
 
+Note that changes to specific configuration settings, in particular those related to FUSE,
+will not be reloaded with this command, since they require remounting the repository.
+
 #### Show configuration
 
 Verify the configuration via `cvmfs_config showconfig`:
