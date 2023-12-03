@@ -1452,7 +1452,7 @@
 <h1 id="troubleshooting-for-cernvm-fs">Troubleshooting for CernVM-FS<a class="headerlink" href="#troubleshooting-for-cernvm-fs" title="Permanent link">&para;</a></h1>
 <p>When you experience problems with getting access to a CernVM-FS repository,
 it can be tricky to figure out what the actual underlying cause is,
-giving the complexity of a typical CernVM-FS setup.</p>
+given the complexity of a typical CernVM-FS setup.</p>
 <p>In this section we provide some guidelines on how to troubleshoot some potential problems
 you may run into with CernVM-FS.
 We focus on client-side issues: problems that may arise on a CernVM-FS client system itself,
@@ -1468,7 +1468,7 @@ several can also be run as an unprivileged user.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In this section, we will continue to use the <a href="../eessi/high-level-design/#filesystem_layer">EESSI CernVM-FS repository <code>software.eessi.io</code></a> as a running example, but the troubleshooting guidelines
-or by no means specific to EESSI.</p>
+are by no means specific to EESSI.</p>
 <p>Make sure you adjust the example commands to the CernVM-FS repository you are using, if needed.</p>
 </div>
 <h2 id="typical-problems">Typical problems<a class="headerlink" href="#typical-problems" title="Permanent link">&para;</a></h2>
@@ -1489,7 +1489,7 @@ ls: cannot access &#39;/cvmfs/software.eessi.io&#39;: No such file or directory
 <p>You may see errors messages that suggest network connectivity problems, like:
   <div class="highlight"><pre><span></span><code>Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
 </code></pre></div>
-  <div class="highlight"><pre><span></span><code>Transport endpoint is not connected
+  <div class="highlight"><pre><span></span><code>
 </code></pre></div>
   We will outline some approaches that should help you to determine what could be wrong exactly.</p>
 </li>
@@ -1499,6 +1499,9 @@ ls: cannot access &#39;/cvmfs/software.eessi.io&#39;: No such file or directory
   <div class="highlight"><pre><span></span><code>Failed to initialize root file catalog (16 - file catalog failure)
 </code></pre></div>
   <div class="highlight"><pre><span></span><code>Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code># indicates that FUSE has crashed
+Transport endpoint is not connected
 </code></pre></div>
   <div class="highlight"><pre><span></span><code>ls: cannot open directory &#39;/cvmfs/config-repo.cern.ch&#39;: Too many levels of symbolic links
 </code></pre></div>
@@ -1651,7 +1654,7 @@ you should check whether the active Stratum 1 is directly accessible at port <co
 </code></pre></div></p>
 <h4 id="download-from-stratum-1">Download from Stratum 1<a class="headerlink" href="#download-from-stratum-1" title="Permanent link">&para;</a></h4>
 <p>To see whether a Stratum 1 replica server can be used to download repository contents from,
-you can use <code>curl</code> to check whether the <code>.cvmfspublished</code> file is accessible:</p>
+you can use <code>curl</code> to check whether the <code>.cvmfspublished</code> file is accessible ( this file must exist in every repository ):</p>
 <div class="copy highlight"><pre><span></span><code><span class="nv">S1_URL</span><span class="o">=</span><span class="s2">&quot;http://aws-eu-central-s1.eessi.science&quot;</span>
 curl<span class="w"> </span>--head<span class="w"> </span><span class="si">${</span><span class="nv">S1_URL</span><span class="si">}</span>/cvmfs/software.eessi.io/.cvmfspublished
 </code></pre></div>
@@ -1742,10 +1745,11 @@ CernVM-FS logs more information to <code>/tmp/cvmfs_debug.log</code> after the c
 </code></pre></div>
 has been run. See
 <a href="https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs">CernVM-FS documentation / debug-logs</a>
-for more information.</p>
+for more information. Note that the debug log will log every operation in CVMFS and generates large files - it should be turned back off after capturing an issue.</p>
 <p>An interesting command for mounted repositories is
 <div class="copy highlight"><pre><span></span><code>attr<span class="w"> </span>-g<span class="w"> </span>logbuffer<span class="w"> </span>/cvmfs/software.eessi.io
-</code></pre></div></p>
+</code></pre></div>
+This will print the last syslog messages from this repositories without needing to access /var/log.</p>
 <h2 id="general-tools">General tools<a class="headerlink" href="#general-tools" title="Permanent link">&para;</a></h2>
 <p>If the repository <code>software.eessi.io</code> is mounted, the following command provides
 useful information and statistics
