@@ -425,7 +425,7 @@ for example:
 
 CernVM-FS assumes that the local cache directory is trustworthy.
 
-Although unlikely, problems you observing could be caused by some form
+Although unlikely, problems you are observing could be caused by some form
 of corruption in the CernVM-FS client cache, for example due to problems
 outside of the control of CernVM-FS (like a disk partition running full).
 
