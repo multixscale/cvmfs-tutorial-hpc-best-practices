@@ -48,8 +48,6 @@ Here are a couple of examples:
   ```
   Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
   ```
-  We will outline some approaches that should help you to determine what could be wrong exactly.
-
 
 * Other problems may be quite specific to the internals of CernVM-FS,
   rather than being configuration or networking issues. Examples include:
