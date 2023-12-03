@@ -1486,10 +1486,10 @@ directly from RAM disk, and ~2.1 seconds from the kernel file system cache (<a h
 the start-up time of TensorFlow roughly doubles to ~4.3 seconds.</p>
 <p>These timings will be our reference point going forward.</p>
 <h3 id="parallel-file-systems">Parallel file systems<a class="headerlink" href="#parallel-file-systems" title="Permanent link">&para;</a></h3>
-<p>Central software stacks on HPC system are typically provided via some kind of <em>distributed</em> parallel file system,
+<p>Central software stacks on HPC systems are typically provided via some kind of <em>distributed</em> parallel file system,
 since that significantly reduces the maintenance burden (automatic synchronisation across client systems),
-and effectively removes the size limitation aspect since these parallel file systems are typically provide
-tens to thousands (or more) of TBs of disk space.</p>
+and effectively removes the size limitation aspect since these parallel file systems typically have
+tens to thousands (or more) of TBs of available disk space.</p>
 <h4 id="nfs">NFS<a class="headerlink" href="#nfs" title="Permanent link">&para;</a></h4>
 <p>Let's start with a traditional and fairly standard approach, which is to make a central software stack
 available via an export of a centrally managed shared file system using <a href="https://en.wikipedia.org/wiki/Network_File_System">NFS</a>.
@@ -1504,7 +1504,7 @@ In this particular case we evaluated TensorFlow start-up time on a worker node o
 larger variation in the timings; neither of these observations is a surprise with NFS.</p>
 <p>The start-up time with a <a href="#hot_cache">hot cache</a> is also significantly higher compared to using a local
 filesystems at ~3.8 seconds, but since this is an older
-generation system we can not directly compared these timings to the ones observed for local disk and RAM disk
+generation system we can not directly compare these timings to the ones observed for local disk and RAM disk
 earlier. There is a significant penalty involved though when using NFS, since on the same system we observed start-up times
 of ~2.5 seconds when using RAM disk, as well as with a hot kernel file system cache.</p>
 <p>While these timings are still quite OK, it worth noting that NFS is notorious for not scaling well when it needs
