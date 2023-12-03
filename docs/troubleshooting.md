@@ -215,9 +215,9 @@ for example a [*firewall*](https://en.wikipedia.org/wiki/Firewall_(computing)) b
 CernVM-FS uses plain `HTTP` as data transfer protocol, so basic tools can be used to investigate
 connectivity issues.
 
-#### Determine proxy server {: #determine_proxy }
+You should check whether the client system can connect to the Squid proxy and/or Stratum-1 replica server(s).
 
-You should check whether the client system can the Squid proxy and/or Stratum-1 replica server(s).
+#### Determine proxy server {: #determine_proxy }
 
 First figure out if a [proxy server](appendix/terminology.md#proxy) is being used via:
 ``` { .bash .copy }
