@@ -1601,8 +1601,8 @@ or there may be a <a href="#connectivity">connectivity problem</a>.</p>
 for example a <a href="https://en.wikipedia.org/wiki/Firewall_(computing)"><em>firewall</em></a> blocking connections.</p>
 <p>CernVM-FS uses plain <code>HTTP</code> as data transfer protocol, so basic tools can be used to investigate
 connectivity issues.</p>
+<p>You should check whether the client system can connect to the Squid proxy and/or Stratum-1 replica server(s).</p>
 <h4 id="determine_proxy">Determine proxy server<a class="headerlink" href="#determine_proxy" title="Permanent link">&para;</a></h4>
-<p>You should check whether the client system can the Squid proxy and/or Stratum-1 replica server(s).</p>
 <p>First figure out if a <a href="../appendix/terminology/#proxy">proxy server</a> is being used via:
 <div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_talk<span class="w"> </span>-i<span class="w"> </span>software.eessi.io<span class="w"> </span>proxy<span class="w"> </span>info
 </code></pre></div></p>
