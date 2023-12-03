@@ -363,6 +363,12 @@ HTTP/1.1 404 Not Found
 ```
 Maybe you forgot the '`.`' in `.cvmfspublished`?
 
+!!! note
+
+    A Stratum 1 server does not provide access to *all* possible CernVM-FS repositories.
+
+    It has to be configured to serve particular repositories, as shown in [Private Stratum 1 replica server - Creating repository replica](access/stratum1.md#creating-repository-replica).
+
 #### Network latency & bandwidth
 
 To check the network latency and bandwidth, you can use [`iperf3`]() and `tcptraceroute`](),
