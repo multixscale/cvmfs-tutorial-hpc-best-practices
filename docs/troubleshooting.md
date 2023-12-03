@@ -402,7 +402,7 @@ for example:
 * Lack of sufficient disk space, for the CernVM-FS client cache, for the proxy server,
   or for the private Stratum 1 replica server;
 * Network latency issues, either within the local network (to the proxy server or Stratum 1 replica server),
-  or to the outside world (public Stratum 1 replica servers) &endash; see also the [Connectivity](#connectivity)
+  or to the outside world (public Stratum 1 replica servers) &ndash; see also the [Connectivity](#connectivity)
   section;
 
 
