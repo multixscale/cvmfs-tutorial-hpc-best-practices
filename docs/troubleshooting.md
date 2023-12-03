@@ -499,7 +499,7 @@ configuration](#reloading).
 !!! warning "Debug logging is a bit like a firehose - use with care!"
 
     Note that with debug logging enabled *every* operation performed by CernVM-FS will be logged,
-    which quickly generates large files and introduces a signifiant amount of overhead,
+    which quickly generates large files and introduces a significant overhead,
     so it **should only be enabled temporarily** when trying to obtain more information on a particular problem.
 
 !!! warning "Make sure that the debug log file is writable!"
