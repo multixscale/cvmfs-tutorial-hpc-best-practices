@@ -442,6 +442,10 @@ has been run. See
 [CernVM-FS documentation / debug-logs](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs)
 for more information. Note that the debug log will log every operation in CVMFS and generates large files - it should be turned back off after capturing an issue.
 
+!!! warning
+    Make sure that the `cvmfs` user actually has write permission to the location specified with `CVMFS_DEBUGLOG`.
+    Otherwise you will not only get no log file, but it will also lead to client failures.
+
 An interesting command for mounted repositories is
 ``` { .bash .copy }
 attr -g logbuffer /cvmfs/software.eessi.io
