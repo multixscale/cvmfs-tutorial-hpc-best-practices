@@ -2,7 +2,7 @@
 
 When you experience problems with getting access to a CernVM-FS repository,
 it can be tricky to figure out what the actual underlying cause is,
-giving the complexity of a typical CernVM-FS setup.
+given the complexity of a typical CernVM-FS setup.
 
 In this section we provide some guidelines on how to troubleshoot some potential problems
 you may run into with CernVM-FS.
@@ -22,7 +22,7 @@ several can also be run as an unprivileged user.
 
     In this section, we will continue to use the [EESSI CernVM-FS repository `software.eessi.io`](
     eessi/high-level-design.md#filesystem_layer) as a running example, but the troubleshooting guidelines
-    or by no means specific to EESSI.
+    are by no means specific to EESSI.
 
     Make sure you adjust the example commands to the CernVM-FS repository you are using, if needed.
 
@@ -49,7 +49,6 @@ Here are a couple of examples:
   Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
   ```
   ```
-  Transport endpoint is not connected
   ```
   We will outline some approaches that should help you to determine what could be wrong exactly.
 
@@ -61,6 +60,10 @@ Here are a couple of examples:
   ```
   ```
   Failed to transfer ownership of /var/lib/cvmfs/shared to cvmfs
+  ```
+  ```
+  # indicates that FUSE has crashed
+  Transport endpoint is not connected
   ```
   ```
   ls: cannot open directory '/cvmfs/config-repo.cern.ch': Too many levels of symbolic links
@@ -297,7 +300,7 @@ sudo tcptraceroute aws-eu-central-s1.eessi.science 80
 #### Download from Stratum 1
 
 To see whether a Stratum 1 replica server can be used to download repository contents from,
-you can use `curl` to check whether the `.cvmfspublished` file is accessible:
+you can use `curl` to check whether the `.cvmfspublished` file is accessible ( this file must exist in every repository ):
 
 ``` { .bash .copy }
 S1_URL="http://aws-eu-central-s1.eessi.science"
@@ -437,12 +440,13 @@ sudo cvmfs_config reload
 ```
 has been run. See
 [CernVM-FS documentation / debug-logs](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#debug-logs)
-for more information.
+for more information. Note that the debug log will log every operation in CVMFS and generates large files - it should be turned back off after capturing an issue.
 
 An interesting command for mounted repositories is
 ``` { .bash .copy }
 attr -g logbuffer /cvmfs/software.eessi.io
 ```
+This will print the last syslog messages from this repositories without needing to access /var/log.
 
 
 ## General tools
