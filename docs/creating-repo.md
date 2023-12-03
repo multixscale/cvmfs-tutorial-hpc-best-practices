@@ -22,7 +22,7 @@ For more information on this, see [the CernVM-FS documentation](
 https://cvmfs.readthedocs.io/en/stable/cpt-repo.html),
 or the [second section of the CernVM-FS introductory tutorial](https://cvmfs-contrib.github.io/cvmfs-tutorial-2021/02_stratum0_client/).
 
-## Publshing content
+## Publishing content
 
 After creating the repository, you should add some content to it via the update procedure
 that is documented [here](https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#repository-update),
