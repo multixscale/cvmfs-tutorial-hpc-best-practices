@@ -164,3 +164,7 @@ For more details on these alternatives, see [Alternative ways to access CernVM-F
     While [Parrot](https://ccl.cse.nd.edu/software/parrot) is still mentioned in the CernVM-FS documentation
     (see [here](https://cvmfs.readthedocs.io/en/stable/cpt-configure.html#parrot-connector-to-cernvm-fs)),
     it is no longer recommended to use it, since better alternatives (like `cvmfsexec`) are available now.
+
+---
+
+*(next: [Troubleshooting for CernVM-FS repositories](troubleshooting.md))*
