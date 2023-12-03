@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started-with-cernvm-fs-from-scratch" class="md-skip">
+        <a href="#creating-a-cernvm-fs-repository" class="md-skip">
           Skip to content
         </a>
       
@@ -766,27 +766,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setting-up-the-stratum-0-server" class="md-nav__link">
+  <a href="#stratum-0-creating-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up the Stratum-0 server
+      Stratum 0 + creating repository
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-a-cernvm-fs-repository" class="md-nav__link">
+  <a href="#publishing-content" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating a CernVM-FS repository
+      Publishing content
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#setting-up-a-stratum-1-replica-server" class="md-nav__link">
+  <a href="#managing-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up a Stratum-1 replica server
+      Managing repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-stratum-1-replica-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Stratum 1 replica servers
     </span>
   </a>
   
@@ -847,27 +856,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setting-up-the-stratum-0-server" class="md-nav__link">
+  <a href="#stratum-0-creating-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up the Stratum-0 server
+      Stratum 0 + creating repository
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-a-cernvm-fs-repository" class="md-nav__link">
+  <a href="#publishing-content" class="md-nav__link">
     <span class="md-ellipsis">
-      Creating a CernVM-FS repository
+      Publishing content
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#setting-up-a-stratum-1-replica-server" class="md-nav__link">
+  <a href="#managing-repository" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up a Stratum-1 replica server
+      Managing repository
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-stratum-1-replica-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public Stratum 1 replica servers
     </span>
   </a>
   
@@ -891,17 +909,42 @@
   
 
 
-<h1 id="getting-started-with-cernvm-fs-from-scratch">Getting started with CernVM-FS (from scratch)<a class="headerlink" href="#getting-started-with-cernvm-fs-from-scratch" title="Permanent link">&para;</a></h1>
-<h2 id="setting-up-the-stratum-0-server">Setting up the Stratum-0 server<a class="headerlink" href="#setting-up-the-stratum-0-server" title="Permanent link">&para;</a></h2>
-<h2 id="creating-a-cernvm-fs-repository">Creating a CernVM-FS repository<a class="headerlink" href="#creating-a-cernvm-fs-repository" title="Permanent link">&para;</a></h2>
-<h2 id="setting-up-a-stratum-1-replica-server">Setting up a Stratum-1 replica server<a class="headerlink" href="#setting-up-a-stratum-1-replica-server" title="Permanent link">&para;</a></h2>
+<h1 id="creating-a-cernvm-fs-repository">Creating a CernVM-FS repository<a class="headerlink" href="#creating-a-cernvm-fs-repository" title="Permanent link">&para;</a></h1>
+<p>Although creating a new CernVM-FS repository and making it available to the world is not in scope for this
+tutorial, we do want to give a (very) brief overview of what that entails.</p>
+<p>For more information on starting with CernVM-FS from scratch to create your own CernVM-FS repository,
+see the <a href="https://cvmfs-contrib.github.io/cvmfs-tutorial-2021">introductory tutorial to the CernVM-FS</a>
+was organised at the <a href="https://easybuild.io/eum21">6th EasyBuild User Meeting</a> (Jan'21).</p>
+<h2 id="stratum-0-creating-repository">Stratum 0 + creating repository<a class="headerlink" href="#stratum-0-creating-repository" title="Permanent link">&para;</a></h2>
+<p>To create a new CernVM-FS repository, you will need to <strong>set up a <a href="../appendix/terminology/#stratum0">Stratum 0 server</a></strong>,
+or find an existing one that is willing to host your repository.</p>
+<p>On a Stratum 0 server, a new repository can be created with:</p>
+<div class="copy highlight"><pre><span></span><code>cvmfs_server<span class="w"> </span>mkfs<span class="w"> </span>example.domain.tld
+</code></pre></div>
+<p>For more information on this, see <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html">the CernVM-FS documentation</a>,
+or the <a href="https://cvmfs-contrib.github.io/cvmfs-tutorial-2021/02_stratum0_client/">second section of the CernVM-FS introductory tutorial</a>.</p>
+<h2 id="publishing-content">Publishing content<a class="headerlink" href="#publishing-content" title="Permanent link">&para;</a></h2>
+<p>After creating the repository, you should add some content to it via the update procedure
+that is documented <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#repository-update">here</a>,
+which involves starting a <em>transaction</em>, making changes, and then <em>publishing</em> those changes.</p>
+<h2 id="managing-repository">Managing repository<a class="headerlink" href="#managing-repository" title="Permanent link">&para;</a></h2>
+<p>To optimize metadata access for client systems, you may need to look into creating <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#managing-nested-catalogs">nested catalogs</a>.</p>
+<p>If files are frequently removed from the repository, you should consider enabling <a href="https://cvmfs.readthedocs.io/en/stable/cpt-repo.html#repository-garbage-collection">garbage
+collection</a>.</p>
+<h2 id="public-stratum-1-replica-servers">Public Stratum 1 replica servers<a class="headerlink" href="#public-stratum-1-replica-servers" title="Permanent link">&para;</a></h2>
+<p>To distribute your repository, you should set up one or more public <a href="../appendix/terminology/#stratum1">Stratum 1 replica
+servers</a>, much like we also did in this tutorial (see the
+<a href="../access/stratum1/">Accessing repositories - Private Stratum 1 replica server</a> section).</p>
+<p>More information on this is available <a href="https://cvmfs.readthedocs.io/en/stable/cpt-replica.html">in the CernVM-FS documentation</a> as well.</p>
+<hr />
+<p><em>(next: <a href="../appendix/terminology/">Appendix: Terminology</a>)</em></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 24, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 3, 2023</span>
       
     
   </small>
