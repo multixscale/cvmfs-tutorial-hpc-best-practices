@@ -15,7 +15,7 @@ or find an existing one that is willing to host your repository.
 On a Stratum 0 server, a new repository can be created with:
 
 ```{ .bash .copy }
-cvmfs_server mkfs example.domain.tld
+sudo cvmfs_server mkfs example.domain.tld
 ```
 
 For more information on this, see [the CernVM-FS documentation](
