@@ -371,7 +371,7 @@ Maybe you forgot the '`.`' in `.cvmfspublished`?
 
 #### Network latency & bandwidth
 
-To check the network latency and bandwidth, you can use [`iperf3`]() and `tcptraceroute`](),
+To check the network latency and bandwidth, you can use [`iperf3`](https://iperf.fr/) and [`tcptraceroute`](https://linux.die.net/man/1/tcptraceroute),
 see also [*Network details* in *System configurations* of the Performance section](
 performance.md#system_configurations) of this tutorial.
 
