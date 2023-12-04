@@ -51,7 +51,7 @@ Registration for online tutorial on Mon 4 Dec 2023 is **closed** *(since Sun 3 D
 
 ### Slides
 
-*(coming soon)*
+[Available for download here](https://raw.githubusercontent.com/multixscale/cvmfs-tutorial-hpc-best-practices/main/files/Best-Practices-for-CernVM-FS-in-HPC-20231204.pdf)
 
 ### Slack channel
 
