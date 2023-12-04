@@ -48,8 +48,6 @@ Here are a couple of examples:
   ```
   Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
   ```
-  We will outline some approaches that should help you to determine what could be wrong exactly.
-
 
 * Other problems may be quite specific to the internals of CernVM-FS,
   rather than being configuration or networking issues. Examples include:
@@ -141,6 +139,9 @@ Don't forget to reload the CernVM-FS configuration after you've made changes to 
 ``` { .bash .copy }
 sudo cvmfs_config reload
 ```
+
+Note that changes to specific configuration settings, in particular those related to FUSE,
+will not be reloaded with this command, since they require remounting the repository.
 
 #### Show configuration
 
@@ -362,6 +363,12 @@ HTTP/1.1 404 Not Found
 ```
 Maybe you forgot the '`.`' in `.cvmfspublished`?
 
+!!! note
+
+    A Stratum 1 server does not provide access to *all* possible CernVM-FS repositories.
+
+    It has to be configured to serve particular repositories, as shown in [Private Stratum 1 replica server - Creating repository replica](access/stratum1.md#creating-repository-replica).
+
 #### Network latency & bandwidth
 
 To check the network latency and bandwidth, you can use [`iperf3`]() and `tcptraceroute`](),
@@ -505,7 +512,7 @@ CVMFS_DEBUGLOG=/tmp/cvmfs-debug.log
 ```
 
 CernVM-FS will log more information to the specified debug log file after [reloading the CernVM-FS
-configuration](#reloading).
+configuration](#reloading) (supported since CernVM-FS 2.11.0).
 
 !!! warning "Debug logging is a bit like a firehose - use with care!"
 
@@ -530,7 +537,7 @@ that CernVM-FS uses, which can accessed via the `attr` command (see also [the Ce
 documentation](https://cvmfs.readthedocs.io/en/stable/cpt-details.html#getxattr)).
 
 In particular the `logbuffer` attribute, which contains the last log messages for that particular
-repository, which *can be accessed without special privileges* that are required to access log messages
+repository, which **can be accessed without special privileges** that are required to access log messages
 emitted to `/var/log/*`.
 
 For example:

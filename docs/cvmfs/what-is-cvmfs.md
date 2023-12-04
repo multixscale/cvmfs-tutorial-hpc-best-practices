@@ -1,5 +1,9 @@
 # What is CernVM-FS?
 
+<div align="center">
+<img src="../../img/logos/CernVM-FS_logo_with_name.png" alt="CernVM-FS logo" width="50%"/></br>
+</div>
+
 [CernVM-FS](https://cernvm.cern.ch/fs/), the CernVM File System (also known as *CVMFS*),
 is a *file distribution service* that is particularly well suited to distribute *software installations*
 across a large number of systems world-wide in an efficient way.
