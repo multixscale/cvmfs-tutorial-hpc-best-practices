@@ -746,9 +746,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-via-apptainer" class="md-nav__link">
+  <a href="#accessing-containers-hosted-in-cernvm-fs-via-apptainer" class="md-nav__link">
     <span class="md-ellipsis">
-      Accessing via Apptainer
+      Accessing containers hosted in CernVM-FS via Apptainer
     </span>
   </a>
   
@@ -847,9 +847,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#accessing-via-apptainer" class="md-nav__link">
+  <a href="#accessing-containers-hosted-in-cernvm-fs-via-apptainer" class="md-nav__link">
     <span class="md-ellipsis">
-      Accessing via Apptainer
+      Accessing containers hosted in CernVM-FS via Apptainer
     </span>
   </a>
   
@@ -895,7 +895,7 @@
 <p>CernVM-FS can also be used to distribute container images, providing many of the same benefits that come with any CernVM-FS installation. Especially the on-demand download of accessed files means that containers start nearly instantly, and are more efficient for large images when only a fraction of the files are read, which is typically the case.</p>
 <p>Any CernVM-FS repository can be used to distribute container images (although often, dedicated repositories are used, like <a href="../cvmfs/flagship-repositories/#unpacked-containers"><code>/cvmfs/unpacked.cern.ch</code></a>).</p>
 <p>In order to provide <a href="../cvmfs/what-is-cvmfs/#features-deduplication">de-duplication</a> and <a href="../cvmfs/what-is-cvmfs/#features-ondemand">on-demand download</a>, images must be stored <em>unpacked</em>. This requires some dedicated tools, provided by CernVM-FS itself - see the section "<a href="#ingesting">Ingesting container images</a>" below.</p>
-<h2 id="accessing-via-apptainer">Accessing via Apptainer<a class="headerlink" href="#accessing-via-apptainer" title="Permanent link">&para;</a></h2>
+<h2 id="accessing-containers-hosted-in-cernvm-fs-via-apptainer">Accessing containers hosted in CernVM-FS via Apptainer<a class="headerlink" href="#accessing-containers-hosted-in-cernvm-fs-via-apptainer" title="Permanent link">&para;</a></h2>
 <p><a href="https://apptainer.org">Apptainer</a> is the recommended way to run containers from CernVM-FS, as it can start a container directly from an unpacked root file system, which is ideal for CernVM-FS.</p>
 <p><a href="https://www.docker.com">Docker</a> can be used as well but the setup is more complicated, requiring the <a href="https://cvmfs.readthedocs.io/en/stable/cpt-graphdriver.html">CernVM-FS graphdriver plugin</a>.</p>
 <p>For example, to run the <a href="https://hub.docker.com/layers/tensorflow/tensorflow/2.15.0-jupyter/images/sha256-3bf17d6d5f2ed968543238936cca0725ca664d24729c537778b1333a315036d7?context=explore"><code>tensorflow/tensorflow:2.15.0-jupyter</code></a> image from <a href="https://hub.docker.com/">Docker Hub</a> that has been unpacked in <code>/cvmfs/unpacked.cern.ch</code>, use the following commands:</p>
@@ -934,7 +934,7 @@ where <code>recipe.yaml</code> is a 'wishlist' of container images available in 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2023</span>
       
     
   </small>
