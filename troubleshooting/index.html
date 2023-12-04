@@ -1620,8 +1620,7 @@ ls: cannot access &#39;/cvmfs/software.eessi.io&#39;: No such file or directory
 <li>
 <p>You may see errors messages that suggest network connectivity problems, like:
   <div class="highlight"><pre><span></span><code>Failed to discover HTTP proxy servers (23 - proxy auto-discovery failed)
-</code></pre></div>
-  We will outline some approaches that should help you to determine what could be wrong exactly.</p>
+</code></pre></div></p>
 </li>
 <li>
 <p>Other problems may be quite specific to the internals of CernVM-FS,
@@ -1683,6 +1682,8 @@ that CernVM-FS considers.</p>
 <p>Don't forget to reload the CernVM-FS configuration after you've made changes to it:</p>
 <div class="copy highlight"><pre><span></span><code>sudo<span class="w"> </span>cvmfs_config<span class="w"> </span>reload
 </code></pre></div>
+<p>Note that changes to specific configuration settings, in particular those related to FUSE,
+will not be reloaded with this command, since they require remounting the repository.</p>
 <h4 id="show-configuration">Show configuration<a class="headerlink" href="#show-configuration" title="Permanent link">&para;</a></h4>
 <p>Verify the configuration via <code>cvmfs_config showconfig</code>:</p>
 <div class="copy highlight"><pre><span></span><code>cvmfs_config<span class="w"> </span>showconfig<span class="w"> </span>software.eessi.io
@@ -1824,6 +1825,11 @@ or whether an ACL in the <a href="../access/proxy/#configuration">Squid proxy co
 <div class="highlight"><pre><span></span><code>HTTP/1.1 404 Not Found
 </code></pre></div>
 Maybe you forgot the '<code>.</code>' in <code>.cvmfspublished</code>?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A Stratum 1 server does not provide access to <em>all</em> possible CernVM-FS repositories.</p>
+<p>It has to be configured to serve particular repositories, as shown in <a href="../access/stratum1/#creating-repository-replica">Private Stratum 1 replica server - Creating repository replica</a>.</p>
+</div>
 <h4 id="network-latency-bandwidth">Network latency &amp; bandwidth<a class="headerlink" href="#network-latency-bandwidth" title="Permanent link">&para;</a></h4>
 <p>To check the network latency and bandwidth, you can use <a href=""><code>iperf3</code></a> and <code>tcptraceroute</code>](),
 see also <a href="../performance/#system_configurations"><em>Network details</em> in <em>System configurations</em> of the Performance section</a> of this tutorial.</p>
@@ -1910,7 +1916,7 @@ which usually corresponds to either <code>/var/log/messages</code> or <code>/var
 <div class="copy highlight"><pre><span></span><code><span class="nv">CVMFS_DEBUGLOG</span><span class="o">=</span>/tmp/cvmfs-debug.log
 </code></pre></div></p>
 <p>CernVM-FS will log more information to the specified debug log file after <a href="#reloading">reloading the CernVM-FS
-configuration</a>.</p>
+configuration</a> (supported since CernVM-FS 2.11.0).</p>
 <div class="admonition warning">
 <p class="admonition-title">Debug logging is a bit like a firehose - use with care!</p>
 <p>Note that with debug logging enabled <em>every</em> operation performed by CernVM-FS will be logged,
@@ -1929,7 +1935,7 @@ so it <strong>should only be enabled temporarily</strong> when trying to obtain 
 that CernVM-FS uses, which can accessed via the <code>attr</code> command (see also <a href="https://cvmfs.readthedocs.io/en/stable/cpt-details.html#getxattr">the CernVM-FS
 documentation</a>).</p>
 <p>In particular the <code>logbuffer</code> attribute, which contains the last log messages for that particular
-repository, which <em>can be accessed without special privileges</em> that are required to access log messages
+repository, which <strong>can be accessed without special privileges</strong> that are required to access log messages
 emitted to <code>/var/log/*</code>.</p>
 <p>For example:
 <div class="highlight"><pre><span></span><code>$ attr -g logbuffer /cvmfs/software.eessi.io
