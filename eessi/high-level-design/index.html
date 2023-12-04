@@ -1015,21 +1015,28 @@ and <a href="../using-eessi/">how to use it</a>.</p>
 <p>In the <a href="../../access/">next section</a> will cover in detail how you can get access to EESSI
 (and other publicly available CernVM-FS repositories).</p>
 <h2 id="layered-structure">Layered structure<a class="headerlink" href="#layered-structure" title="Permanent link">&para;</a></h2>
-<p>The EESSI project consists of 3 layers, which are constructed by leveraging various open source software projects.</p>
+<p>To provide <em>optimized</em> installations of scientific software stacks for a diverse set of system architectures,
+the EESSI project consists of 3 layers, which are constructed by leveraging various open source software projects:</p>
+<ul>
+<li>the <a href="#filesystem_layer">filesystem layer</a> to distribute the software stack;</li>
+<li>the <a href="#compatibility_layer">compatibility layer</a> to level the ground across different client operating systems;</li>
+<li>the <a href="">software layer</a> to run optimized applications and provided their dependencies</li>
+</ul>
 <p align="center">
 <img src="../../img/eessi-high-level-design.png" alt="High-level design of EESSI" width="90%"/></br>
 </p>
 
 <h3 id="filesystem_layer">Filesystem layer<a class="headerlink" href="#filesystem_layer" title="Permanent link">&para;</a></h3>
-<p>The <em>filesystem layer</em> is responsible for <strong>distributing</strong> the EESSI software stack to systems on which is it used.</p>
-<p>This is done using <a href="../../cvmfs/what-is-cvmfs/"><strong>CernVM-FS</strong></a>, which is a mature open source software project
+<p>The <em>filesystem layer</em> uses <a href="../../cvmfs/what-is-cvmfs/"><strong>CernVM-FS</strong></a> to distribute the EESSI software stack to
+client systems.</p>
+<p>As presented in the previous section, CernVM-FS is a mature open source software project
 that was created exactly for this purpose:
 to distribute software installations worldwide reliably and efficiently in a scalable way.
 As such, it aligns very well with the <a href="../motivation-goals/">goals of EESSI</a>.</p>
 <p>The CernVM-FS repository for EESSI is <strong><code>/cvmfs/software.eessi.io</code></strong>,
-which is part of the default CernVM-FS configuration since 21 November 2023, so no additional action is required to
-<em>gain access</em> to it other than installing and configuration the client component of CernVM-FS.</p>
-<p>More on that in the <a href="../../access/">next section</a> of this tutorial.</p>
+which is part of the default CernVM-FS configuration since 21 November 2023.</p>
+<p>To gain access to it, no other action is required then installing (and configuring)
+the client component of CernVM-FS.</p>
 <details class="note">
 <summary>Note on the EESSI pilot repository <em>(click to expand)</em></summary>
 <p>There is also a <a href="http://www.eessi.io/docs/pilot">"pilot" CernVM-FS repository for EESSI (<code>/cvmfs/pilot.eessi-hpc.org</code>)</a>,
@@ -1086,7 +1093,8 @@ regardless of the (version of) Linux distribution being used.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is very similar to the OS tools and libraries that are included in container images,
-except that no container runtime is involved here (typically), only CernVM-FS.</p>
+except that no container runtime is involved here.</p>
+<p>Typically only CernVM-FS is used to provide the entire software (stack).</p>
 </div>
 <h3 id="software_layer">Software layer<a class="headerlink" href="#software_layer" title="Permanent link">&para;</a></h3>
 <p>The top layer of EESSI is called the <em>software layer</em>, which contains the actual scientific software applications
@@ -1189,8 +1197,8 @@ resides at <code>/usr/bin/ldd</code>.</p>
 <p>When actually running software provided by the EESSI software layer, the loader provided
 by the EESSI compatibility layer is used to launch binaries.</p>
 </details>
-<p>We will explore the EESSI software layer a bit more in the <a href="../using-eessi/">next subsection of this tutorial</a>,
-when we demonstrate how to use the software installations provided in the EESSI software layer.</p>
+<p>We will explore the EESSI software layer a bit more
+when we demonstrate how to use the software installations provided the EESSI CernVM-FS repository.</p>
 <hr />
 <p><em>(next: <a href="../using-eessi/">Using EESSI</a>)</em></p>
 
@@ -1199,7 +1207,7 @@ when we demonstrate how to use the software installations provided in the EESSI 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 28, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 4, 2023</span>
       
     
   </small>
