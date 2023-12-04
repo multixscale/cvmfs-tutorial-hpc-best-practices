@@ -11,7 +11,12 @@ In the [next section](../access/index.md) will cover in detail how you can get a
 
 ## Layered structure
 
-The EESSI project consists of 3 layers, which are constructed by leveraging various open source software projects.
+To provide *optimized* installations of scientific software stacks for a diverse set of system architectures,
+the EESSI project consists of 3 layers, which are constructed by leveraging various open source software projects:
+
+- the [filesystem layer](#filesystem_layer) to distribute the software stack;
+- the [compatibility layer](#compatibility_layer) to level the ground across different client operating systems;
+- the [software layer]() to run optimized applications and provided their dependencies
 
 <p align="center">
 <img src="../../img/eessi-high-level-design.png" alt="High-level design of EESSI" width="90%"/></br>
@@ -20,18 +25,20 @@ The EESSI project consists of 3 layers, which are constructed by leveraging vari
 
 ### Filesystem layer {: #filesystem_layer }
 
-The *filesystem layer* is responsible for **distributing** the EESSI software stack to systems on which is it used.
 
-This is done using [**CernVM-FS**](../cvmfs/what-is-cvmfs.md), which is a mature open source software project
+The *filesystem layer* uses [**CernVM-FS**](../cvmfs/what-is-cvmfs.md) to distribute the EESSI software stack to
+client systems.
+
+As presented in the previous section, CernVM-FS is a mature open source software project
 that was created exactly for this purpose:
 to distribute software installations worldwide reliably and efficiently in a scalable way.
 As such, it aligns very well with the [goals of EESSI](motivation-goals.md).
 
 The CernVM-FS repository for EESSI is **`/cvmfs/software.eessi.io`**,
-which is part of the default CernVM-FS configuration since 21 November 2023, so no additional action is required to
-*gain access* to it other than installing and configuration the client component of CernVM-FS.
+which is part of the default CernVM-FS configuration since 21 November 2023.
 
-More on that in the [next section](../access/index.md) of this tutorial.
+To gain access to it, no other action is required then installing (and configuring)
+the client component of CernVM-FS.
 
 ??? note "Note on the EESSI pilot repository *(click to expand)*"
 
@@ -102,7 +109,10 @@ regardless of the (version of) Linux distribution being used.
 !!! note
 
     This is very similar to the OS tools and libraries that are included in container images,
-    except that no container runtime is involved here (typically), only CernVM-FS.
+    except that no container runtime is involved here.
+
+    Typically only CernVM-FS is used to provide the entire software (stack).
+
 
 ### Software layer {: #software_layer }
 
@@ -233,8 +243,8 @@ $ ldd software/linux/x86_64/amd/zen3/software/OpenBLAS/0.3.23-GCC-12.3.0/lib/lib
     When actually running software provided by the EESSI software layer, the loader provided
     by the EESSI compatibility layer is used to launch binaries.
 
-We will explore the EESSI software layer a bit more in the [next subsection of this tutorial](using-eessi.md),
-when we demonstrate how to use the software installations provided in the EESSI software layer.
+We will explore the EESSI software layer a bit more
+when we demonstrate how to use the software installations provided the EESSI CernVM-FS repository.
 
 ---
 
