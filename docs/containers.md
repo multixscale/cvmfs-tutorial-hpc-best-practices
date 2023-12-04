@@ -6,7 +6,7 @@ Any CernVM-FS repository can be used to distribute container images (although of
 
 In order to provide [de-duplication](cvmfs/what-is-cvmfs.md#features-deduplication) and [on-demand download](cvmfs/what-is-cvmfs.md#features-ondemand), images must be stored *unpacked*. This requires some dedicated tools, provided by CernVM-FS itself - see the section "[Ingesting container images](#ingesting)" below.
 
-## Accessing via Apptainer
+## Accessing containers hosted in CernVM-FS via Apptainer
 
 [Apptainer](https://apptainer.org) is the recommended way to run containers from CernVM-FS, as it can start a container directly from an unpacked root file system, which is ideal for CernVM-FS.
 
