@@ -5,7 +5,7 @@ tutorial, we do want to give a (very) brief overview of what that entails.
 
 For more information on starting with CernVM-FS from scratch to create your own CernVM-FS repository,
 see the [introductory tutorial to the CernVM-FS](https://cvmfs-contrib.github.io/cvmfs-tutorial-2021)
-was organised at the [6th EasyBuild User Meeting](https://easybuild.io/eum21) (Jan'21).
+that was organised at the [6th EasyBuild User Meeting](https://easybuild.io/eum21) (Jan'21).
 
 ## Stratum 0 + creating repository
 
