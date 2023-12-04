@@ -16,7 +16,7 @@ the EESSI project consists of 3 layers, which are constructed by leveraging vari
 
 - the [filesystem layer](#filesystem_layer) to distribute the software stack;
 - the [compatibility layer](#compatibility_layer) to level the ground across different client operating systems;
-- the [software layer]() to run optimized applications and provided their dependencies
+- the [software layer](#software_layer) to run optimized applications and provided their dependencies
 
 <p align="center">
 <img src="../../img/eessi-high-level-design.png" alt="High-level design of EESSI" width="90%"/></br>
