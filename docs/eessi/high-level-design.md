@@ -53,7 +53,7 @@ the client component of CernVM-FS.
     or even available, nor that the software installations it provides are actually functional,
     since it may be used for experimentation purposes by the EESSI maintainers.
 
-### Compatibility layer {: #compat_layer }
+### Compatibility layer {: #compatibility_layer }
 
 The *compatibility layer* of EESSI **levels the ground** across different (versions of) the Linux operating system (OS)
 of client systems that use the software installations provided by EESSI.
