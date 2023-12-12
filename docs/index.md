@@ -17,6 +17,18 @@ on HPC infrastructure.
 </div>
 
 
+## Recording
+
+A first virtual edition of this tutorial was held on 4 December 2023,
+the recording is available here:
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L0Mmy7NBXDU?si=Ob0DtYN2FH3K169V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<br/><a href="https://raw.githubusercontent.com/multixscale/cvmfs-tutorial-hpc-best-practices/main/files/Best-Practices-for-CernVM-FS-in-HPC-20231204.pdf">
+<em>slides (PDF) available for download here</em></a>
+</p>
+
 ## Intended audience
 
 This tutorial is intended for people with a background in HPC (system administrators, support team members,
@@ -37,31 +49,17 @@ CernVM-FS repositories on HPC infrastructure.
 
 ## Practical information
 
-### Online
-
-A first virtual edition of this tutorial is planned for Monday 4 December 2023 (13:30-17:00 CET).
-
-*(Zoom link to join the session will only be shared with registered attendees)*
-
 ### Registration
 
 Attendance is free, but **registration is required**: <https://event.ugent.be/registration/cvmfshpc202312>.
 
 Registration for online tutorial on Mon 4 Dec 2023 is **closed** *(since Sun 3 Dec 2023)*
 
-### Slides
-
-[Available for download here](https://raw.githubusercontent.com/multixscale/cvmfs-tutorial-hpc-best-practices/main/files/Best-Practices-for-CernVM-FS-in-HPC-20231204.pdf)
-
 ### Slack channel
 
 Dedicated channel in EESSI Slack: [`#cvmfs-best-practices-hpc`](https://eessi-hpc.slack.com/archives/C068DV7GY3V)
 
 [Click here to join the EESSI Slack](https://join.slack.com/t/eessi-hpc/shared_invite/zt-1wqy0t8g6-PZJTg3Hjjm5Fm3XEOkzECg)
-
-### YouTube stream
-
-via [youtube.com/live/YrpPid2BUKM](https://youtube.com/live/YrpPid2BUKM)
 
 ## MultiXscale
 
@@ -71,7 +69,7 @@ via [youtube.com/live/YrpPid2BUKM](https://youtube.com/live/YrpPid2BUKM)
 </a>
 </div>
 
-This tutorial is being developed and organised in the context of the [MultiXscale EuroHPC
+This tutorial was developed and organised in the context of the [MultiXscale EuroHPC
 Centre-of-Excellence](https://www.multixscale.eu).
 
 Funded by the European Union. This work has received funding from the [European High Performance Computing Joint
