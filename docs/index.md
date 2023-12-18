@@ -29,6 +29,10 @@ the recording is available here:
 <em>slides (PDF) available for download here</em></a>
 </p>
 
+### Slides
+
+[Available for download here](https://raw.githubusercontent.com/multixscale/cvmfs-tutorial-hpc-best-practices/main/files/Best-Practices-for-CernVM-FS-in-HPC-20231204.pdf)
+
 ## Intended audience
 
 This tutorial is intended for people with a background in HPC (system administrators, support team members,
