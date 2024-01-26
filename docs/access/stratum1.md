@@ -45,8 +45,6 @@ recommendations into account:
 - A RAID-protected **low latency storage** setup (like [SSD](https://en.wikipedia.org/wiki/Solid-state_drive)
   or [NVMe](https://en.wikipedia.org/wiki/NVM_Express)) should be used,
   because the CernVM-FS server component will run lots of `stat` system calls against it.
-- An [`ext3`](https://en.wikipedia.org/wiki/Ext3) or [`ext4`](https://en.wikipedia.org/wiki/Ext4) file system
-  is preferred (rather than [XFS](https://en.wikipedia.org/wiki/XFS)).
 - A standard Apache web server should be installed, which should be close to the
   low latency storage. Directory listing is not required.
 - HTTP connections to port `80` must be possible.
