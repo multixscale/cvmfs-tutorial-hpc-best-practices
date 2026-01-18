@@ -1,5 +1,12 @@
 # Containers and CernVM-FS
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 CernVM-FS can also be used to distribute container images, providing many of the same benefits that come with any CernVM-FS installation. Especially the on-demand download of accessed files means that containers start nearly instantly, and are more efficient for large images when only a fraction of the files are read, which is typically the case.
 
 Any CernVM-FS repository can be used to distribute container images (although often, dedicated repositories are used, like [`/cvmfs/unpacked.cern.ch`](cvmfs/flagship-repositories.md#unpacked-containers)).

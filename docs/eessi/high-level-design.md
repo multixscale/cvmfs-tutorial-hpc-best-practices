@@ -1,5 +1,12 @@
 # High-level design of EESSI
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 The design of EESSI is very similar to that of the [Compute Canada software stack](inspiration.md) it is inspired by,
 and is aligned with the [motivation and goals](motivation-goals.md) of the project.
 

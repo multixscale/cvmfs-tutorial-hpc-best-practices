@@ -1,5 +1,12 @@
 # Squid proxy server
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 As a first step towards a production-ready CernVM-FS setup
 we can install a [Squid forward proxy server](http://www.squid-cache.org),
 which is strongly recommended in the context of HPC systems.

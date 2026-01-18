@@ -1,5 +1,12 @@
 # Configuring CernVM-FS on HPC infrastructure
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 In the [previous section](access/index.md) we have outlined how to set up a robust CernVM-FS infrastructure, by having a private Stratum 1 replica server and/or dedicated Squid proxy servers. While this approach will work for many HPC systems, some may have slightly more esoteric setups that require specific solutions, which we will discuss in this section.
 
 
