@@ -1,5 +1,12 @@
 # Inspiration for EESSI
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 The EESSI concept is heavily inspired by software stack provided by the
 [Digital Research Alliance of Canada](https://alliancecan.ca/en/about/alliance) (a.k.a. The Alliance, formerly known as *Compute Canada*), which is a shared software stack used on all
 [national host sites for Advanced Research Computing in Canada](

@@ -1,5 +1,12 @@
 # Performance aspects of CernVM-FS
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 One aspect we can not ignore in the context of software on HPC infrastructure is *performance* (the P in HPC).
 
 ## Start-up performance

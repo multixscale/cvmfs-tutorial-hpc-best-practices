@@ -1,5 +1,12 @@
 # Technical details of CernVM-FS
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 CernVM-FS is implemented as a *POSIX read-only [filesystem in user space (FUSE)](https://en.wikipedia.org/wiki/Filesystem_in_Userspace)*
 with [repositories](../appendix/terminology.md#repository) of files that are served via outgoing
 [HTTP](https://en.wikipedia.org/wiki/HTTP) connections only, thus avoiding problems with firewalls.

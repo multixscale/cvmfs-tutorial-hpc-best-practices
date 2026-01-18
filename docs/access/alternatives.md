@@ -1,5 +1,12 @@
 # Alternative ways to access CernVM-FS repositories
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 While a [native installation of CernVM-FS on the client system](client.md),
 along with a [proxy server](proxy.md) and/or [Stratum 1 replica server](stratum1.md) for large-scale production setups,
 is recommended, there are other alternatives available for getting access to CernVM-FS repositories.

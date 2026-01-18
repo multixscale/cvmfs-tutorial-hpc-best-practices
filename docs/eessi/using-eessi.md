@@ -1,5 +1,12 @@
 # Using EESSI
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 Using the software installations provided by the EESSI CernVM-FS repository `software.eessi.io`
 is fairly straightforward.
 

@@ -1,5 +1,12 @@
 # Private Stratum 1 replica server
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 In this section of the tutorial, we will set up a [Stratum 1 replica server](
 ../appendix/terminology.md#stratum1), which is the next step towards
 a production-ready CernVM-FS setup.

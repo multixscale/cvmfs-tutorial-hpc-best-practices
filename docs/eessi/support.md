@@ -1,5 +1,12 @@
 # Getting support for EESSI
 
+!!! tip "Updated version available!"
+
+    This tutorial was held in Dec 2023, some aspects of it are now outdated.
+
+    An updated version of this tutorial was presented in May 2025,
+    see [here](https://eessi.io/docs/training-events/2025/tutorial-best-practices-cvmfs-hpc).
+
 <div align="center">
 <a href="https://www.multixscale.eu">
 <img src="../../img/logos/multixscale_logo.png" alt="MultiXscale logo" width="50%"/>
